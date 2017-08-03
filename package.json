@@ -1,0 +1,20 @@
+{
+  "name": "queue-haiku",
+  "version": "1.0.0",
+  "description": "Prototype full-stack haiku app",
+  "main": "index.js",
+  "scripts": {
+    "build": "NODE_ENV=development npm run clean && mkdirp dist && babel src -d dist --source-maps inline",
+    "clean": "rimraf dist",
+    "start": "npm run build && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dylan Ross Ludwick",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.1"
+  }
+}
