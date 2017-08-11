@@ -3,4 +3,6 @@ extends default
 block content
   h1 #{title}
   ul.list-group
+    each haiku, i in haikus
+      li= haiku.title
     
