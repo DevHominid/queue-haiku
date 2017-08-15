@@ -1,32 +1,22 @@
 import express from 'express';
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
+// Init models
+import Haiku from '../models/haiku';
+
 // define the home page route
 router.get('/', (req, res) => {
-  let haikus = [
-    {
-      id: 1,
-      title: 'Haiku One',
-      author: 'John Doe',
-      body: 'This is Haiku one'
-    },
-    {
-      id: 2,
-      title: 'Haiku Two',
-      author: 'Jane Doe',
-      body: 'This is Haiku two'
-    },
-    {
-      id: 3,
-      title: 'Haiku Three',
-      author: 'John Doe',
-      body: 'This is Haiku three'
+  Haiku.find({}, (err, haikus) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('index', {
+        title: 'Haikus',
+        haikus: haikus
+      });
     }
-  ];
-  res.render('index', {
-    title: 'Haikus',
-    haikus: haikus
   });
 });
 
