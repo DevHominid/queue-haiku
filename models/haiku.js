@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+//import mongoose from 'mongoose';
+let mongoose = require('mongoose');
 
 // Init haiku schema
 let haikuSchema = mongoose.Schema({
