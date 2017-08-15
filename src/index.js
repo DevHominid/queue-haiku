@@ -2,6 +2,25 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import router from './router';
+import mongoose from 'mongoose';
+import Promise from 'mpromise';
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost/queue-haiku').then(
+  () => {console.log('Connected to MongoDB');},
+  err => {console.log(err);}
+);
+let db = mongoose.connection;
+/*
+// Check connection
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+// Check for DB errors
+db.on('error', (err) => {
+  console.log(err);
+});*/
 
 // Init app
 const app = express();
