@@ -45,4 +45,13 @@ router.post('/haikus/add', (req, res) => {
   });
 });
 
+// Haiku GET route
+router.get('/haikus/:id', (req, res) => {
+  Haiku.findById(req.params.id, (err, haiku) => {
+    res.render('haiku', {
+      haiku:haiku
+    });
+  });
+});
+
 export default router;
