@@ -11,16 +11,6 @@ mongoose.connect('mongodb://localhost/queue-haiku').then(
   err => {console.log(err);}
 );
 let db = mongoose.connection;
-/*
-// Check connection
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
-
-// Check for DB errors
-db.on('error', (err) => {
-  console.log(err);
-});*/
 
 // Init app
 const app = express();
@@ -41,8 +31,6 @@ app.use(express.static(`${__dirname}/../public`));
 
 // Load router module
 app.use(router)
-
-// Initiate
 
 // Start server
 app.listen(port, () => {
