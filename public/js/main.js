@@ -4,7 +4,7 @@ $(document).ready(function() {
     const id = $target.attr('data-id');
     $.ajax({
       type: 'DELETE',
-      url: '/haiku/'+id,
+      url: '/haikus/'+id,
       success: function(response) {
         alert('Deleting Haiku');
         window.location.href='/';
