@@ -46,11 +46,39 @@ router.post('/haikus/add', (req, res) => {
 });
 
 // Haiku GET route
-router.get('/haikus/:id', (req, res) => {
+router.get('/haiku/:id', (req, res) => {
   Haiku.findById(req.params.id, (err, haiku) => {
     res.render('haiku', {
       haiku:haiku
     });
+  });
+});
+
+// Edit haiku route
+router.get('/haiku/edit/:id', (req, res) => {
+  Haiku.findById(req.params.id, (err, haiku) => {
+    res.render('edit_haiku', {
+      title: 'Edit Haiku',
+      haiku:haiku
+    });
+  });
+});
+
+// Edit submit POST route
+router.post('/haikus/edit/:id', (req, res) => {
+  let haiku = {};
+  haiku.title = req.body.title;
+  haiku.author = req.body.author;
+  haiku.body = req.body.body;
+
+  let query = {_id:req.params.id}
+
+  Haiku.update(query, haiku, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect('/');
+    }
   });
 });
 
