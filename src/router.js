@@ -31,16 +31,36 @@ router.get('/haikus/add', (req, res) => {
 
 // Add haiku POST route
 router.post('/haikus/add', (req, res) => {
-  let haiku = new Haiku();
-  haiku.title = req.body.title;
-  haiku.author = req.body.author;
-  haiku.body = req.body.body;
 
-  haiku.save((err) => {
-    if (err) {
-      console.log(err);
+  // Validation
+  req.assert('title', 'Title is required').notEmpty();
+  req.assert('author', 'Author is required').notEmpty();
+  req.assert('body', 'Body is required').notEmpty();
+
+  req.getValidationResult().then((result) => {
+
+    // Get errors
+    let errors = result.array();
+
+    if (!result.isEmpty()) {
+      res.render('add_haiku', {
+        title: 'Add Haiku',
+        errors:errors
+      });
     } else {
-      res.redirect('/');
+      let haiku = new Haiku();
+      haiku.title = req.body.title;
+      haiku.author = req.body.author;
+      haiku.body = req.body.body;
+
+      haiku.save((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          req.flash('success', 'Haiku added!');
+          res.redirect('/');
+        }
+      });
     }
   });
 });
@@ -54,7 +74,7 @@ router.get('/haiku/:id', (req, res) => {
   });
 });
 
-// Edit haiku route
+// Haiku GET edit route
 router.get('/haiku/edit/:id', (req, res) => {
   Haiku.findById(req.params.id, (err, haiku) => {
     res.render('edit_haiku', {
@@ -64,7 +84,7 @@ router.get('/haiku/edit/:id', (req, res) => {
   });
 });
 
-// Edit submit POST route
+// Edit haiku POST route
 router.post('/haikus/edit/:id', (req, res) => {
   let haiku = {};
   haiku.title = req.body.title;
@@ -77,6 +97,7 @@ router.post('/haikus/edit/:id', (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      req.flash('success', 'Haiku updated!')
       res.redirect('/');
     }
   });
