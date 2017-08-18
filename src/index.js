@@ -66,7 +66,7 @@ app.use(expressValidator({
 app.use(express.static(`${__dirname}/../public`));
 
 // Load router module
-app.use(router)
+app.use(router);
 
 // Start server
 app.listen(port, () => {
