@@ -82,4 +82,15 @@ router.post('/haikus/edit/:id', (req, res) => {
   });
 });
 
+router.delete('/haiku/:id', (req, res) => {
+  let query = {_id:req.params.id}
+
+  Haiku.remove(query, (err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send('Success');
+  });
+});
+
 export default router;

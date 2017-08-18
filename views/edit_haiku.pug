@@ -3,14 +3,13 @@ extends default
 block content
   h1 #{title}
   form(method='POST', action='/haikus/edit/'+haiku._id)
-    #form-group
+    .form-group
       label Title:
       input.form-control(name='title', type='text' value=haiku.title)
-    #form-group
+    .form-group
       label Author:
       input.form-control(name='author', type='text' value=haiku.author)
-    #form-group
+    .form-group
       label Body:
       textarea.form-control(name='body')= haiku.body
-    br
     input.btn.btn-primary(type='submit',value='Submit')
