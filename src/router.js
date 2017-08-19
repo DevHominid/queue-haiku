@@ -1,5 +1,6 @@
 import express from 'express';
-import { haikuRouter } from './routes';
+import { haikuRouter, userRouter } from './routes';
+
 
 const app = express();
 const router = express.Router();
@@ -23,5 +24,6 @@ router.get('/', (req, res) => {
 
 // Mount routing middleware
 router.use('/haikus', haikuRouter);
+router.use('/users', userRouter);
 
 export default router;
