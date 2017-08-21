@@ -1,5 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
+import passport from 'passport';
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get('/register', (req, res) => {
 
 // Register form POST route
 router.post('/register', (req, res) => {
-  
+
   const name = req.body.name;
   const email = req.body.email;
   const username = req.body.username;
@@ -65,8 +66,20 @@ router.post('/register', (req, res) => {
   });
 });
 
+// User login form GET route
 router.get('/login', (req, res) => {
   res.render('login');
-})
+});
+
+// User login form POST route
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect:'/',
+    failureRedirect:'/users/login',
+    failureFlash: true
+  })(req, res, next);
+});
+
+
 
 export default router;
