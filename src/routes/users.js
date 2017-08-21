@@ -66,18 +66,25 @@ router.post('/register', (req, res) => {
   });
 });
 
-// User login form GET route
+// Login form GET route
 router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// User login form POST route
+// Login form POST route
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect:'/',
     failureRedirect:'/users/login',
     failureFlash: true
   })(req, res, next);
+});
+
+// Logout GET route
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success', 'Logout successful!');
+  res.redirect('/users/login');
 });
 
 
