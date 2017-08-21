@@ -7,6 +7,7 @@ import Promise from 'mpromise';
 import expressValidator from 'express-validator';
 import flash from 'connect-flash';
 import session from 'express-session';
+import passport from 'passport'
 import config from '../config/database';
 
 // Connect to MongoDB
@@ -62,6 +63,13 @@ app.use(expressValidator({
     };
   }
 }));
+
+// Passport config
+require('../config/passport')(passport);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Set public folder
 app.use(express.static(`${__dirname}/../public`));
