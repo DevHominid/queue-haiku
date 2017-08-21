@@ -3,7 +3,9 @@ extends default
 block content
   h1= haiku.title
   h4 Written by #{author}
-  p= haiku.body
+  p= haiku.line1
+  p= haiku.line2
+  p= haiku.line3
   hr
   if user
     if user.id ==haiku.author

@@ -1,7 +1,6 @@
 import express from 'express';
 import { haikuRouter, userRouter } from './routes';
 
-
 const app = express();
 const router = express.Router();
 

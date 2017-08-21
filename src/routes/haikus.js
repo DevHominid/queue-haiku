@@ -18,8 +18,9 @@ router.post('/add', (req, res) => {
 
   // Validation
   req.assert('title', 'Title is required').notEmpty();
-  // req.assert('author', 'Author is required').notEmpty();
-  req.assert('body', 'Body is required').notEmpty();
+  req.assert('line1', 'Line 1 is required').notEmpty();
+  req.assert('line2', 'Line 2 is required').notEmpty();
+  req.assert('line3', 'Line 3 is required').notEmpty();
 
   req.getValidationResult().then((result) => {
 
@@ -35,7 +36,9 @@ router.post('/add', (req, res) => {
       let haiku = new Haiku();
       haiku.title = req.body.title;
       haiku.author = req.user._id;
-      haiku.body = req.body.body;
+      haiku.line1 = req.body.line1;
+      haiku.line2 = req.body.line2;
+      haiku.line3 = req.body.line3;
 
       haiku.save((err) => {
         if (err) {
@@ -79,8 +82,10 @@ router.get('/edit/:id', controlAccess, (req, res) => {
 router.post('/edit/:id', (req, res) => {
   let haiku = {};
   haiku.title = req.body.title;
-  haiku.author = req.body.author;
-  haiku.body = req.body.body;
+  haiku.author = req.user._id;
+  haiku.line1 = req.body.line1;
+  haiku.line2 = req.body.line2;
+  haiku.line3 = req.body.line3;
 
   let query = {_id:req.params.id}
 

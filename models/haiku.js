@@ -11,7 +11,15 @@ let haikuSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  body:{
+  line1:{
+    type: String,
+    required: true
+  },
+  line2:{
+    type: String,
+    required: true
+  },
+  line3:{
     type: String,
     required: true
   }

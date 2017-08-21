@@ -7,9 +7,12 @@ block content
       label Title:
       input.form-control(name='title', type='text' value=haiku.title)
     .form-group
-      label Author:
-      input.form-control(name='author', type='text' value=haiku.author)
+      label Line 1:
+      input.form-control(name='line1', type='text' value=haiku.line1)
     .form-group
-      label Body:
-      textarea.form-control(name='body')= haiku.body
+      label Line 2:
+      input.form-control(name='line2', type='text' value=haiku.line2)
+    .form-group
+      label Line 3:
+      input.form-control(name='line3', type='text' value=haiku.line3)
     input.btn.btn-primary(type='submit',value='Submit')
