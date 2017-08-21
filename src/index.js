@@ -66,10 +66,14 @@ app.use(expressValidator({
 
 // Passport config
 require('../config/passport')(passport);
-
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('*', (req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
 
 // Set public folder
 app.use(express.static(`${__dirname}/../public`));
