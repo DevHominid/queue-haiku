@@ -1,8 +1,8 @@
 //import mongoose from 'mongoose';
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Init haiku schema
-let haikuSchema = mongoose.Schema({
+const haikuSchema = mongoose.Schema({
   title:{
     type: String,
     required: true
@@ -25,4 +25,4 @@ let haikuSchema = mongoose.Schema({
   }
 });
 
-let Haiku = module.exports = mongoose.model('Haiku', haikuSchema);
+const Haiku = module.exports = mongoose.model('Haiku', haikuSchema);
