@@ -5,5 +5,7 @@ block content
   h4 Written by #{author}
   p= haiku.body
   hr
-  a.btn.btn-default(href='/haikus/edit/'+haiku._id) Edit
-  a.btn.btn-danger.delete-haiku(href='#',data-id=haiku._id) Delete
+  if user
+    if user.id ==haiku.author
+      a.btn.btn-default(href='/haikus/edit/'+haiku._id) Edit
+      a.btn.btn-danger.delete-haiku(href='#',data-id=haiku._id) Delete

@@ -7,7 +7,7 @@ import User from '../../models/user';
 
 
 // Add haiku page route
-router.get('/add', (req, res) => {
+router.get('/add', controlAccess, (req, res) => {
   res.render('add_haiku', {
     title: 'Add Haiku'
   });
@@ -62,8 +62,12 @@ router.get('/:id', (req, res) => {
 });
 
 // Haiku GET edit route
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', controlAccess, (req, res) => {
   Haiku.findById(req.params.id, (err, haiku) => {
+    if (haiku.author != req.user._id) {
+      req.flash('danger', 'Access denied!');
+      res.redirect('/');
+    }
     res.render('edit_haiku', {
       title: 'Edit Haiku',
       haiku:haiku
@@ -92,14 +96,34 @@ router.post('/edit/:id', (req, res) => {
 
 // Delete haiku
 router.delete('/:id', (req, res) => {
+  if (!req.user._id) {
+    res.status(500).send();
+  }
+
   let query = {_id:req.params.id}
 
-  Haiku.remove(query, (err) => {
-    if (err) {
-      console.log(err);
+  Haiku.findById(req.params.id, (err, haiku) => {
+    if (haiku.author != req.user._id) {
+      res.status(500).send();
+    } else {
+      Haiku.remove(query, (err) => {
+        if (err) {
+          console.log(err);
+        }
+        res.send('Success');
+      });
     }
-    res.send('Success');
   });
 });
+
+// Access control
+function controlAccess(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    req.flash('danger', 'Please login');
+    res.redirect('/users/login');
+  }
+}
 
 export default router;
