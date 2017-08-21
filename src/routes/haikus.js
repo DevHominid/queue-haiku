@@ -1,8 +1,10 @@
 import express from 'express';
 const router = express.Router();
 
-// Init haiku model
+// Init models
 import Haiku from '../../models/haiku';
+import User from '../../models/user';
+
 
 // Add haiku page route
 router.get('/add', (req, res) => {
@@ -16,7 +18,7 @@ router.post('/add', (req, res) => {
 
   // Validation
   req.assert('title', 'Title is required').notEmpty();
-  req.assert('author', 'Author is required').notEmpty();
+  // req.assert('author', 'Author is required').notEmpty();
   req.assert('body', 'Body is required').notEmpty();
 
   req.getValidationResult().then((result) => {
@@ -32,7 +34,7 @@ router.post('/add', (req, res) => {
     } else {
       let haiku = new Haiku();
       haiku.title = req.body.title;
-      haiku.author = req.body.author;
+      haiku.author = req.user._id;
       haiku.body = req.body.body;
 
       haiku.save((err) => {
@@ -50,8 +52,11 @@ router.post('/add', (req, res) => {
 // Haiku GET route
 router.get('/:id', (req, res) => {
   Haiku.findById(req.params.id, (err, haiku) => {
-    res.render('haiku', {
-      haiku:haiku
+    User.findById(haiku.author, (err, user) => {
+      res.render('haiku', {
+        haiku:haiku,
+        author: user.name
+      });
     });
   });
 });

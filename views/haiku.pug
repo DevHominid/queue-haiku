@@ -2,7 +2,7 @@ extends default
 
 block content
   h1= haiku.title
-  h4 Written by #{haiku.author}
+  h4 Written by #{author}
   p= haiku.body
   hr
   a.btn.btn-default(href='/haikus/edit/'+haiku._id) Edit
