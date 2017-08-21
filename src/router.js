@@ -7,6 +7,7 @@ const router = express.Router();
 
 // Init models
 import Haiku from '../models/haiku';
+import User from '../models/user';
 
 // Home page route
 router.get('/', (req, res) => {
