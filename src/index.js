@@ -7,9 +7,10 @@ import Promise from 'mpromise';
 import expressValidator from 'express-validator';
 import flash from 'connect-flash';
 import session from 'express-session';
+import config from '../config/database';
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/queue-haiku').then(
+mongoose.connect(config.database).then(
   () => {console.log('Connected to MongoDB');},
   err => {console.log(err);}
 );
