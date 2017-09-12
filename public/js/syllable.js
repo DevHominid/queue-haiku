@@ -1,22 +1,36 @@
 $(document).ready(function() {
-  const line3 = $("#line3").val();
 
   $("#line1").change(function() {
     const line1 = $("#line1").val();
     const syllable = new_count(line1);
-    $("#line1Syl").text("syllables: " + syllable);
+    $("#line1Syl").text("Syllables: " + syllable);
+    if (syllable !== 5) {
+      $("#line1Syl").css( "color", "red" );
+    } else {
+      $("#line1Syl").css( "color", "green" );
+    }
   });
 
   $("#line2").change(function() {
     const line2 = $("#line2").val();
     const syllable = new_count(line2);
-    $("#line2Syl").text("syllables: " + syllable);
+    $("#line2Syl").text("Syllables: " + syllable);
+    if (syllable !== 7) {
+      $("#line2Syl").css( "color", "red" );
+    } else {
+      $("#line2Syl").css( "color", "green" );
+    }
   });
 
   $("#line3").change(function() {
     const line3 = $("#line3").val();
     const syllable = new_count(line3);
-    $("#line3Syl").text("syllables: " + syllable);
+    $("#line3Syl").text("Syllables: " + syllable);
+    if (syllable !== 5) {
+      $("#line3Syl").css( "color", "red" );
+    } else {
+      $("#line3Syl").css( "color", "green" );
+    }
   });
 });
 
