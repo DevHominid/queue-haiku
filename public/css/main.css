@@ -38,8 +38,9 @@ header {
 }
 
 .navbar-toggle {
-  height: calc(15vh/2);
+  height: 40px;
   background: #70443a;
+  border: none;
 }
 
 .navbar-brand {
