@@ -1,9 +1,11 @@
 extends default
 
 block content
-  h1 #{title}
-  ul.list-group
-    each haiku, i in haikus
-      li.list-group-item
-        a(href='/haikus/'+haiku._id)= haiku.title
+  section.section-index
+    .container
+      h1 #{title}
+      ul.list-group
+        each haiku, i in haikus
+          li.list-group-item
+            a(href='/haikus/'+haiku._id)= haiku.title
     
