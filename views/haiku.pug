@@ -1,13 +1,15 @@
 extends default
 
 block content
-  h1= haiku.title
-  h4 Written by #{author}
-  p= haiku.line1
-  p= haiku.line2
-  p= haiku.line3
-  hr
-  if user
-    if user.id ==haiku.author
-      a.btn.btn-default(href='/haikus/edit/'+haiku._id) Edit
-      a.btn.btn-danger.delete-haiku(href='#',data-id=haiku._id) Delete
+  section.section-haiku
+    .container
+      h1= haiku.title
+      h4 Written by #{author}
+      p= haiku.line1
+      p= haiku.line2
+      p= haiku.line3
+      hr
+      if user
+        if user.id ==haiku.author
+          a.btn.btn-default(href='/haikus/edit/'+haiku._id) Edit
+          a.btn.btn-danger.delete-haiku(href='#',data-id=haiku._id) Delete

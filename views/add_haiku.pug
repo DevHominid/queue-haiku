@@ -1,21 +1,23 @@
 extends default
 
 block content
-  h1 #{title}
-  form(method='POST', action='/haikus/add')
-    .form-group
-      label Title:
-      input.form-control(name='title', type='text')
-    .form-group
-      label Line 1:
-      #line1Syl
-      input.form-control#line1(name='line1', type='text')
-    .form-group
-      label Line 2:
-      #line2Syl
-      input.form-control#line2(name='line2', type='text')
-    .form-group
-      label Line 3:
-      #line3Syl
-      input.form-control#line3(name='line3', type='text')
-    input.btn.btn-primary(type='submit',value='Submit')
+  section.section-add-haiku
+    .container
+      h1 #{title}
+      form(method='POST', action='/haikus/add')
+        .form-group
+          label Title:
+          input.form-control(name='title', type='text')
+        .form-group
+          label Line 1:
+          #line1Syl
+          input.form-control#line1(name='line1', type='text')
+        .form-group
+          label Line 2:
+          #line2Syl
+          input.form-control#line2(name='line2', type='text')
+        .form-group
+          label Line 3:
+          #line3Syl
+          input.form-control#line3(name='line3', type='text')
+        input.btn.btn-primary(type='submit',value='Submit')
