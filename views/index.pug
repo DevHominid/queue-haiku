@@ -3,9 +3,10 @@ extends default
 block content
   section.section-index
     .container
-      h1 #{title}
-      ul.list-group
-        each haiku, i in haikus
-          li.list-group-item
-            a(href='/haikus/'+haiku._id)= haiku.title
+      .haiku-box
+        h1 #{title}
+        ul.list-group
+          each haiku, i in haikus
+            li.list-group-item
+              a(href='/haikus/'+haiku._id)= haiku.title
     
