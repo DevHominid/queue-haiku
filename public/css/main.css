@@ -1,0 +1,30 @@
+/* * * * main.css * * * */
+/* Dylan Ross Ludwick
+/* v 0.0.1
+*/
+
+/* Header Styles */
+header {
+  height: 20vh;
+  margin-bottom: 50px;
+}
+
+.navbar.navbar-inverse {
+  border-radius: 0;
+  background: #e8cca5;
+  margin-bottom: 0;
+  border: none;
+}
+
+.navbar-header {
+  display: inline-block;
+  width: 20%;
+}
+
+.navbar-brand {
+  height: auto;
+}
+
+.logo {
+  width: 90%;
+}
