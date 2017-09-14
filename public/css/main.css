@@ -243,6 +243,14 @@ a.nav-link:hover {
 span.quote-lead {
   position: relative;
   padding-left: 2.5em;
+  margin-top: 1.25em;
+}
+
+@media screen and (min-width: 21.875em) {
+  /* 350 / 16 = 21.875 */
+  span.quote-lead {
+    margin-top: 0;
+  }
 }
 
 span.quote-lead p {
