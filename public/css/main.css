@@ -15,7 +15,8 @@ body {
 }
 
 section {
-  height: 85vh;
+  min-height: 85vh;
+  padding: 1.250em 0;
 }
 
 .btn-custom {
@@ -215,14 +216,28 @@ a.nav-link:hover {
 
 .login-quote {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border-color: #c1975d;
   animation: slideRight 1s;
 }
 
+@media screen and (min-width: 21.875em) {
+  /* 350 / 16 = 21.875 */
+  .login-quote {
+    flex-direction: row;
+  }
+}
+
 .login-quote a img {
-  width: 100px;
+  width: 75px;
   animation: slideRight 1.5s;
+}
+
+@media screen and (min-width: 21.875em) {
+  /* 350 / 16 = 21.875 */
+  .login-quote a img {
+    width: 100px;
+  }
 }
 
 span.quote-lead {
