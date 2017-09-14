@@ -28,6 +28,27 @@ section {
   border: 1px solid #e8cca5;
 }
 
+/* * Animation Styles * */
+@keyframes slideRight {
+  from {
+    margin-left: -100%;
+  }
+
+  to {
+    margin-left: 0%;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    margin-bottom: 100%;
+  }
+
+  to {
+    margin-bottom: 10px;
+  }
+}
+
 /* * Header Styles * */
 header {
   height: 15vh;
@@ -170,15 +191,21 @@ a.nav-link:hover {
   display: flex;
   flex-direction: row;
   border-color: #c1975d;
+  animation: slideRight 1s;
 }
 
 .login-quote a img {
   width: 100px;
+  animation: slideRight 1.5s;
 }
 
 span.quote-lead {
   position: relative;
   padding-left: 2.5em;
+}
+
+span.quote-lead p {
+  animation: slideDown 1s;
 }
 
 span.quote-lead::before{
