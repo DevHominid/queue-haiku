@@ -3,12 +3,21 @@ extends default
 block content
   section.section-login
     .container
-      h1 Login
-      form(method='POST', action='/users/login')
-        .form-group
-          label Username:
-          input.form-control(name='username', type='text')
-        .form-group
-          label Password:
-          input.form-control(name='password', type='text')
-        input.btn.btn-custom(type='submit',value='Submit')
+      .login-block
+        blockquote.login-quote
+          a(title="By Yoshi Canopus (Own work (My own photo)) [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons", href="https://commons.wikimedia.org/wiki/File%3AKobayashi_Issa-Portrait.jpg")
+            img(alt="Kobayashi Issa-Portrait", src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Kobayashi_Issa-Portrait.jpg")
+          span.quote-lead
+            p What a strange thing! 
+            p to be alive 
+            p beneath cherry blossoms.
+            span.quote-signature Kobayashi Issa
+        h1 Login
+        form(method='POST', action='/users/login')
+          .form-group
+            label Username:
+            input.form-control(name='username', type='text')
+          .form-group
+            label Password:
+            input.form-control(name='password', type='text')
+          input.btn.btn-custom(type='submit',value='Submit')

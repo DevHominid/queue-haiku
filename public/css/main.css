@@ -145,9 +145,58 @@ a.nav-link:hover {
   margin-top: 0;
 }
 
+/* Haiku Section */
+.section-haiku {
+
+}
+
 /* Login Section */
 .section-login {
+  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("../images/water-cover-2.jpg");
+  background-size: cover;
+}
 
+.section-login .container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.section-login .container .login-block {
+  width: 100%;
+}
+
+.login-quote {
+  display: flex;
+  flex-direction: row;
+  border-color: #c1975d;
+}
+
+.login-quote a img {
+  width: 100px;
+}
+
+span.quote-lead {
+  position: relative;
+  padding-left: 2.5em;
+}
+
+span.quote-lead::before{
+  font-family:Arial;
+  content: "\201C";
+  color:#af6d60;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-20px;
+}
+
+.login-quote::after{
+  content: '';
+}
+
+.quote-signature {
+  font-style: italic;
 }
 
 /* * Footer Styles * */
