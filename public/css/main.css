@@ -12,6 +12,7 @@ html {
 body {
   min-height: 100vh;
   font-size: initial;
+  font-family: 'Noto Serif', serif;
 }
 
 section {
@@ -116,8 +117,17 @@ header {
 
 .navbar-toggle {
   height: 40px;
-  background: #70443A;
+  background: none;
   border: none;
+}
+
+.navbar-toggle:focus, .navbar-toggle:hover  {
+  background: none!important;
+  border: none;
+}
+
+.navbar-toggle span.icon-bar {
+  background-color: #70443A!important;
 }
 
 .navbar-brand {
@@ -193,9 +203,31 @@ a.nav-link:hover {
   animation: appear 1.5s;
 }
 
+.haiku-box ul li.list-group-item {
+  padding: 0;
+}
+
+.haiku-box ul li a {
+  display: block;
+  padding: 0.625em 0.938em;
+  color: #AF6D60;
+}
+
+.haiku-box ul li a:hover {
+  background: rgba(112, 68, 58, 0.5);
+  text-decoration: none;
+  color: #E8CCA5;
+}
+
 /* Haiku Section */
 .section-haiku {
+  background: linear-gradient(rgba(236, 213, 181, 0.5), rgba(236, 213, 181, 0.9)), url("../images/zen-cover-3.jpg");
+  background-size: cover;
+}
 
+/* Register Section */
+.section-register {
+  background: linear-gradient(rgba(236, 213, 181, 0.1), rgba(236, 213, 181, 0.9)), url("../images/water-cover-2.jpg");
 }
 
 /* Login Section */
@@ -206,7 +238,7 @@ a.nav-link:hover {
 
 .section-login .container {
   display: flex;
-  height: 100%;
+  min-height: 85vh;
   align-items: center;
 }
 
