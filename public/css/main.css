@@ -26,7 +26,7 @@ section {
 .btn-custom:hover {
   color: #fff;
   background: rgba(175, 109, 96, 1.0);
-  border: 1px solid #e8cca5;
+  border: 1px solid #C1975D;
 }
 
 /* * Animation Styles * */
@@ -105,18 +105,18 @@ header {
 .navbar-collapse.in {
   position: relative;
   z-index: 2;
-  background: #70443a;
+  background: #70443A;
 }
 
 .navbar-collapse.collapsing {
   position: relative;
   z-index: 2;
-  background: #70443a;
+  background: #70443A;
 }
 
 .navbar-toggle {
   height: 40px;
-  background: #70443a;
+  background: #70443A;
   border: none;
 }
 
@@ -148,7 +148,7 @@ a.nav-link {
 
 }
 a.nav-link:hover {
-  color: #e8cca5!important;
+  color: #E8CCA5!important;
 }
 
 /* * Section Styles * */
@@ -217,7 +217,7 @@ a.nav-link:hover {
 .login-quote {
   display: flex;
   flex-direction: column;
-  border-color: #c1975d;
+  border-color: #C1975D;
   animation: slideRight 1s;
 }
 
@@ -260,7 +260,7 @@ span.quote-lead p {
 span.quote-lead::before{
   font-family:Arial;
   content: "\201C";
-  color:#af6d60;
+  color:#AF6D60;
   font-size:4em;
   position: absolute;
   left: 10px;
@@ -278,7 +278,7 @@ span.quote-lead::before{
 /* * Footer Styles * */
 footer {
   height: 10vh;
-  background: #70443a;
+  background: #70443A;
 }
 
 footer .container {
