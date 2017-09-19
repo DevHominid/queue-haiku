@@ -22,6 +22,12 @@ router.post('/add', (req, res) => {
   req.assert('line2', 'Line 2 is required').notEmpty();
   req.assert('line3', 'Line 3 is required').notEmpty();
 
+  // Sanitization
+  const title = req.sanitize('title').escape().trim();
+  const line1 = req.sanitize('line1').escape().trim();
+  const line2 = req.sanitize('line2').escape().trim();
+  const line3 = req.sanitize('line3').escape().trim();
+
   req.getValidationResult().then((result) => {
 
     // Get errors
