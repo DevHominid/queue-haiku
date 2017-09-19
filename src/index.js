@@ -9,6 +9,7 @@ import flash from 'connect-flash';
 import session from 'express-session';
 import passport from 'passport'
 import config from '../config/database';
+import helmet from 'helmet';
 
 // Connect to MongoDB
 mongoose.connect(config.database).then(
@@ -20,6 +21,10 @@ let db = mongoose.connection;
 // Init app
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Helmet
+app.use(helmet());
+
 
 // Set view engine
 app.set('views', path.join(__dirname, '../views'));
