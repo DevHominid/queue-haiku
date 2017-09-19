@@ -15,15 +15,15 @@ router.get('/register', (req, res) => {
 // Register form POST route
 router.post('/register', (req, res) => {
 
-  const name = req.body.name;
-  const email = req.body.email;
-  const username = req.body.username;
-  const password = req.body.password;
-  const password2 = req.body.password2;
+  const name = req.sanitize('name').escape().trim();
+  const email = req.sanitize('email').escape().trim();
+  const username = req.sanitize('username').escape().trim();
+  const password = req.sanitize('password').escape().trim();
+  const password2 = req.sanitize('password2').escape().trim();
 
   req.assert('name', 'Name is required').notEmpty();
   req.assert('email', 'Email is required').notEmpty();
-  req.assert('email', 'Email is not valid').notEmpty();
+  req.assert('email', 'Email is not valid').isEmail();
   req.assert('username', 'Username is required').notEmpty();
   req.assert('password', 'Password is required').notEmpty();
   req.assert('password2', 'Passwords do not match').equals(req.body.password);
@@ -73,6 +73,10 @@ router.get('/login', (req, res) => {
 
 // Login form POST route
 router.post('/login', (req, res, next) => {
+
+  const username = req.sanitize('username').escape().trim();
+  const password = req.sanitize('password').escape().trim();
+  
   passport.authenticate('local', {
     successRedirect:'/',
     failureRedirect:'/users/login',
