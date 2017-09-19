@@ -86,6 +86,13 @@ router.get('/edit/:id', controlAccess, (req, res) => {
 
 // Edit haiku POST route
 router.post('/edit/:id', (req, res) => {
+
+  // Sanitization
+  const title = req.sanitize('title').escape().trim();
+  const line1 = req.sanitize('line1').escape().trim();
+  const line2 = req.sanitize('line2').escape().trim();
+  const line3 = req.sanitize('line3').escape().trim();
+  
   let haiku = {};
   haiku.title = req.body.title;
   haiku.author = req.user._id;
