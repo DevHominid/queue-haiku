@@ -231,7 +231,7 @@ a.nav-link:hover {
 }
 
 @media screen and (min-width: 31.25em) {
-  .section-register .container .register-block {
+  .register-block {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -239,13 +239,13 @@ a.nav-link:hover {
 }
 
 @media screen and (min-width: 62.0em) {
-  .section-register .container .register-block {
+  .register-block {
     width: 70%;
   }
 }
 
 @media screen and (min-width: 75.0em) {
-  .section-register .container .register-block {
+  .register-block {
     width: 50%;
   }
 }
@@ -262,8 +262,28 @@ a.nav-link:hover {
   align-items: center;
 }
 
-.section-login .container .login-block {
+.login-block {
   width: 100%;
+}
+
+@media screen and (min-width: 31.25em) {
+  .login-block {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 62.0em) {
+  .login-block {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 75.0em) {
+  .login-block {
+    width: 50%;
+  }
 }
 
 .login-quote {
