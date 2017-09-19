@@ -11,6 +11,10 @@ const haikuSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  imageURL:{
+    type: String,
+    required: false
+  },
   line1:{
     type: String,
     required: true
