@@ -3,8 +3,15 @@ extends default
 block content
   section.section-haiku
     .container
-      h1= haiku.title
-      h4 Written by #{author}
+      .row
+        .col-sm-4
+          if haiku.imageURL
+            img.haiku-img(src=haiku.imageURL alt='haiku')
+          else
+            img.haiku-img(src='/images/qh-logo.png' alt='haiku')
+        .col-sm-8
+          h1= haiku.title
+          h4 Written by #{author}
       hr
       p= haiku.line1
       p= haiku.line2

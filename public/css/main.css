@@ -225,6 +225,10 @@ a.nav-link:hover {
   background-size: cover;
 }
 
+.haiku-img {
+  width: 100%;
+}
+
 /* Register Section */
 .section-register {
   background: linear-gradient(rgba(236, 213, 181, 0.1), rgba(236, 213, 181, 0.9)), url("../images/water-cover-2.jpg");
