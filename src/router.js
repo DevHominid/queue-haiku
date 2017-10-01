@@ -10,16 +10,14 @@ import User from '../models/user';
 
 // Home page route
 router.get('/', (req, res) => {
-  Haiku.find({}, (err, haikus) => {
-    if (err) {
-      console.log(err);
-    } else {
+  Haiku.find({})
+    .then(haikus => {
       res.render('index', {
         title: 'Haikus',
         haikus: haikus
       });
-    }
-  });
+    })
+    .catch(err => console.log(err));
 });
 
 // Mount routing middleware
