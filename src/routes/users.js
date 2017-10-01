@@ -76,7 +76,7 @@ router.post('/login', (req, res, next) => {
 
   const username = req.sanitize('username').escape().trim();
   const password = req.sanitize('password').escape().trim();
-  
+
   passport.authenticate('local', {
     successRedirect:'/',
     failureRedirect:'/users/login',
@@ -89,6 +89,17 @@ router.get('/logout', (req, res) => {
   req.logout();
   req.flash('success', 'Logout successful!');
   res.redirect('/users/login');
+});
+
+// Profile GET route
+router.get('/profile', (req, res) => {
+  User.findById(req.user._id)
+    .then(user => {
+      res.render('profile', {
+        user: user
+      });
+    })
+    .catch(err => console.log(err));
 });
 
 
