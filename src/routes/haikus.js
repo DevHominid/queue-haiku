@@ -47,42 +47,45 @@ router.post('/add', (req, res) => {
       haiku.line2 = req.body.line2;
       haiku.line3 = req.body.line3;
 
-      haiku.save((err) => {
-        if (err) {
-          console.log(err);
-        } else {
+      haiku.save()
+        .then(() => {
           req.flash('success', 'Haiku added!');
           res.redirect('/');
-        }
-      });
+        })
+        .catch(err => console.log(err));
     }
   });
 });
 
 // Haiku GET route
 router.get('/:id', (req, res) => {
-  Haiku.findById(req.params.id, (err, haiku) => {
-    User.findById(haiku.author, (err, user) => {
+  Haiku.findById(req.params.id)
+    .then(haiku => {
+      return Promise.all([haiku, User.findById(haiku.author)]);
+    })
+    .then(results => {
       res.render('haiku', {
-        haiku:haiku,
-        author: user.name
+        haiku: results[0],
+        author: results[1].name
       });
-    });
-  });
+    })
+    .catch(err => console.log(err));
 });
 
 // Haiku GET edit route
 router.get('/edit/:id', controlAccess, (req, res) => {
-  Haiku.findById(req.params.id, (err, haiku) => {
-    if (haiku.author != req.user._id) {
-      req.flash('danger', 'Access denied!');
-      res.redirect('/');
-    }
-    res.render('edit_haiku', {
-      title: 'Edit Haiku',
-      haiku:haiku
-    });
-  });
+  Haiku.findById(req.params.id)
+    .then(haiku => {
+      if (haiku.author != req.user._id) {
+        req.flash('danger', 'Access denied!');
+        res.redirect('/');
+      }
+      res.render('edit_haiku', {
+        title: 'Edit Haiku',
+        haiku:haiku
+      });
+    })
+    .catch(err => console.log(err));
 });
 
 // Edit haiku POST route
@@ -104,14 +107,12 @@ router.post('/edit/:id', (req, res) => {
 
   let query = {_id:req.params.id}
 
-  Haiku.update(query, haiku, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
+  Haiku.update(query, haiku)
+    .then(() => {
       req.flash('success', 'Haiku updated!')
       res.redirect('/');
-    }
-  });
+    })
+    .catch(err => console.log(err));
 });
 
 // Delete haiku
@@ -122,18 +123,17 @@ router.delete('/:id', (req, res) => {
 
   let query = {_id:req.params.id}
 
-  Haiku.findById(req.params.id, (err, haiku) => {
-    if (haiku.author != req.user._id) {
-      res.status(500).send();
-    } else {
-      Haiku.remove(query, (err) => {
-        if (err) {
-          console.log(err);
-        }
-        res.send('Success');
-      });
-    }
-  });
+  Haiku.findById(req.params.id)
+   .then(haiku => {
+     if (haiku.author != req.user._id) {
+       res.status(500).send();
+     } else {
+       Haiku.remove(query)
+         .then(() => res.send('Success'))
+         .catch(err => console.log(err));
+     }
+   })
+   .catch(err => console.log(err));
 });
 
 // Access control
