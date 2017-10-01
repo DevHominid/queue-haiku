@@ -3,13 +3,15 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import router from './router';
 import mongoose from 'mongoose';
-import Promise from 'mpromise';
 import expressValidator from 'express-validator';
 import flash from 'connect-flash';
 import session from 'express-session';
 import passport from 'passport'
 import config from '../config/database';
 import helmet from 'helmet';
+
+// use native promises
+mongoose.Promise = global.Promise;
 
 // Connect to MongoDB
 mongoose.connect(config.database).then(
@@ -22,9 +24,8 @@ let db = mongoose.connection;
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Helmet
+// Set secure HTTP headers with helmet
 app.use(helmet());
-
 
 // Set view engine
 app.set('views', path.join(__dirname, '../views'));
