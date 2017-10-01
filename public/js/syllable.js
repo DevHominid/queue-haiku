@@ -4,10 +4,10 @@ $(document).ready(function() {
     const line1 = $("#line1").val();
     const syllable = new_count(line1);
     $("#line1Syl").text("Syllables: " + syllable);
-    if (syllable !== 5) {
-      $("#line1Syl").css( "color", "red" );
-    } else {
+    if (syllable === 5 || syllable === 3) {
       $("#line1Syl").css( "color", "green" );
+    } else {
+      $("#line1Syl").css( "color", "red" );
     }
   });
 
@@ -15,10 +15,10 @@ $(document).ready(function() {
     const line2 = $("#line2").val();
     const syllable = new_count(line2);
     $("#line2Syl").text("Syllables: " + syllable);
-    if (syllable !== 7) {
-      $("#line2Syl").css( "color", "red" );
-    } else {
+    if (syllable === 7 || syllable === 5) {
       $("#line2Syl").css( "color", "green" );
+    } else {
+      $("#line2Syl").css( "color", "red" );
     }
   });
 
@@ -26,10 +26,10 @@ $(document).ready(function() {
     const line3 = $("#line3").val();
     const syllable = new_count(line3);
     $("#line3Syl").text("Syllables: " + syllable);
-    if (syllable !== 5) {
-      $("#line3Syl").css( "color", "red" );
-    } else {
+    if (syllable === 5 || syllable === 3) {
       $("#line3Syl").css( "color", "green" );
+    } else {
+      $("#line3Syl").css( "color", "red" );
     }
   });
 });
