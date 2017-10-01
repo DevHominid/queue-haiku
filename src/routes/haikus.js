@@ -6,7 +6,7 @@ import Haiku from '../../models/haiku';
 import User from '../../models/user';
 
 
-// Add haiku page route
+// Add haiku GET route
 router.get('/add', controlAccess, (req, res) => {
   res.render('add_haiku', {
     title: 'Add Haiku'
@@ -72,7 +72,7 @@ router.get('/:id', (req, res) => {
     .catch(err => console.log(err));
 });
 
-// Haiku GET edit route
+// Edit haiku GET route
 router.get('/edit/:id', controlAccess, (req, res) => {
   Haiku.findById(req.params.id)
     .then(haiku => {
@@ -115,7 +115,7 @@ router.post('/edit/:id', (req, res) => {
     .catch(err => console.log(err));
 });
 
-// Delete haiku
+// haiku DELETE route
 router.delete('/:id', (req, res) => {
   if (!req.user._id) {
     res.status(500).send();
