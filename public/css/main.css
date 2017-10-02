@@ -16,8 +16,10 @@ body {
 }
 
 section {
-  min-height: 85vh;
+  min-height: 100vh;
   padding: 1.250em 0;
+  padding-top: calc(15vh + 1.250em);
+  padding-bottom: 1.250em;
 }
 
 .btn-custom {
@@ -28,6 +30,11 @@ section {
   color: #fff;
   background: rgba(175, 109, 96, 1.0);
   border: 1px solid #C1975D;
+}
+
+/* * Base Styles * */
+.message-block {
+  
 }
 
 /* * Animation Styles * */
@@ -75,7 +82,12 @@ section {
 header {
   height: 15vh;
   width: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1.0)), url("../images/water-cover.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /*background: linear-gradient(rgba(68, 55, 48, 0.9), rgba(68, 55, 48, 0.9));*/
+  background: none;
   background-size: cover;
   background-position: 50% 38%;
 }
@@ -137,7 +149,7 @@ header {
 }
 
 .logo {
-  width: 100px;
+  width: 150px;
 }
 
 @media screen and (min-height: 50em) {
@@ -155,7 +167,7 @@ header {
 }
 
 a.nav-link {
-
+  color: #fff!important;
 }
 a.nav-link:hover {
   color: #E8CCA5!important;
@@ -231,7 +243,8 @@ a.nav-link:hover {
 
 /* Register Section */
 .section-register {
-  background: linear-gradient(rgba(236, 213, 181, 0.1), rgba(236, 213, 181, 0.9)), url("../images/water-cover-2.jpg");
+  background: linear-gradient(rgba(236, 213, 181, 0.5), rgba(236, 213, 181, 0.5)), url("../images/register-cover.jpg");
+  background-size: cover;
 }
 
 @media screen and (min-width: 31.25em) {
@@ -354,7 +367,7 @@ span.quote-lead::before{
 /* * Footer Styles * */
 footer {
   height: 10vh;
-  background: #70443A;
+  background: #443730;
 }
 
 footer .container {

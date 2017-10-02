@@ -36,7 +36,7 @@ html
                   a.nav-link(href='/users/register') Register
                 li
                   a.nav-link(href='/users/login') Login
-    .container
+    .message-block
       != messages('message', locals)
       if errors
         each error, i in errors
