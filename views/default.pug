@@ -43,12 +43,12 @@ html
       if messages.length > 0
         .message-wrapper
           .icon-wrapper
-            i#icon-close.fa.fa-window-close.fa-2x(aria-hidden='true')
+            i.icon-close.fa.fa-window-close.fa-2x(aria-hidden='true')
           != messages('message', locals)
       if errors
-        .message-wrapper
+        .error-wrapper
           .icon-wrapper
-            i#icon-close.fa.fa-window-close.fa-2x(aria-hidden='true')
+            i.icon-close.fa.fa-window-close.fa-2x(aria-hidden='true')
           each error, i in errors
             div(class='alert alert-danger') #{error.msg}
     block content
