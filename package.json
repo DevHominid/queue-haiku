@@ -12,8 +12,14 @@
   "author": "Dylan Ross Ludwick",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^7.1.4",
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.6.0",
+    "css-mqpacker": "^6.0.1",
+    "cssnano": "^3.10.0",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.1"
   },

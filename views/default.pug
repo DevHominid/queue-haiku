@@ -5,7 +5,10 @@ html
     title Queue - Haiku
     link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/main.css')
+    //- Google fonts
     link(href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700", rel="stylesheet")
+    //- Font awesome
+    <script src="https://use.fontawesome.com/ca1dfe0972.js"></script>
   body
     header
       nav.navbar.navbar-inverse
@@ -39,6 +42,7 @@ html
     .message-block
       != messages('message', locals)
       if errors
+        <i id='icon-close' class='fa fa-window-close fa-2x' aria-hidden='true'></i>
         each error, i in errors
           div(class='alert alert-danger') #{error.msg}
     block content

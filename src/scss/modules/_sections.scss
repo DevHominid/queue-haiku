@@ -1,0 +1,176 @@
+/* * Section Styles * */
+
+/* Index Section */
+.section-index {
+  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("http://res.cloudinary.com/dud5wowp2/image/upload/v1505338106/zen-cover-2_hruf66.jpg");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .haiku-box {
+    background: rgba(216, 216, 216, 0.65);
+    min-height: 55vh;
+    padding: 1em 1.25em;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    animation: openUp 1.5s ease-out;
+
+    @media screen and (min-width: 43.75em) {
+      /* 700 ÷ 16 = 50 */
+      width: 70%;
+    }
+
+    @media screen and (min-width: 68.75em) {
+      /* 1100 ÷ 16 = 50 */
+      width: 55%;
+    }
+
+    h1 {
+      margin-top: 0;
+      animation: appear 1.5s;
+    }
+
+    ul {
+      animation: appear 1.5s;
+    }
+
+    li.list-group-item {
+      padding: 0;
+    }
+
+    a {
+      display: block;
+      padding: 0.625em 0.938em;
+      color: #AF6D60;
+    }
+
+    a:hover {
+      background: rgba(112, 68, 58, 0.5);
+      text-decoration: none;
+      color: #E8CCA5;
+    }
+  }
+}
+
+/* Haiku Section */
+.section-haiku {
+  background: linear-gradient(rgba(236, 213, 181, 0.5), rgba(236, 213, 181, 0.9)), url("../images/zen-cover-3.jpg");
+  background-size: cover;
+
+  .haiku-img {
+    width: 100%;
+  }
+}
+
+/* Register Section */
+.section-register {
+  background: linear-gradient(rgba(236, 213, 181, 0.5), rgba(236, 213, 181, 0.5)), url("../images/register-cover.jpg");
+  background-size: cover;
+
+  .register-block {
+
+    @media screen and (min-width: 31.25em) {
+      /* 500 ÷ 16 = 50 */
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (min-width: 62.0em) {
+      /* 992 ÷ 16 = 50 */
+      width: 70%;
+    }
+
+    @media screen and (min-width: 75.0em) {
+      /* 1200 ÷ 16 = 50 */
+      width: 50%;
+    }
+  }
+}
+
+/* Login Section */
+.section-login {
+  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("../images/water-cover-2.jpg");
+  background-size: cover;
+
+  .container {
+    display: flex;
+    min-height: 85vh;
+    align-items: center;
+  }
+
+  .login-block {
+    width: 100%;
+
+    @media screen and (min-width: 31.25em) {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media screen and (min-width: 62.0em) {
+      width: 70%;
+    }
+
+    @media screen and (min-width: 75.0em) {
+      width: 50%;
+    }
+  }
+
+  .login-quote {
+    display: flex;
+    flex-direction: column;
+    border-color: #C1975D;
+    animation: slideRight 1s;
+
+    @media screen and (min-width: 21.875em) {
+      /* 350 ÷ 16 = 21.875 */
+      flex-direction: row;
+    }
+
+    img {
+      width: 75px;
+      animation: slideRight 1.5s;
+
+      @media screen and (min-width: 21.875em) {
+        /* 350 ÷ 16 = 21.875 */
+        width: 100px;
+      }
+    }
+  }
+
+  span.quote-lead {
+    position: relative;
+    padding-left: 2.5em;
+    margin-top: 1.25em;
+
+    @media screen and (min-width: 21.875em) {
+      /* 350 ÷ 16 = 21.875 */
+      margin-top: 0;
+    }
+
+    p {
+      animation: slideDown 1s;
+    }
+  }
+
+  span.quote-lead::before{
+    font-family:Arial;
+    content: "\201C";
+    color:#AF6D60;
+    font-size:4em;
+    position: absolute;
+    left: 10px;
+    top:-20px;
+  }
+
+  .login-quote::after{
+    content: '';
+  }
+
+  .quote-signature {
+    font-style: italic;
+  }
+}

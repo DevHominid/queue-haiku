@@ -81,8 +81,10 @@ app.get('*', (req, res, next) => {
   next();
 });
 
-// Set public folder
+// Serve static files
+// TODO: use a reverse proxy
 app.use(express.static(`${__dirname}/../public`));
+app.use(express.static(`${__dirname}/../dist`));
 
 // Load router module
 app.use(router);
