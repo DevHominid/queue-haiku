@@ -4,7 +4,7 @@
   "description": "Prototype full-stack haiku app",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=development npm run clean && mkdirp dist && babel src -d dist --source-maps inline",
+    "build": "NODE_ENV=development npm run clean && mkdirp dist && gulp css && babel src -d dist --source-maps inline",
     "clean": "rimraf dist",
     "start": "npm run build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"

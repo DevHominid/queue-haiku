@@ -40,7 +40,11 @@ html
                 li
                   a.nav-link(href='/users/login') Login
     .message-block
-      != messages('message', locals)
+      if messages.length > 0
+        .message-wrapper
+          .icon-wrapper
+            i#icon-close.fa.fa-window-close.fa-2x(aria-hidden='true')
+          != messages('message', locals)
       if errors
         .message-wrapper
           .icon-wrapper
