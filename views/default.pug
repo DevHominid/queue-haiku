@@ -8,7 +8,7 @@ html
     //- Google fonts
     link(href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700", rel="stylesheet")
     //- Font awesome
-    <script src="https://use.fontawesome.com/ca1dfe0972.js"></script>
+    script(src='https://use.fontawesome.com/ca1dfe0972.js')
   body
     header
       nav.navbar.navbar-inverse
@@ -42,9 +42,11 @@ html
     .message-block
       != messages('message', locals)
       if errors
-        <i id='icon-close' class='fa fa-window-close fa-2x' aria-hidden='true'></i>
-        each error, i in errors
-          div(class='alert alert-danger') #{error.msg}
+        .message-wrapper
+          .icon-wrapper
+            i#icon-close.fa.fa-window-close.fa-2x(aria-hidden='true')
+          each error, i in errors
+            div(class='alert alert-danger') #{error.msg}
     block content
     footer
       .container
@@ -55,4 +57,5 @@ html
     script(src='/js/bootstrap.min.js')
     script(src='/js/delete-haiku.js')
     script(src='/js/syllable.js')
+    script(src='/js/messages.js')
     
