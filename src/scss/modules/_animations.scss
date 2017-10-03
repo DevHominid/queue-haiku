@@ -39,3 +39,25 @@
     opacity: 1.0;
   }
 }
+
+@keyframes line-width {
+  from {
+    opacity: 0;
+    width: 0%;
+  }
+  to {
+    opacity: 1;
+    width: 80%;
+  }
+}
+
+@keyframes line-height {
+  from {
+    opacity: 0;
+    height: 0px;
+  }
+  to {
+    opacity: 1;
+    height: 80px;
+  }
+}

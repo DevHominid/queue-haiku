@@ -22,6 +22,7 @@
     font-size: 12.5em; // 200 ÷ 16
     color: #000;
     text-transform: uppercase;
+    animation: appear 2s ease-in;
   }
 
   .line-h {
@@ -30,6 +31,7 @@
     height: 2px;
     margin-left: 90px;
     background: #fff;
+    animation: line-width 2s;
   }
 
   .line-v {
@@ -44,6 +46,7 @@
     margin-left: auto;
     margin-right: auto;
     background: #000;
+    animation: line-height 3s;
   }
 
   .link-block {
@@ -56,6 +59,7 @@
     a {
       color: #fff;
       @include link-underline-el();
+      animation: appear 2.5s ease-in;
     }
     a:after {
       @include link-underline-pseudo(2px, solid, $earth-light, 0.4s);
@@ -81,7 +85,6 @@
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    animation: openUp 1.5s ease-out;
 
     @media screen and (min-width: 43.75em) {
       /* 700 ÷ 16 = 50 */
@@ -95,15 +98,11 @@
 
     h2 {
       margin-top: 0;
+      margin-bottom: 0.650em; // 10 ÷ 16
       font-family: $font-title;
       font-size: 3em; // 48 ÷ 16
       font-weight: 700; // Bold
       text-transform: uppercase;
-      animation: appear 1.5s;
-    }
-
-    ul {
-      animation: appear 1.5s;
     }
 
     li.list-group-item {
