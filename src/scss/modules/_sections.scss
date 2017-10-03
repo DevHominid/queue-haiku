@@ -2,12 +2,13 @@
 
 /* Index Section */
 .section-index {
-  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("http://res.cloudinary.com/dud5wowp2/image/upload/v1505338106/zen-cover-2_hruf66.jpg");
-  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
   padding: 0;
+  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("http://res.cloudinary.com/dud5wowp2/image/upload/v1505338106/zen-cover-2_hruf66.jpg");
+  background-size: cover;
 
   .heading-block {
     display: inline-block;
@@ -15,11 +16,11 @@
   }
 
   h1 {
+    margin-bottom: 0;
     font-family: $font-title;
     font-weight: 700; // Bold
     font-size: 12.5em; // 200 ÷ 16
     color: #000;
-    margin-bottom: 0;
     text-transform: uppercase;
   }
 
@@ -27,8 +28,8 @@
     display: block;
     width: 80%;
     height: 2px;
-    background: #fff;
     margin-left: 90px;
+    background: #fff;
   }
 
   .line-v {
@@ -40,9 +41,9 @@
     right: 0;
     width: 3px;
     height: 80px;
-    background: #000;
     margin-left: auto;
     margin-right: auto;
+    background: #000;
   }
 
   .link-block {
@@ -57,10 +58,10 @@
       @include link-underline-el();
     }
     a:after {
-      @include link-underline-pseudo(2px, solid, #e8cca5, 0.4s);
+      @include link-underline-pseudo(2px, solid, $earth-light, 0.4s);
     }
     a:hover {
-      color: #e8cca5!important;
+      color: $earth-light!important;
     }
     a:hover:after {
       @include link-underline-pseudo-hov();
@@ -72,11 +73,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  background: $earth-mid;
+  padding: 2.50em; // 40 ÷ 16
 
   .haiku-box {
-    background: rgba(216, 216, 216, 0.65);
-    min-height: 55vh;
     padding: 1em 1.25em;
     width: 90%;
     margin-left: auto;
@@ -90,11 +90,15 @@
 
     @media screen and (min-width: 68.75em) {
       /* 1100 ÷ 16 = 50 */
-      width: 55%;
+      width: 65%;
     }
 
-    h1 {
+    h2 {
       margin-top: 0;
+      font-family: $font-title;
+      font-size: 3em; // 48 ÷ 16
+      font-weight: 700; // Bold
+      text-transform: uppercase;
       animation: appear 1.5s;
     }
 
@@ -104,24 +108,51 @@
 
     li.list-group-item {
       padding: 0;
+      margin: 0.625em 0; // 10 ÷ 16
+
+      a {
+        @include link-underline-el();
+        padding: 0.625em 0.938em;
+        font-family: $font-base;
+        font-size: 1em; // 16 ÷ 16
+        text-transform: none;
+        text-align: left;
+        color: $earth-dark;
+      }
+      a:after {
+        @include link-underline-pseudo(2px, solid, $earth-light, 0.4s);
+      }
+      a:hover {
+        background: $green-light;
+        color: $earth-light;
+      }
+      a:hover:after {
+        @include link-underline-pseudo-hov();
+      }
+    }
+    li.list-group-item:hover {
+      border-color: $green-light;
     }
 
     a {
       display: block;
-      padding: 0.625em 0.938em;
-      color: #AF6D60;
-    }
-
-    a:hover {
-      background: rgba(112, 68, 58, 0.5);
+      font-family: $font-title;
+      font-size: 2.25em; // 36 ÷ 16
+      text-transform: uppercase;
+      text-align: center;
       text-decoration: none;
-      color: #E8CCA5;
+      color: #fff;
+    }
+    a:hover {
+      color: $earth-light!important;
     }
   }
 }
 
 /* Haiku Section */
 .section-haiku {
+  @include section-header-pad();
+  min-height: 100vh;
   background: linear-gradient(rgba(236, 213, 181, 0.5), rgba(236, 213, 181, 0.9)), url("../images/zen-cover-3.jpg");
   background-size: cover;
 
@@ -132,6 +163,8 @@
 
 /* Register Section */
 .section-register {
+  @include section-header-pad();
+  min-height: 100vh;
   background: linear-gradient(rgba(236, 213, 181, 0.5), rgba(236, 213, 181, 0.5)), url("../images/register-cover.jpg");
   background-size: cover;
 
@@ -158,14 +191,10 @@
 
 /* Login Section */
 .section-login {
+  @include section-header-pad();
+  min-height: 100vh;
   background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("../images/water-cover-2.jpg");
   background-size: cover;
-
-  .container {
-    // display: flex;
-    // min-height: 85vh;
-    // align-items: center;
-  }
 
   .login-block {
     width: 100%;

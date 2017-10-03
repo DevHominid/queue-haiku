@@ -1,5 +1,11 @@
 /* * * Mixins * * */
 
+/* * Section w/ header padding * */
+@mixin section-header-pad() {
+  padding-top: calc(15vh + 1.250em);
+  padding-bottom: 1.250em; // 20 ÷ 16
+}
+
 /* * Vertical & horizontal centering - flexbox polyfill * */
 @mixin centerer($horizontal: true, $vertical: true) {
   position: absolute;
