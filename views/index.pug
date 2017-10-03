@@ -2,6 +2,19 @@ extends default
 
 block content
   section.section-index
+    .heading-block
+      h1 Queue Haiku
+      span.line-h
+      span.line-v
+      .link-block
+        if user
+          a.nav-link(href='/users/profile') Profile
+          a.nav-link(href='/users/logout') Logout
+        else
+          a.nav-link(href='/users/register') Register
+          a.nav-link(href='/users/login') Login
+      
+  section.section-index-b
     .haiku-box
       h1 #{title}
       ul.list-group
