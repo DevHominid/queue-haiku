@@ -1,3 +1,5 @@
+// TODO: bring into src
+// TODO: update to es6/+
 //import mongoose from 'mongoose';
 const mongoose = require('mongoose');
 

@@ -1,3 +1,5 @@
+// TODO: bring into src
+// TODO: update to es6/+
 const mongoose = require('mongoose');
 
 // Init user schema

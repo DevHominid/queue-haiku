@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import router from './router';
 import mongoose from 'mongoose';
 import expressValidator from 'express-validator';
+import expressMessages from 'express-messages';
 import flash from 'connect-flash';
 import session from 'express-session';
 import passport from 'passport'
@@ -30,7 +31,7 @@ let db = mongoose.connection;
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Set secure HTTP headers with helmet
+// Set secure HTTP headers with helmet middleware
 app.use(helmet());
 
 // Set view engine
@@ -52,9 +53,9 @@ app.use(session({
 }));
 
 // Express messages middleware
-app.use(require('connect-flash')());
+app.use(flash());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
+  res.locals.messages = expressMessages(req, res);
   next();
 });
 
@@ -95,6 +96,9 @@ app.use(express.static(`${__dirname}/../dist`));
 // Load router module
 app.use(router);
 
+// TODO: move into config/database
+// TODO: move /config into /src
+// TODO: cleanup code
 // Check for admin
 const checkAdmin = () => new Promise((resolve, reject) => {
   User.find({ username: 'DevHominid' })
