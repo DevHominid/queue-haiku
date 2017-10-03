@@ -4,7 +4,7 @@ import passport from 'passport';
 
 const router = express.Router();
 
-// Init haiku model
+// Init User model
 import User from '../../models/user';
 
 // Register form GET route
@@ -15,13 +15,15 @@ router.get('/register', (req, res) => {
 // Register form POST route
 router.post('/register', (req, res) => {
 
-  const name = req.sanitize('name').escape().trim();
+  const first = req.sanitize('first').escape().trim();
+  const last = req.sanitize('last').escape().trim();
   const email = req.sanitize('email').escape().trim();
   const username = req.sanitize('username').escape().trim();
   const password = req.sanitize('password').escape().trim();
   const password2 = req.sanitize('password2').escape().trim();
 
-  req.assert('name', 'Name is required').notEmpty();
+  req.assert('first', 'First name is required').notEmpty();
+  req.assert('last', 'Last name is required').notEmpty();
   req.assert('email', 'Email is required').notEmpty();
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('username', 'Username is required').notEmpty();
@@ -39,7 +41,8 @@ router.post('/register', (req, res) => {
       });
     } else {
       let newUser = new User({
-        name:name,
+        first:first,
+        last:last,
         email:email,
         username:username,
         password:password

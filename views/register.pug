@@ -6,9 +6,15 @@ block content
       .register-block
         h1 Register
         form(method='POST', action='/users/register')
-          .form-group
-            label Name:
-            input.form-control(name='name', type='text')
+          .row
+            .col-sm-6
+              .form-group
+                label First:
+                input.form-control(name='first', type='text')
+            .col-sm-6
+              .form-group
+                label Last:
+                input.form-control(name='last', type='text')
           .form-group
             label Email:
             input.form-control(name='email', type='text')

@@ -66,7 +66,7 @@ router.get('/:id', (req, res) => {
     .then(results => {
       res.render('haiku', {
         haiku: results[0],
-        author: results[1].name
+        author: `${results[1].first} ${results[1].last}`
       });
     })
     .catch(err => console.log(err));
