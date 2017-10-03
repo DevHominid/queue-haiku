@@ -51,6 +51,20 @@
     font-family: $font-title;
     font-size: 3em; // 48 ÷ 16
     text-transform: uppercase;
+
+    a {
+      color: #fff;
+      @include link-underline-el();
+    }
+    a:after {
+      @include link-underline-pseudo(2px, solid, #e8cca5, 0.4s);
+    }
+    a:hover {
+      color: #e8cca5!important;
+    }
+    a:hover:after {
+      @include link-underline-pseudo-hov();
+    }
   }
 }
 

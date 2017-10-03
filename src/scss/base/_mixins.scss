@@ -15,3 +15,26 @@
     transform: translate(0, -50%);
   }
 }
+
+/* * Link hover underline effect - 3 parts * */
+/* a {} */
+@mixin link-underline-el() {
+  text-decoration: none;
+  position: relative;
+}
+
+/* a:after {} */
+@mixin link-underline-pseudo($border-width, $border-style, $border-color, $trans-time) {
+  content : '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  border-bottom: $border-width $border-style $border-color;
+  transition: $trans-time;
+}
+
+/* a:hover:after {} */
+@mixin link-underline-pseudo-hov() {
+  width: 100%;
+}
