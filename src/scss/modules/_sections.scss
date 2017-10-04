@@ -159,10 +159,8 @@
 }
 
 /* About section */
-.section-about-header {
-  overflow: hidden;
-  background: linear-gradient(rgba(175, 109, 96, 0.5), rgba(175, 109, 96, 0.5)), url("https://res.cloudinary.com/dud5wowp2/image/upload/v1507082063/about-cover_henlgx.jpg");
-  background-size: cover;
+.section-about-heading {
+  @include section-heading(rgba(175, 109, 96, 0.5), rgba(175, 109, 96, 0.5), "https://res.cloudinary.com/dud5wowp2/image/upload/v1507082063/about-cover_henlgx.jpg")
 
   h1 {
     margin-top: 7.50rem; // 120 ÷ 16

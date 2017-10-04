@@ -6,6 +6,13 @@
   padding-bottom: 1.250em; // 20 ÷ 16
 }
 
+/* * Section Headings * */
+@mixin section-heading($color1, $color2, $url) {
+  overflow: hidden;
+  background: linear-gradient($color1, $color2), url($url);
+  background-size: cover;
+}
+
 /* * Vertical & horizontal centering - flexbox polyfill * */
 @mixin centerer($horizontal: true, $vertical: true) {
   position: absolute;
