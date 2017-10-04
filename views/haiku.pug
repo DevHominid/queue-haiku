@@ -1,6 +1,8 @@
 extends default
 
 block content
+  section.section-haiku-header
+    h1 #{title}
   section.section-haiku
     .container
       .row
@@ -9,9 +11,11 @@ block content
             img.haiku-img(src=haiku.imageURL alt='haiku')
           else
             img.haiku-img(src='/images/qh-logo.png' alt='haiku')
-        .col-sm-8
-          h1= haiku.title
-          h4 Written by #{author}
+        .col-sm-8e
+          h2 By #{author}
+          span Written on #{haiku.createdOn}
+          if haiku.updatedOn
+            span Updated on #{haiku.updatedOn}
       hr
       p= haiku.line1
       p= haiku.line2

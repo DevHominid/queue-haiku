@@ -1,8 +1,35 @@
 extends default
 
 block content
+  section.section-profile-header
+    h1 #{user.first} #{user.last}
   section.section-profile
     .container
-      h1 Profile page
-      h2= user.username
-      h4= user.first
+      .row
+        .col-sm-4
+          if user.imgUrl
+            img(alt='avatar', src=user.imgUrl)
+          else
+            img(alt='avatar', src='https://res.cloudinary.com/dud5wowp2/image/upload/v1507145742/avatar-default_hdc4lg.png')
+          h2= user.username
+          i.fa.fa-globe(aria-hidden='true')
+          if user.location
+            span= user.location
+          else
+            span Earth 
+        .col-sm-8
+          h2 Bio
+          if user.bio
+            p= user.bio
+          else
+            p The elusive poet is known by few, but writes legendary haikus nonetheless!
+      hr
+      h2 Recent Haikus
+      if haikus
+        ul.list-group
+          each haiku, i in haikus
+            li.list-group-item
+              a(href='/haikus/'+haiku._id)= haiku.title
+      else
+        p No haikus have been written yet!
+      

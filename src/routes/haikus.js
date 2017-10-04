@@ -5,6 +5,21 @@ const router = express.Router();
 import Haiku from '../../models/haiku';
 import User from '../../models/user';
 
+// Queue GET route
+router.get('/queue', (req, res) => {
+  Haiku.find({})
+    .then(haikus => {
+      const filterOptions = ['most recent']
+
+      res.render('queue', {
+        title: 'Haiku Queue',
+        haikus: haikus,
+        filterOptions: filterOptions
+      });
+    })
+    .catch(err => console.log(err));
+});
+
 
 // Add haiku GET route
 router.get('/add', controlAccess, (req, res) => {
@@ -66,6 +81,7 @@ router.get('/:id', (req, res) => {
     .then(results => {
       res.render('haiku', {
         haiku: results[0],
+        title: results[0].title,
         author: `${results[1].first} ${results[1].last}`
       });
     })

@@ -38,6 +38,12 @@ const userSchema = mongoose.Schema({
   },
   bio:{
     type: String
+  },
+  location: {
+    type: String
+  },
+  imgUrl:{
+    type: String
   }
 });
 

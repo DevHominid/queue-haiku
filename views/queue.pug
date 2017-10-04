@@ -1,0 +1,19 @@
+extends default
+
+block content
+  .section-queue-header
+    h1 #{title}
+  .section-queue-a
+    h2 Filter By
+    select
+      each filterOption in filterOptions
+        option(value= filterOption) #{filterOption}
+    button Go
+  .section-queue-b
+    ul.list-group
+      each haiku, i in haikus
+        li.list-group-item
+          a(href='/haikus/'+haiku._id)= haiku.title
+    
+    
+    

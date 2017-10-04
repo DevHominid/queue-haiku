@@ -48,6 +48,16 @@
     background: #000;
     animation: line-height 3s;
   }
+  .line-v::after {
+    content: '';
+    display: block;
+    z-index: 2;
+    width: 3px;
+    height: 60px;
+    margin-left: 10px;
+    background: #000;
+    animation: line-height-pseudo 3.5s;
+  }
 
   .link-block {
     display: flex;

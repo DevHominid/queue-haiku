@@ -28,7 +28,25 @@ const haikuSchema = mongoose.Schema({
   line3:{
     type: String,
     required: true
+  },
+  createdOn:{
+    type: Date,
+    default: Date.now
+  },
+  updatedOn:{
+    type: Date
   }
+});
+
+// On every save, change updatedOn value to current date
+haikuSchema.pre('save', function(next) {
+  // Get current date
+  const currentDate = new Date();
+
+  // Update value
+  this.updatedOn = currentDate;
+
+  next();
 });
 
 const Haiku = module.exports = mongoose.model('Haiku', haikuSchema);
