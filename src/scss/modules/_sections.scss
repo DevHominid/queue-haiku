@@ -1,13 +1,13 @@
 /* * Section Styles * */
 
-/* Index Section */
+/* Index section */
 .section-index {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   padding: 0;
-  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("http://res.cloudinary.com/dud5wowp2/image/upload/v1505338106/zen-cover-2_hruf66.jpg");
+  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("https://res.cloudinary.com/dud5wowp2/image/upload/v1505338106/zen-cover-2_hruf66.jpg");
   background-size: cover;
 
   .heading-block {
@@ -148,7 +148,63 @@
   }
 }
 
-/* Haiku Section */
+/* About section */
+.section-about-header {
+  overflow: hidden;
+  background: linear-gradient(rgba(175, 109, 96, 0.5), rgba(175, 109, 96, 0.5)), url("https://res.cloudinary.com/dud5wowp2/image/upload/v1507082063/about-cover_henlgx.jpg");
+  background-size: cover;
+
+  h1 {
+    margin-top: 7.50rem; // 120 ÷ 16
+    margin-bottom: 2.50rem; // 40 ÷ 16
+    font-family: $font-title;
+    font-weight: 700; // Bold
+    font-size: 4.5em; // 74 ÷ 16
+    background: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.section-about-a {
+  padding: 2.50em 0; // 40 ÷ 16
+  overflow: hidden;
+  background: $earth-red;
+
+  .container {
+    width: 70%;
+  }
+
+  h2 {
+    margin-bottom: 2.50rem; // 40 ÷ 16
+    font-family: $font-title;
+    font-weight: 700; // Bold
+    font-size: 3em; // 48 ÷ 16
+    text-transform: uppercase;
+  }
+
+  p {
+    font-family: $font-base;
+    font-size: 1.25em; // 20 ÷ 16
+  }
+
+  img {
+    width: 70%;
+    float: right;
+  }
+
+  span {
+    display: block;
+    float: right;
+    width: 70%;
+    text-align: center;
+    font-family: $font-title;
+    font-size: 1.125em; // 18 ÷ 16
+    font-weight: 700; // Bold
+  }
+}
+
+/* Haiku section */
 .section-haiku {
   @include section-header-pad();
   min-height: 100vh;

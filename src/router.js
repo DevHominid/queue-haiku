@@ -8,7 +8,7 @@ const router = express.Router();
 import Haiku from '../models/haiku';
 import User from '../models/user';
 
-// Home page route
+// Index GET route
 router.get('/', (req, res) => {
   Haiku.find({})
     .then(haikus => {
@@ -18,6 +18,13 @@ router.get('/', (req, res) => {
       });
     })
     .catch(err => console.log(err));
+});
+
+// About GET route
+router.get('/about', (req, res) => {
+  res.render('about', {
+    title: 'About'
+  });
 });
 
 // Mount routing middleware
