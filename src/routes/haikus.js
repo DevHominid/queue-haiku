@@ -82,7 +82,9 @@ router.get('/:id', (req, res) => {
       res.render('haiku', {
         haiku: results[0],
         title: results[0].title,
-        author: `${results[1].first} ${results[1].last}`
+        author: results[1],
+        fullname: `${results[1].first} ${results[1].last}`,
+        user: req.user
       });
     })
     .catch(err => console.log(err));

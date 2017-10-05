@@ -94,7 +94,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 
-// Profile GET route
+// User profile GET route
 router.get('/profile', (req, res) => {
   User.findById(req.user._id)
     .then(user => {
@@ -105,6 +105,15 @@ router.get('/profile', (req, res) => {
     .catch(err => console.log(err));
 });
 
-
+// Profile GET route
+router.get('/profile/:id', (req, res) => {
+  User.findById(req.params.id)
+  .then(user => {
+    res.render('profile', {
+      user: user
+    });
+  })
+  .catch(err => console.log(err));
+});
 
 export default router;
