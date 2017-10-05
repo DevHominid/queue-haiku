@@ -1,9 +1,10 @@
 extends default
 
 block content
-  section.section-add-haiku
+  section.section-add-haiku-heading
+    h1 #{title}
+  section.section-add-haiku-a
     .container
-      h1 #{title}
       form(method='POST', action='/haikus/add')
         .form-group
           label Title:
@@ -23,4 +24,5 @@ block content
           label Line 3:
           #line3Syl
           input.form-control#line3(name='line3', type='text')
+        hr
         input.btn.btn-custom(type='submit',value='Submit')
