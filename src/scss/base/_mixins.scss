@@ -42,6 +42,19 @@
   }
 }
 
+/* * Nav-links * */
+@mixin nav-link($size) {
+  position: relative;
+  margin-left: 0.625em; // 10 ÷ 16
+  margin-right: 0.625em; // 10 ÷ 16
+  padding: 0.625em 0 0.313em 0!important; // 10 ÷ 16, 5 ÷ 16
+  font-family: $font-title;
+  font-size: $size;
+  font-weight: 400; // Normal;
+  color: #fff!important;
+}
+
+
 /* * Link hover underline effect - 3 parts * */
 /* a {} */
 @mixin link-underline-el() {

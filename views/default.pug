@@ -21,7 +21,7 @@ html
             .navbar-wrapper
               a.navbar-brand(href='/')
                 img.logo(src='/images/qh-logo.png')
-              button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+              button#btn-nav-mobile.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar-mobile')
                 span.sr-only Toggle navigation
                 span.icon-bar
                 span.icon-bar
@@ -37,26 +37,50 @@ html
             ul.nav.navbar-nav.navbar-right
               if user
                 li
-                  img(src=user.imgUrl, alt='avatar')
-                  i.fa.fa-chevron-circle-down(aria-hidden='true')
-                  i.fa.fa-chevron-circle-up(aria-hidden='true')
-            #navbar-user
-              h3 #{user.username}
-              span Signed in
+                  button(type='button', data-toggle='collapse', data-target='#navbar-user')
+                    img(src=user.imgUrl, alt='avatar')
+                    i.fa.fa-chevron-circle-down(aria-hidden='true')
+            if user
+              #navbar-user.collapse
+                h3 #{user.username}
+                span Signed in
+                hr
+                ul
+                  li
+                    a(href='/users/profile/'+user._id) Profile
+                  li
+                    a(href='#') Your Haikus
+                  hr
+                  li
+                    a(href='/users/logout') Logout
+          #navbar-mobile.collapse
+            if user
+              img(src=user.imgUrl)
+              span
+                h3 #{user.username}
+                span Signed in
               hr
               ul
                 li
-                  a.nav-link(href='/users/profile/'+user._id) Profile
+                  a(href='/users/profile/'+user._id) Profile
                 li
-                  a.nav-link(href='#') Your Haikus
-                hr
-                li
-                  a(href='/users/logout') Logout
-                  
-          #navbar-mobile
-            if user
-              
-                
+                  a(href='#') Your Haikus
+              hr
+            else
+              h2 Queue Haiku
+              hr
+            ul
+              li
+                a(href='/') Home
+              li
+                a(href='/about') About
+              li
+                a(href='/queue') The Queue
+              li
+                a(href='/haikus/add') Add Haiku
+              hr
+              li
+                a(href='/users/logout') Logout
               
     .message-block
       if messages.length > 0

@@ -11,7 +11,6 @@ header {
   background: none;
   background-size: cover;
   background-position: 50% 38%;
-  font-size: 2.25em; // 36 ÷ 16
 }
 
 .navbar.navbar-inverse {
@@ -25,6 +24,7 @@ header {
 .navbar.navbar-inverse {
   .container {
     height: 100%;
+    position: relative;
   }
 }
 
@@ -63,6 +63,9 @@ header {
 }
 
 .navbar-toggle {
+  position: relative;
+  z-index: 5;
+  
   span.icon-bar {
     background-color: #70443A!important;
   }
@@ -89,11 +92,8 @@ header {
 }
 
 a.nav-link {
+  @include nav-link(2.25em);
   @include link-underline-el();
-  color: #fff!important;
-  padding: 0.625em 0 0.313em 0!important; // 10 ÷ 16, 5 ÷ 16
-  margin-left: 0.625em; // 10 ÷ 16
-  margin-right: 0.625em; // 10 ÷ 16
 }
 a.nav-link:after {
   @include link-underline-pseudo(2px, solid, #e8cca5, 0.4s);
@@ -103,4 +103,85 @@ a.nav-link:hover {
 }
 a.nav-link:hover:after {
   @include link-underline-pseudo-hov();
+}
+
+ul.navbar-right {
+
+  li {
+    padding-top: 0.625em; // 10 ÷ 16
+  }
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  img {
+    height: 50px;
+    margin-right: 0.313em; // 5 ÷ 16
+  }
+
+  i {
+    font-size: 2.25em; // 36 ÷ 16
+  }
+  i:hover {
+    color: #fff;
+  }
+}
+
+#navbar-user {
+  position: absolute;
+  top: calc(0.625em + 60px);
+  right: 0;
+  z-index: 2;
+  width: 25%;
+  background: #222;
+  border-radius: 4px;
+  padding-left: 0.313em; // 5 ÷ 16
+  padding-right: 0.313em; // 5 ÷ 16
+
+  h3 {
+    font-family: $font-title;
+    font-weight: 700; // Bold
+    color: #fff;
+    text-align: center;
+  }
+
+  span {
+    display: block;
+    width: 100%;
+    font-family: $font-base;
+    font-weight: 300; // Light
+    font-size: 1.00em; // 16 ÷ 16
+    text-align: center;
+    color: #fff;
+  }
+
+  ul{
+    list-style: none;
+    padding: 0;
+  }
+
+  a {
+    @include nav-link(1.25em);
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    margin: 0;
+  }
+  a:hover {
+    color: $earth-light!important;
+  }
+}
+
+#navbar-mobile {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100vh;
+  background: $earth-dark;
+  z-index: 4;
 }
