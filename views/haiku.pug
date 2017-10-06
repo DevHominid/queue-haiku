@@ -13,21 +13,23 @@ block content
             img.haiku-img(src='/images/haiku-default.png' alt='haiku')
         .col-sm-8
           h2 By #{fullname} 
-          a(href='/users/profile/'+author._id) (#{author.username})
-          span Written on #{haiku.createdOn}
+          a(href='/users/profile/'+author._id) ( #{author.username} )
+          p Written on #{haiku.createdOn}
           if haiku.updatedOn
-            span Updated on #{haiku.updatedOn}
-          span 124 Praise
+            p Updated on #{haiku.updatedOn}
+          p 124 Praise
       hr
-      p= haiku.line1
-      p= haiku.line2
-      p= haiku.line3
+      .haiku-wrapper
+        p= haiku.line1
+        p= haiku.line2
+        p= haiku.line3
       hr
       .options
         if user
           if user.id == haiku.author
-            a.btn.btn-default(href='/haikus/edit/'+haiku._id) Edit
-            a.btn.btn-danger.delete-haiku(href='#', data-id=haiku._id) Delete
+            div
+              a.btn.btn-default(href='/haikus/edit/'+haiku._id) Edit
+              a.btn.btn-danger.delete-haiku(href='#', data-id=haiku._id) Delete
         .praise-box
           img(src='/images/praise-icon.png', alt='give praise')
           span Give Praise!
