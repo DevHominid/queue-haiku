@@ -106,4 +106,15 @@ router.get('/profile/:id', (req, res) => {
   .catch(err => console.log(err));
 });
 
+// Edit profile GET route
+router.get('/profile/edit/:id', (req, res) => {
+  User.findById(req.params.id)
+  .then(user => {
+    res.render('edit_profile', {
+      user: user
+    });
+  })
+  .catch(err => console.log(err));
+});
+
 export default router;

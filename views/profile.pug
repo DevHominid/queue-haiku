@@ -22,7 +22,7 @@ block content
           if poet.bio
             p= poet.bio
           else
-            p The elusive poet is known by few, but writes legendary haikus nonetheless!
+            p The elusive poet is known only by the haikus written here.
       hr
       h2 Recent Haikus
       if haikus
@@ -31,9 +31,9 @@ block content
             li.list-group-item
               a(href='/haikus/'+haiku._id)= haiku.title
       else
-        p No haikus have been written yet!
+        p Not one haiku has been found!
       hr
       if user
         if user.id === poet.id
-          a(href='/users/profile/edit') Edit Profile
+          a(href='/users/profile/edit/'+user._id) Edit Profile
       

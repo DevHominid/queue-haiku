@@ -1,0 +1,40 @@
+extends default
+
+block content
+  section.section-profile-heading
+    h1 #{user.first} #{user.last}
+  section.section-edit-profile-a
+    .container
+      .row
+        .col-sm-4
+          form(method='POST', action='')
+            label Avatar
+            if user.imgUrl
+              img(alt='avatar', src=user.imgUrl)
+            else
+              img(alt='avatar', src='https://res.cloudinary.com/dud5wowp2/image/upload/v1507145742/avatar-default_hdc4lg.png')
+            .form-group
+              label(for='avatar') Change image
+              input#avatar.form-control-file(type='file', name='avatar', accept='.jpg, .jpeg, .png')
+            .preview
+              p No files 
+            input.btn.btn-custom(type='submit', value='Confirm')
+        .col-sm-8
+          form#profile(method='POST', action='/users/profile/edit')
+            .form-group
+              label(for='first') First
+              input#first.form-control(type='text', name='first', value=user.first)
+            .form-group
+              label(for='last') Last
+              input#last.form-control(type='text', name='last', value=user.last)
+            .form-group
+              label(for='bio') Bio
+              textarea#bio.form-control(type='text', name='bio', rows='5', maxlength='300', value=user.bio)
+            .form-group
+              label(for='location') Location
+              input#location.form-control(type='text', name='location', value=user.location)
+      hr
+      a(href='/users/profile'+user._id) Back to profile
+      input.btn.btn-custom(type='submit', value='Submit changes', form='profile')
+          
+          
