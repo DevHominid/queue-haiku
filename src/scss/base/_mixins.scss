@@ -21,9 +21,33 @@
   font-family: $font-title;
   font-weight: 700; // Bold
   font-size: 4.5em; // 74 ÷ 16
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 1.0);
   text-align: center;
   text-transform: uppercase;
+}
+
+@mixin section-a($background-color) {
+  padding: 2.50em 0; // 40 ÷ 16
+  overflow: hidden;
+  background: $background-color;
+}
+
+@mixin container-a() {
+  width: 70%;
+}
+
+@mixin heading-a() {
+  margin-bottom: 2.50rem; // 40 ÷ 16
+  font-family: $font-title;
+  font-weight: 700; // Bold
+  font-size: 3em; // 48 ÷ 16
+  text-transform: uppercase;
+}
+
+@mixin paragraph-a() {
+  font-family: $font-base;
+  font-size: 1.25em; // 20 ÷ 16
+  font-weight: 300; // Light
 }
 
 /* * Vertical & horizontal centering - flexbox polyfill * */

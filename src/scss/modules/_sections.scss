@@ -168,25 +168,18 @@
 }
 
 .section-about-a {
-  padding: 2.50em 0; // 40 ÷ 16
-  overflow: hidden;
-  background: rgba(175, 109, 96, 0.9);
+  @include section-a(#fff);
 
   .container {
-    width: 70%;
+    @include container-a();
   }
 
   h2 {
-    margin-bottom: 2.50rem; // 40 ÷ 16
-    font-family: $font-title;
-    font-weight: 700; // Bold
-    font-size: 3em; // 48 ÷ 16
-    text-transform: uppercase;
+    @include heading-a();
   }
 
   p {
-    font-family: $font-base;
-    font-size: 1.25em; // 20 ÷ 16
+    @include paragraph-a();
   }
 
   img {
@@ -206,11 +199,47 @@
 }
 
 .section-about-b {
-  background: $earth-light;
+  @include section-a($earth-light);
+
+  .container {
+    @include container-a();
+  }
+
+  h2 {
+    @include heading-a();
+  }
+
+  p {
+    @include paragraph-a();
+  }
+
+  h3 {
+    font-family: $font-title;
+    font-size: 2.25em; // 36 ÷ 16
+    font-weight: 700; // Bold
+    text-transform: uppercase;
+  }
+
+  ol {
+    font-family: $font-base;
+  }
+
 }
 
 .section-about-c {
-  background: $earth-mid;
+  @include section-a($earth-mid);
+
+  .container {
+    @include container-a();
+  }
+
+  h2 {
+    @include heading-a();
+  }
+
+  p {
+    @include paragraph-a();
+  }
 }
 
 /* Queue section */
