@@ -9,15 +9,12 @@ block content
         .col-sm-4
           form(method='POST', action='')
             label Avatar
-            if user.imgUrl
-              img(alt='avatar', src=user.imgUrl)
-            else
-              img(alt='avatar', src='https://res.cloudinary.com/dud5wowp2/image/upload/v1507145742/avatar-default_hdc4lg.png')
+            img(alt='avatar', src=user.imgUrl)
             .form-group
               label(for='avatar') Change image
               input#avatar.form-control-file(type='file', name='avatar', accept='.jpg, .jpeg, .png')
             .preview
-              p No files 
+              p No files selected
             input.btn.btn-custom(type='submit', value='Confirm')
         .col-sm-8
           form#profile(method='POST', action='/users/profile/edit')
@@ -29,7 +26,7 @@ block content
               input#last.form-control(type='text', name='last', value=user.last)
             .form-group
               label(for='bio') Bio
-              textarea#bio.form-control(type='text', name='bio', rows='5', maxlength='300', value=user.bio)
+              textarea#bio.form-control(type='text', name='bio', rows='5', maxlength='300') #{user.bio}
             .form-group
               label(for='location') Location
               input#location.form-control(type='text', name='location', value=user.location)

@@ -37,13 +37,16 @@ const userSchema = mongoose.Schema({
     type: Date
   },
   bio:{
-    type: String
+    type: String,
+    default: 'The elusive poet is known only by the haikus written here.'
   },
   location: {
-    type: String
+    type: String,
+    default: 'Earth'
   },
   imgUrl:{
-    type: String
+    type: String,
+    default: 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507145742/avatar-default_hdc4lg.png'
   }
 });
 

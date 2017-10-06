@@ -7,22 +7,13 @@ block content
     .container
       .row
         .col-sm-4
-          if poet.imgUrl
-            img(alt='avatar', src=poet.imgUrl)
-          else
-            img(alt='avatar', src='https://res.cloudinary.com/dud5wowp2/image/upload/v1507145742/avatar-default_hdc4lg.png')
+          img(alt='avatar', src=poet.imgUrl)
           h2= poet.username
           i.fa.fa-globe(aria-hidden='true')
-          if poet.location
-            span= poet.location
-          else
-            span Earth 
+          span= poet.location
         .col-sm-8
           h2 Bio
-          if poet.bio
-            p= poet.bio
-          else
-            p The elusive poet is known only by the haikus written here.
+          p= poet.bio
       hr
       h2 Recent Haikus
       if haikus
