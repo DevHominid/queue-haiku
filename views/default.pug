@@ -35,6 +35,28 @@ html
               li
                 a.nav-link(href='/haikus/add') Add Haiku 
             ul.nav.navbar-nav.navbar-right
+              if user
+                li
+                  img(src=user.imgUrl, alt='avatar')
+                  i.fa.fa-chevron-circle-down(aria-hidden='true')
+                  i.fa.fa-chevron-circle-up(aria-hidden='true')
+            #navbar-user
+              h3 #{user.username}
+              span Signed in
+              hr
+              ul
+                li
+                  a.nav-link(href='/users/profile/'+user._id) Profile
+                li
+                  a.nav-link(href='#') Your Haikus
+                hr
+                li
+                  a(href='/users/logout') Logout
+                  
+          #navbar-mobile
+            if user
+              
+                
               
     .message-block
       if messages.length > 0
