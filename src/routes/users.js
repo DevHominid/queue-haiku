@@ -94,23 +94,13 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 
-// User profile GET route
-router.get('/profile', (req, res) => {
-  User.findById(req.user._id)
-    .then(user => {
-      res.render('profile', {
-        user: user
-      });
-    })
-    .catch(err => console.log(err));
-});
-
 // Profile GET route
 router.get('/profile/:id', (req, res) => {
   User.findById(req.params.id)
   .then(user => {
     res.render('profile', {
-      user: user
+      poet: user,
+      user: req.user
     });
   })
   .catch(err => console.log(err));

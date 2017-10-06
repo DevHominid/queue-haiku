@@ -8,7 +8,7 @@ block content
       span.line-v
       .link-block
         if user
-          a(href='/users/profile') Profile
+          a(href='/users/profile/'+user._id) Profile
           a(href='/users/logout') Logout
         else
           a(href='/users/register') Register

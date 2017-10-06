@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
     .then(haikus => {
       res.render('index', {
         title: 'Haikus',
-        haikus: haikus
+        haikus: haikus,
+        user: req.user
       });
     })
     .catch(err => console.log(err));
