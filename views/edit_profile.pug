@@ -17,7 +17,7 @@ block content
               p No files selected
             input.btn.btn-custom(type='submit', value='Confirm')
         .col-sm-8
-          form#profile(method='POST', action='/users/profile/edit')
+          form#profile(method='POST', action='/users/profile/edit/'+user._id)
             .form-group
               label(for='first') First
               input#first.form-control(type='text', name='first', value=user.first)

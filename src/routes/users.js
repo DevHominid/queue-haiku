@@ -117,4 +117,50 @@ router.get('/profile/edit/:id', (req, res) => {
   .catch(err => console.log(err));
 });
 
+// Edit profile POST route
+router.post('/profile/edit/:id', (req, res) => {
+
+  // Validation
+  req.assert('first', 'First name is required').notEmpty();
+  req.assert('last', 'Last name is required').notEmpty();
+
+  // Sanitization
+  const first = req.sanitize('first').escape().trim();
+  const last = req.sanitize('last').escape().trim();
+  const bio = req.sanitize('bio').escape().trim();
+  const location = req.sanitize('location').escape().trim();
+
+  req.getValidationResult().then((result) => {
+
+    // Get errors
+    let errors = result.array();
+
+    if (!result.isEmpty()) {
+      User.findById(req.params.id)
+      .then(user => {
+        res.render('edit_profile', {
+          user: user,
+          errors: errors
+        });
+      })
+      .catch(err => console.log(err));
+    } else {
+      let user = {};
+      user.first = req.body.first;
+      user.last = req.body.last;
+      user.bio = req.body.bio;
+      user.location = req.body.location;
+
+      let query = {_id:req.params.id}
+
+      User.update(query, user)
+        .then(() => {
+          req.flash('success', 'Profile updated!')
+          res.redirect('/users/profile/'+req.params.id);
+        })
+        .catch(err => console.log(err));
+    }
+  });
+});
+
 export default router;
