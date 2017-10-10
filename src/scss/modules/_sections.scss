@@ -431,6 +431,11 @@
   min-height: 100vh;
   background: linear-gradient(rgba(236, 213, 181, 0.5), rgba(236, 213, 181, 0.5)), url("../images/register-cover.jpg");
   background-size: cover;
+  padding-bottom: 2.50em; // 40 ÷ 16
+
+  h1 {
+    @include heading-a();
+  }
 
   .register-block {
 
@@ -511,6 +516,7 @@
     }
 
     p {
+      font-family: $font-base;
       animation: slideDown 1s;
     }
   }
@@ -530,6 +536,13 @@
   }
 
   .quote-signature {
+    font-family: $font-title;
+    font-weight: 700; // Bold
+    font-size: 1.25em; // 20 ÷ 16
     font-style: italic;
+  }
+
+  h1 {
+    @include heading-a();
   }
 }
