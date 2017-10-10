@@ -38,8 +38,8 @@ const haikuSchema = mongoose.Schema({
   }
 });
 
-// On every save, change updatedOn value to current date
-haikuSchema.pre('save', function(next) {
+// On every update, change updatedOn value to current date
+haikuSchema.pre('update', function(next) {
   // Get current date
   const currentDate = new Date();
 
