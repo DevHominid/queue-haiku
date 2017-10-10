@@ -425,6 +425,50 @@
   }
 }
 
+.section-profile {
+  @include section-a(#fff);
+
+  .container {
+    @include container-a();
+  }
+
+  img.avatar {
+    width: 100%;
+  }
+
+  h2 {
+    @include heading-a();
+    margin-top: 0;
+    margin-bottom: 0.313em; // 5 ÷ 16
+  }
+
+  h2.username {
+    margin-top: 0.313em; // 5 ÷ 16
+    font-family: $font-base;
+    font-weight: 600; // Semi-bold
+    font-size: 2.25em; // 36 ÷ 16
+    text-transform: capitalize;
+  }
+
+  i {
+    margin-right: 0.313em; // 5 ÷ 16
+  }
+
+  span {
+    font-family: $font-base;
+    font-weight: 300; // Light
+  }
+
+  p {
+    @include paragraph-a();
+  }
+
+  hr {
+    border-color: #000;
+    margin: 2.50em 0; // 40 ÷ 16
+  }
+}
+
 /* Register Section */
 .section-register {
   @include section-header-pad();

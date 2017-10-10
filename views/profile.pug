@@ -7,22 +7,22 @@ block content
     .container
       .row
         .col-sm-4
-          img(alt='avatar', src=poet.imgUrl)
-          h2= poet.username
+          img.avatar(alt='avatar', src=poet.imgUrl)
+          h2.username= poet.username
           i.fa.fa-globe(aria-hidden='true')
           span= poet.location
         .col-sm-8
           h2 Bio
           p= poet.bio
       hr
-      h2 Recent Haikus
+      h2.text-center Recent Haikus
       if haikus
         ul.list-group
           each haiku, i in haikus
             li.list-group-item
               a(href='/haikus/'+haiku._id)= haiku.title
       else
-        p Not one haiku has been found!
+        p.text-center Not one haiku has been found!
       hr
       if user
         if user.id === poet.id
