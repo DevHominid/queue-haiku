@@ -6,6 +6,7 @@ const router = express.Router();
 
 // Init User model
 import User from '../../models/user';
+import Haiku from '../../models/haiku';
 
 // Register form GET route
 router.get('/register', (req, res) => {
@@ -94,16 +95,35 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 
+// // Profile GET route
+// router.get('/profile/:id', (req, res) => {
+//   User.findById(req.params.id)
+//   .then(user => {
+//     res.render('profile', {
+//       poet: user,
+//       user: req.user
+//     });
+//   })
+//   .catch(err => console.log(err));
+// });
+
 // Profile GET route
 router.get('/profile/:id', (req, res) => {
   User.findById(req.params.id)
-  .then(user => {
-    res.render('profile', {
-      poet: user,
-      user: req.user
-    });
-  })
-  .catch(err => console.log(err));
+    .then(user => {
+      return Promise.all([user, Haiku.find({ author: user.id }).
+        limit(3).
+        sort('-createdOn')
+      ]);
+    })
+    .then(results => {
+      res.render('profile', {
+        poet: results[0],
+        haikus: results[1],
+        user: req.user
+      });
+    })
+    .catch(err => console.log(err));
 });
 
 // Edit profile GET route

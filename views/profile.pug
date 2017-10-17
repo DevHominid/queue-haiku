@@ -9,6 +9,8 @@ block content
         .col-sm-4
           img.avatar(alt='avatar', src=poet.imgUrl)
           h2.username= poet.username
+          if poet.isAdmin
+            span (Admin)
           i.fa.fa-globe(aria-hidden='true')
           span= poet.location
         .col-sm-8
