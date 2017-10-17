@@ -61,3 +61,28 @@ body {
     border-color: #ebccd1;
   }
 }
+
+/* * Headings * */
+.heading-a {
+  @include heading-a(3em);
+  margin-top: 2.50rem; // 40 ÷ 16
+  margin-bottom: 2.50rem; // 40 ÷ 16
+}
+
+.heading-a-top {
+  @include heading-a(3em);
+  margin-top: 0;
+  margin-bottom: 2.50rem; // 40 ÷ 16
+}
+
+.heading-a2 {
+  @include heading-a(2.25em);
+  margin-top: 2.50rem; // 40 ÷ 16
+  margin-bottom: 2.50rem; // 40 ÷ 16
+}
+
+/* * Paragraphs * */
+.paragraph-a {
+  @include paragraph-a();
+  margin: 0;
+}

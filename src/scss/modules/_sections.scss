@@ -174,14 +174,6 @@
     @include container-a();
   }
 
-  h2 {
-    @include heading-a();
-  }
-
-  p {
-    @include paragraph-a();
-  }
-
   img {
     width: 70%;
     float: right;
@@ -206,22 +198,23 @@
   }
 
   h2 {
-    @include heading-a();
-  }
-
-  p {
-    @include paragraph-a();
+    color: $earth-dark;
   }
 
   h3 {
-    font-family: $font-title;
-    font-size: 2.25em; // 36 ÷ 16
-    font-weight: 700; // Bold
-    text-transform: uppercase;
+    color: $earth-dark;
+  }
+
+  p {
+    color: $earth-dark;
   }
 
   ol {
-    font-family: $font-base;
+    @include paragraph-a();
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    color: $earth-dark;
   }
 }
 
@@ -233,11 +226,16 @@
   }
 
   h2 {
-    @include heading-a();
+    color: $earth-light;
   }
 
   p {
-    @include paragraph-a();
+    color: $earth-light;
+  }
+
+  img {
+    width: 70%;
+    float: left;
   }
 }
 
@@ -258,7 +256,7 @@
   }
 
   h2 {
-    @include heading-a();
+    @include heading-a(3em);
   }
 
   select {
@@ -355,7 +353,7 @@
   }
 
   h2 {
-    @include heading-a();
+    @include heading-a(3em);
     margin-top: 0;
     margin-bottom: 0.313em; // 5 ÷ 16
   }
@@ -437,7 +435,7 @@
   }
 
   h2 {
-    @include heading-a();
+    @include heading-a(3em);
     margin-top: 0;
     margin-bottom: 0.313em; // 5 ÷ 16
   }
@@ -478,7 +476,7 @@
   padding-bottom: 2.50em; // 40 ÷ 16
 
   h1 {
-    @include heading-a();
+    @include heading-a(3em);
   }
 
   .register-block {
@@ -587,6 +585,6 @@
   }
 
   h1 {
-    @include heading-a();
+    @include heading-a(3em);
   }
 }

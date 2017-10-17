@@ -36,11 +36,10 @@
   width: 70%;
 }
 
-@mixin heading-a() {
-  margin-bottom: 2.50rem; // 40 ÷ 16
+@mixin heading-a($size) {
   font-family: $font-title;
   font-weight: 700; // Bold
-  font-size: 3em; // 48 ÷ 16
+  font-size: $size;
   text-transform: uppercase;
 }
 
@@ -48,6 +47,7 @@
   font-family: $font-base;
   font-size: 1.25em; // 20 ÷ 16
   font-weight: 300; // Light
+  line-height: 1.5;
 }
 
 /* * Vertical & horizontal centering - flexbox polyfill * */
