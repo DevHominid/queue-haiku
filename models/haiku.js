@@ -40,12 +40,7 @@ const haikuSchema = mongoose.Schema({
 
 // On every update, change updatedOn value to current date
 haikuSchema.pre('update', function(next) {
-  // Get current date
-  const currentDate = new Date();
-
-  // Update value
-  this.updatedOn = currentDate;
-
+  this.update({}, { $set: { updatedOn: new Date() } });
   next();
 });
 

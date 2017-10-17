@@ -50,14 +50,9 @@ const userSchema = mongoose.Schema({
   }
 });
 
-// On every save, change updatedOn value to current date
-userSchema.pre('save', function(next) {
-  // Get current date
-  const currentDate = new Date();
-
-  // Update value
-  this.updatedOn = currentDate;
-
+// On every update, change updatedOn value to current date
+haikuSchema.pre('update', function(next) {
+  this.update({}, { $set: { updatedOn: new Date() } });
   next();
 });
 
