@@ -1,7 +1,7 @@
 /* * Header Styles * */
 
 header {
-  height: 15vh;
+  height: 125px;
   width: 100%;
   position: absolute;
   top: 0;
@@ -65,7 +65,7 @@ header {
 .navbar-toggle {
   position: relative;
   z-index: 5;
-  
+
   span.icon-bar {
     background-color: #70443A!important;
   }
@@ -184,4 +184,80 @@ ul.navbar-right {
   min-height: 100vh;
   background: $earth-dark;
   z-index: 4;
+  padding-top: 1.25em; // 20 ÷ 16
+  padding-bottom: 1.25em; // 20 ÷ 16
+
+  .navbar-mobile-wrapper {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .navbar-mobile-header {
+    display: flex;
+    flex-direction: row;
+  }
+
+  img {
+    width: 50px;
+    height: 100%;
+
+    @media screen and (min-width: 34.375em) {
+      // 550 ÷ 16
+      width: 100px;
+    }
+  }
+
+  .mobile-credentials {
+    margin-left: 1.25em; // 20 ÷ 16
+
+    h3 {
+      font-family: $font-base;
+      font-size: 1em; // 16 ÷ 16
+      font-weight: 700; // Bold
+      color: #fff;
+      margin-top: 0;
+      margin-bottom: 0.625rem; // 10 ÷ 16
+
+      @media screen and (min-width: 34.375em) {
+        // 550 ÷ 16
+        font-size: 2em; // 32 ÷ 16
+      }
+    }
+
+    span {
+      font-family: $font-base;
+      font-size: 0.75em; // 12 ÷ 16
+      color: #fff;
+      font-weight: 300; // Light
+
+      @media screen and (min-width: 34.375em) {
+        // 550 ÷ 16
+        font-size: 1.75em; // 28 ÷ 16
+      }
+    }
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+
+    a {
+      @include nav-link(2.25em);
+      @include link-underline-el();
+      padding-top: 0!important;
+      padding-bottom: 2px!important;
+    }
+    a:after {
+      @include link-underline-pseudo(2px, solid, #e8cca5, 0.4s);
+    }
+    a:hover {
+      color: #e8cca5!important;
+    }
+    a:hover:after {
+      @include link-underline-pseudo-hov();
+    }
+  }
 }
