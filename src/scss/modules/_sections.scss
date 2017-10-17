@@ -160,7 +160,7 @@
 
 /* About section */
 .section-about-heading {
-  @include section-heading(rgba(175, 109, 96, 0.5), rgba(175, 109, 96, 0.5), "https://res.cloudinary.com/dud5wowp2/image/upload/v1507082063/about-cover_henlgx.jpg")
+  @include section-heading(rgba(175, 109, 96, 0.5), rgba(175, 109, 96, 0.5), "https://res.cloudinary.com/dud5wowp2/image/upload/v1508272079/about-cover_vta0zj.jpg")
 
   h1 {
     @include section-heading-h1();
@@ -168,7 +168,7 @@
 }
 
 .section-about-a {
-  @include section-a(#fff);
+  @include section-a(#f7eddc);
 
   .container {
     @include container-a();
