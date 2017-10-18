@@ -72,21 +72,14 @@ header {
 }
 
 .navbar-brand {
-  height: 100%;
-  display: flex;
-  align-items: center;
+
 }
 
 .logo {
-  width: 150px;
+  width: 100px;
 
-  @media screen and (min-height: 50em) {
-    /* 800 ÷ 16 = 50 */
-    width: 125px;
-  }
-
-  @media screen and (min-height: 75em) {
-    /* 1200 ÷ 16 = 75 */
+  @media screen and (min-width: 31.25em) {
+    /* 500 ÷ 16 = 50 */
     width: 150px;
   }
 }
