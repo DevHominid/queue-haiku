@@ -78,8 +78,8 @@ header {
 .logo {
   width: 100px;
 
-  @media screen and (min-width: 31.25em) {
-    /* 500 ÷ 16 = 50 */
+  @media screen and (min-width: 25em) and (min-height: 25em) {
+    // 400 ÷ 16
     width: 150px;
   }
 }

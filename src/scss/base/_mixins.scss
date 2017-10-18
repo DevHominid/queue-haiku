@@ -33,7 +33,17 @@
 }
 
 @mixin container-a() {
-  width: 70%;
+  width: 100%;
+
+  @media screen and (min-width: 29.688em) {
+    // 475 ÷ 16
+    width: 90%;
+  }
+
+  @media screen and (min-width: 40.625em) {
+    // 650 ÷ 16
+    width: 70%;
+  }
 }
 
 @mixin heading-a($size) {
@@ -100,18 +110,4 @@
 /* a:hover:after {} */
 @mixin link-underline-pseudo-hov() {
   width: 100%;
-}
-
-/* * Animations * */
-@mixin animation-line-height($height) {
-  @keyframes line-height {
-    from {
-      opacity: 0;
-      height: 0px;
-    }
-    to {
-      opacity: 1;
-      height: $height;
-    }
-  }
 }

@@ -26,7 +26,6 @@
 
     @media screen and (min-width: 37.5em) and (min-height: 25em) {
       // 600 ÷ 16, 400 ÷ 16
-      // font-size: 12.5em; // 200 ÷ 16
       font-size: 8em; // 128 ÷ 16
     }
 
@@ -156,7 +155,7 @@
 
   .haiku-box {
     padding: 1em 1.25em;
-    width: 90%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 
@@ -174,9 +173,14 @@
       margin-top: 0;
       margin-bottom: 0.650em; // 10 ÷ 16
       font-family: $font-title;
-      font-size: 3em; // 48 ÷ 16
+      font-size: 2em; // 32 ÷ 16
       font-weight: 700; // Bold
       text-transform: uppercase;
+
+      @media screen and (min-width: 20.625em) {
+        // 330 ÷ 16
+        font-size: 3em; // 48 ÷ 16
+      }
     }
 
     li.list-group-item {
@@ -239,18 +243,34 @@
   }
 
   img {
+    display: block;
     width: 70%;
-    float: right;
+    margin-top: 1.25em; //  20 ÷ 16
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      margin-top: 0;
+      float: right;
+      width: 80%;
+    }
   }
 
   span {
     display: block;
-    float: right;
-    width: 70%;
+    width: 100%;
     text-align: center;
     font-family: $font-title;
     font-size: 1.125em; // 18 ÷ 16
     font-weight: 700; // Bold
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      float: right;
+      width: 80%;
+    }
   }
 }
 
@@ -275,10 +295,20 @@
 
   ol {
     @include paragraph-a();
-    width: 70%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     color: $earth-dark;
+
+    @media screen and (min-width: 29.688em) {
+      // 475 ÷ 16
+      width: 90%;
+    }
+
+    @media screen and (min-width: 40.625em) {
+      // 650 ÷ 16
+      width: 70%;
+    }
   }
 }
 
@@ -298,8 +328,19 @@
   }
 
   img {
-    width: 70%;
-    float: left;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.25em; // 20 ÷ 16
+    width: 50%;
+    border-radius: 15px;
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      float: left;
+      margin-bottom: 0;
+      width: 70%;
+    }
   }
 }
 
