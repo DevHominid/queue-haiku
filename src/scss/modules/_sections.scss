@@ -354,7 +354,7 @@
 }
 
 .section-queue-a {
-  @include section-a($green-light);
+  @include section-a($earth-dark);
 
   .container {
     @include container-a();
@@ -362,6 +362,7 @@
 
   h2 {
     @include heading-a(3em);
+    color: $earth-mid;
   }
 
   select {
@@ -443,10 +444,14 @@
 }
 
 .section-add-haiku-a {
-  @include section-a(#fff);
+  @include section-a($earth-mid);
 
   .container {
     @include container-a();
+  }
+
+  label {
+    color: $earth-light;
   }
 }
 
