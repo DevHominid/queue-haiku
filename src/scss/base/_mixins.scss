@@ -101,3 +101,17 @@
 @mixin link-underline-pseudo-hov() {
   width: 100%;
 }
+
+/* * Animations * */
+@mixin animation-line-height($height) {
+  @keyframes line-height {
+    from {
+      opacity: 0;
+      height: 0px;
+    }
+    to {
+      opacity: 1;
+      height: $height;
+    }
+  }
+}
