@@ -236,7 +236,7 @@
 }
 
 .section-about-a {
-  @include section-a(#f7eddc);
+  @include section-a($earth-lightest);
 
   .container {
     @include container-a();
@@ -346,7 +346,7 @@
 
 /* Queue section */
 .section-queue-heading {
-  @include section-heading(rgba(119, 150, 109, 0.5), rgba(119, 150, 109, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147420/queue-cover_eqmrnm.jpg');
+  @include section-heading(rgba(184, 216, 187, 0.3), rgba(184, 216, 187, 0.3), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147420/queue-cover_eqmrnm.jpg');
 
   h1 {
     @include section-heading-h1();
@@ -354,7 +354,7 @@
 }
 
 .section-queue-a {
-  @include section-a(#fff);
+  @include section-a($green-light);
 
   .container {
     @include container-a();
@@ -365,10 +365,20 @@
   }
 
   select {
-    width: 25%;
+    width: 50%;
     height: 30px;
     margin-right: 0.625em; // 10 ÷ 16
     font-family: $font-base;
+
+    @media screen and (min-width: 29.688em) {
+      // 475 ÷ 16
+      width: 40%;
+    }
+
+    @media screen and (min-width: 40.625em) {
+      // 650 ÷ 16
+      width: 30%;
+    }
   }
 
   button {
@@ -385,6 +395,10 @@
 
   .container {
     @include container-a();
+  }
+
+  ul {
+    margin: 0;
   }
 
   li.list-group-item {
