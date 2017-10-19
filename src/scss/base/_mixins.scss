@@ -2,8 +2,8 @@
 
 /* * Section w/ header padding * */
 @mixin section-header-pad() {
-  padding-top: calc(15vh + 1.250em);
-  padding-bottom: 1.250em; // 20 ÷ 16
+  padding-top: calc(125px + 0em);
+  padding-bottom: 2.50em; // 20 ÷ 16
 }
 
 /* * Section Headings * */

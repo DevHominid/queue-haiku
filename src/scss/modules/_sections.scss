@@ -631,6 +631,12 @@
   background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("../images/water-cover-2.jpg");
   background-size: cover;
 
+  @media screen and (min-height: 45em) {
+    // 720 ÷ 16
+    display: flex;
+    align-items: center;
+  }
+
   .login-block {
     width: 100%;
 
