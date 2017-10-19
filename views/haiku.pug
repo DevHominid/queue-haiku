@@ -20,9 +20,9 @@ block content
           p 124 Praise
       hr
       .haiku-wrapper
-        p= haiku.line1
+        p.line1= haiku.line1
         p= haiku.line2
-        p= haiku.line3
+        p.line3= haiku.line3
       hr
       .options
         if user
@@ -30,6 +30,8 @@ block content
             div
               a.btn.btn-default(href='/haikus/edit/'+haiku._id) Edit
               a.btn.btn-danger.delete-haiku(href='#', data-id=haiku._id) Delete
+        else
+          div
         .praise-box
           img(src='/images/praise-icon.png', alt='give praise')
           span Give Praise!
