@@ -394,6 +394,11 @@
   @include section-a($earth-mid);
   min-height: 50vh;
 
+  @media screen and (min-height: 68.75em) {
+    // 1100 ÷ 16
+    min-height: 60vh;
+  }
+
   .container {
     @include container-a();
   }
