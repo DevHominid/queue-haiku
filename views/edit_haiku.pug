@@ -1,9 +1,9 @@
 extends default
 
 block content
-  section.section-add-haiku-heading
+  section.section-edit-haiku-heading
     h1 #{title}
-  section.section-edit-haiku
+  section.section-edit-haiku-a
     .container
       form(method='POST', action='/haikus/edit/'+haiku._id)
         .form-group
@@ -12,6 +12,7 @@ block content
         .form-group
           label Image URL:
           input.form-control(name='imageURL', type='text' value=haiku.imageURL)
+        hr
         .form-group
           label Line 1:
           #line1Syl

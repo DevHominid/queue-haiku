@@ -446,8 +446,54 @@
 .section-add-haiku-a {
   @include section-a($earth-mid);
 
+  @media screen and (min-height: 61.25em) {
+    // 980 ÷ 16
+    min-height: calc(100vh - 250px);
+    display: flex;
+    align-items: center;
+  }
+
   .container {
     @include container-a();
+  }
+
+  hr {
+    margin-top: 2.50em; // 40 ÷ 16
+    margin-bottom: 2.50em; // 40 ÷ 16
+  }
+
+  label {
+    color: $earth-light;
+  }
+}
+
+/* Edit haiku section */
+.section-edit-haiku-heading {
+  @include section-heading(rgba(68, 55, 48, 0.5), rgba(68, 55, 48, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507327798/buson_gbdfos.jpg');
+  background-position: center;
+
+  h1 {
+    @include section-heading-h1();
+  }
+}
+
+.section-edit-haiku-a {
+  @include section-a($earth-mid);
+
+  @media screen and (min-height: 61.25em) {
+    // 980 ÷ 16
+    min-height: calc(100vh - 250px);
+    display: flex;
+    align-items: center;
+  }
+
+  .container {
+    @include container-a();
+  }
+
+  hr {
+    margin-top: 2.50em; // 40 ÷ 16
+    margin-bottom: 2.50em; // 40 ÷ 16
   }
 
   label {
