@@ -627,8 +627,41 @@
     @include container-a();
   }
 
+  .poet-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.625em; // 10 ÷ 16
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      flex-direction: column;
+      margin-bottom: 0;
+    }
+  }
+
+  .poet-info-aside {
+    margin-left: 1.25em; // 20 ÷ 16
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      margin-left: 0;
+    }
+  }
+
   img.avatar {
-    width: 100%;
+    width: 100px;
+    height: 100%;
+    // margin-bottom: 2.50em; // 40 ÷ 16
+
+    @media screen and (min-width: 29.06em) and (max-width: 47.99em){
+      // 465 ÷ 16
+      width: 200px;
+    }
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      width: 90%;
+    }
   }
 
   h2 {
@@ -638,11 +671,22 @@
   }
 
   h2.username {
-    margin-top: 0.313em; // 5 ÷ 16
+    margin-top: 0;
+    margin-bottom: 0.625rem; // 10 ÷ 16
     font-family: $font-base;
     font-weight: 600; // Semi-bold
-    font-size: 2.25em; // 36 ÷ 16
+    font-size: 1.25em; // 20 ÷ 16
     text-transform: capitalize;
+
+    @media screen and (min-width: 29.06em) {
+      // 465 ÷ 16
+      font-size: 1.75em; // 28 ÷ 16
+    }
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      margin-top: 1.25rem; // 10 ÷ 16
+    }
   }
 
   i {
@@ -652,6 +696,17 @@
   span {
     font-family: $font-base;
     font-weight: 300; // Light
+    font-size: 1.000em; // 16 ÷ 16
+
+    @media screen and (min-width: 29.06em) {
+      // 465 ÷ 16
+      font-size: 1.375em; // 22 ÷ 16
+    }
+  }
+
+  .admin {
+    display: block;
+    margin-bottom: 0.625rem; // 20 ÷ 16
   }
 
   p {
@@ -661,6 +716,36 @@
   hr {
     border-color: #000;
     margin: 2.50em 0; // 40 ÷ 16
+  }
+
+  li.list-group-item {
+    padding: 0;
+    margin: 0.625em 0; // 10 ÷ 16
+
+    a {
+      @include link-underline-el();
+      display: block;
+      width: 100%;
+      padding: 0.625em 0.938em;
+      font-family: $font-base;
+      font-size: 1em; // 16 ÷ 16
+      text-transform: none;
+      text-align: left;
+      color: $earth-dark;
+    }
+    a:after {
+      @include link-underline-pseudo(2px, solid, $earth-light, 0.4s);
+    }
+    a:hover {
+      background: $green-light;
+      color: $earth-light;
+    }
+    a:hover:after {
+      @include link-underline-pseudo-hov();
+    }
+  }
+  li.list-group-item:hover {
+    border-color: $green-light;
   }
 }
 

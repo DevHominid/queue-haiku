@@ -7,12 +7,14 @@ block content
     .container
       .row
         .col-sm-4
-          img.avatar(alt='avatar', src=poet.imgUrl)
-          h2.username= poet.username
-          if poet.isAdmin
-            span (Admin)
-          i.fa.fa-globe(aria-hidden='true')
-          span= poet.location
+          .poet-info-wrapper
+            img.avatar(alt='avatar', src=poet.imgUrl)
+            .poet-info-aside
+              h2.username= poet.username
+              if poet.isAdmin
+                span.admin (Admin)
+              i.fa.fa-globe.fa-lg(aria-hidden='true')
+              span= poet.location
         .col-sm-8
           h2 Bio
           p= poet.bio
@@ -28,5 +30,5 @@ block content
       hr
       if user
         if user.id === poet.id
-          a(href='/users/profile/edit/'+user._id) Edit Profile
+          a.btn.btn-custom(href='/users/profile/edit/'+user._id) Edit Profile
       
