@@ -183,4 +183,19 @@ router.post('/profile/edit/:id', (req, res) => {
   });
 });
 
+// My haikus GET route
+router.get('/:id/haikus', (req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      return Promise.all([user, Haiku.find({ author: user.id })]);
+    })
+    .then(results => {
+      res.render('my_haikus', {
+        user: results[0],
+        haikus: results[1]
+      });
+    })
+    .catch(err => console.log(err));
+});
+
 export default router;
