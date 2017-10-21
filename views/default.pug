@@ -7,6 +7,8 @@ html
     link(href='https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', rel='stylesheet')
     //- Bootstrap css
     link(href='/css/bootstrap.min.css', rel='stylesheet')
+    //- Font Awesome css
+    link(href='/css/font-awesome.min.css', rel='stylesheet')
     //- Custom Styles
     link(href='/css/main.css', rel='stylesheet')
     //- Google fonts
@@ -49,7 +51,7 @@ html
                   li
                     a(href='/users/profile/'+user._id) Profile
                   li
-                    a(href='#') Your Haikus
+                    a(href='/users/'+user._id+'/haikus') My Haikus
                   hr
                   li
                     a(href='/users/logout') Logout
@@ -66,7 +68,7 @@ html
                   li
                     a(href='/users/profile/'+user._id) Profile
                   li
-                    a(href='#') Your Haikus
+                    a(href='/users/'+user._id+'/haikus') My Haikus
                 hr
               else
                 h2 Queue Haiku

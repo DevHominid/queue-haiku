@@ -1,21 +1,22 @@
 extends default
 
 block content
-  section.section-profile-heading
+  section.section-edit-profile-heading
     h1 #{user.first} #{user.last}
   section.section-edit-profile-a
     .container
       .row
         .col-sm-4
           form(method='POST', action='')
-            label Avatar
-            img(alt='avatar', src=user.imgUrl)
-            .form-group
-              label(for='avatar') Change image
-              input#avatar.form-control-file(type='file', name='avatar', accept='.jpg, .jpeg, .png')
-            .preview
-              p No files selected
-            input.btn.btn-custom(type='submit', value='Confirm')
+            .avatar-wrapper
+              img.avatar(src=user.imgUrl, alt='avatar')
+              .avatar-aside
+                .form-group
+                  label(for='avatar') Change image
+                  input#avatar.form-control-file(type='file', name='avatar', accept='.jpg, .jpeg, .png')
+                .preview
+                  p No files selected
+                input.btn.btn-custom(type='submit', value='Confirm')
         .col-sm-8
           form#profile(method='POST', action='/users/profile/edit/'+user._id)
             .form-group
@@ -31,7 +32,7 @@ block content
               label(for='location') Location
               input#location.form-control(type='text', name='location', value=user.location)
       hr
-      a(href='/users/profile/'+user._id) Back to profile
+      a.btn.btn-custom.margin-right-x(href='/users/profile/'+user._id) Back to profile
       input.btn.btn-custom(type='submit', value='Submit changes', form='profile')
           
           

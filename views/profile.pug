@@ -3,7 +3,7 @@ extends default
 block content
   section.section-profile-heading
     h1 #{poet.first} #{poet.last}
-  section.section-profile
+  section.section-profile-a
     .container
       .row
         .col-sm-4
@@ -18,9 +18,18 @@ block content
         .col-sm-8
           h2 Bio
           p= poet.bio
+  section.section-profile-b
+    .container
+      .row
+        .col-sm-6
+          h2.heading-a2-top Most Praised
+          .box
+        .col-sm-6
+          h2.heading-a2-top Activity
+          .box
       hr
-      h2.text-center Recent Haikus
-      if haikus
+      h2.heading-a2-top.text-center Recent Haikus
+      if haikus.length > 0
         ul.list-group
           each haiku, i in haikus
             li.list-group-item

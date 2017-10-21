@@ -620,7 +620,7 @@
   }
 }
 
-.section-profile {
+.section-profile-a {
   @include section-a(#fff);
 
   .container {
@@ -712,10 +712,125 @@
   p {
     @include paragraph-a();
   }
+}
+
+.section-profile-b {
+  @include section-b(#fff);
+
+  .container {
+    @include container-a();
+  }
+
+  .box {
+    border: 1px solid black;
+    padding: 0.625em 1.250em; // 10 ÷ 16, 20 ÷ 16
+  }
 
   hr {
     border-color: #000;
     margin: 2.50em 0; // 40 ÷ 16
+  }
+
+  li.list-group-item {
+    padding: 0;
+    margin: 0.625em 0; // 10 ÷ 16
+
+    a {
+      @include link-underline-el();
+      display: block;
+      width: 100%;
+      padding: 0.625em 0.938em;
+      font-family: $font-base;
+      font-size: 1em; // 16 ÷ 16
+      text-transform: none;
+      text-align: left;
+      color: $earth-dark;
+    }
+    a:after {
+      @include link-underline-pseudo(2px, solid, $earth-light, 0.4s);
+    }
+    a:hover {
+      background: $green-light;
+      color: $earth-light;
+    }
+    a:hover:after {
+      @include link-underline-pseudo-hov();
+    }
+  }
+  li.list-group-item:hover {
+    border-color: $green-light;
+  }
+}
+
+/* Edit Profile Section */
+.section-edit-profile-heading {
+  @include section-heading(rgba(232, 204, 165, 0.5), rgba(232, 204, 165, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147910/profile-cover_fikv50.jpg');
+
+  h1 {
+    @include section-heading-h1();
+  }
+}
+
+.section-edit-profile-a {
+  @include section-a(#fff);
+
+  .container {
+    @include container-a();
+  }
+
+  .avatar-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.625em; // 10 ÷ 16
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      flex-direction: column;
+      margin-bottom: 0;
+    }
+  }
+
+  .avatar-aside {
+    margin-left: 1.25em; // 20 ÷ 16
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      margin-left: 0;
+    }
+  }
+
+  img.avatar {
+    width: 100px;
+    height: 100%;
+    margin-bottom: 1.25em; // 40 ÷ 16
+
+    @media screen and (min-width: 29.06em) and (max-width: 47.99em){
+      // 465 ÷ 16
+      width: 200px;
+    }
+
+    @media screen and (min-width: 48em) {
+      // 768 ÷ 16
+      width: 90%;
+    }
+  }
+}
+
+/* My Haikus Section */
+.section-my-haikus-heading {
+  @include section-heading(rgba(232, 204, 165, 0.5), rgba(232, 204, 165, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147910/profile-cover_fikv50.jpg');
+
+  h1 {
+    @include section-heading-h1();
+  }
+}
+
+.section-my-haikus-a {
+  @include section-a(#fff);
+  min-height: calc(100vh - 250px);
+
+  .container {
+    @include container-a();
   }
 
   li.list-group-item {

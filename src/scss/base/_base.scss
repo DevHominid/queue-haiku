@@ -64,20 +64,26 @@ body {
 
 /* * Headings * */
 .heading-a {
-  @include heading-a(3em);
+  @include heading-a(3em); // 48 ÷ 16
   margin-top: 2.50rem; // 40 ÷ 16
   margin-bottom: 2.50rem; // 40 ÷ 16
 }
 
 .heading-a-top {
-  @include heading-a(3em);
+  @include heading-a(3em); // 48 ÷ 16
   margin-top: 0;
   margin-bottom: 2.50rem; // 40 ÷ 16
 }
 
 .heading-a2 {
-  @include heading-a(2.25em);
+  @include heading-a(2.25em); // 36 ÷ 16
   margin-top: 2.50rem; // 40 ÷ 16
+  margin-bottom: 2.50rem; // 40 ÷ 16
+}
+
+.heading-a2-top {
+  @include heading-a(2.25em); // 36 ÷ 16
+  margin-top: 0;
   margin-bottom: 2.50rem; // 40 ÷ 16
 }
 
@@ -85,4 +91,9 @@ body {
 .paragraph-a {
   @include paragraph-a();
   margin: 0;
+}
+
+/* * Spacing * */
+.margin-right-x {
+  margin-right: $space-x;
 }

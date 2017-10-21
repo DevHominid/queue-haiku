@@ -33,6 +33,12 @@
   background: $background-color;
 }
 
+@mixin section-b($background-color) {
+  padding-bottom: 2.50em; // 40 ÷ 16
+  overflow: hidden;
+  background: $background-color;
+}
+
 @mixin container-a() {
   width: 100%;
 
