@@ -6,10 +6,16 @@ block content
   .section-queue-a
     .container
       h2 Filter By
-      select
-        each filterOption in filterOptions
-          option(value= filterOption) #{filterOption}
-      button Go
+      form(method='POST', action='/haikus/queue')
+        if filterSelected === 'oldest'
+          select(name='filterOptionValue')
+            option(value= 'most recent') most recent
+            option(value= 'oldest' selected) oldest
+        else 
+          select(name='filterOptionValue')
+            each filterOption in filterOptions
+              option(value= filterOption) #{filterOption}
+        input.btn.btn-custom(type='submit',value='Go')
   .section-queue-b
     .container
       ul.list-group

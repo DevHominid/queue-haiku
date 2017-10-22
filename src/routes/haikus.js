@@ -9,7 +9,7 @@ import User from '../../models/user';
 router.get('/queue', (req, res) => {
   Haiku.find({})
     .then(haikus => {
-      const filterOptions = ['most recent']
+      const filterOptions = ['most recent', 'oldest']
 
       res.render('queue', {
         title: 'Haiku Queue',
@@ -18,6 +18,39 @@ router.get('/queue', (req, res) => {
       });
     })
     .catch(err => console.log(err));
+});
+
+// Queue POST route
+router.post('/queue', (req, res) => {
+  if (req.body.filterOptionValue === 'most recent') {
+    Haiku.find({})
+      .sort('-createdOn')
+      .then(haikus => {
+        const filterOptions = ['most recent', 'oldest']
+
+        res.render('queue', {
+          title: 'Haiku Queue',
+          haikus: haikus,
+          filterOptions: filterOptions,
+          filterSelected: req.body.filterOptionValue
+        });
+      })
+      .catch(err => console.log(err));
+  } else if (req.body.filterOptionValue === 'oldest') {
+    Haiku.find({})
+      .sort('createdOn')
+      .then(haikus => {
+        const filterOptions = ['most recent', 'oldest']
+
+        res.render('queue', {
+          title: 'Haiku Queue',
+          haikus: haikus,
+          filterOptions: filterOptions,
+          filterSelected: req.body.filterOptionValue
+        });
+      })
+      .catch(err => console.log(err));
+  }
 });
 
 
@@ -149,7 +182,7 @@ router.post('/edit/:id', (req, res) => {
 
       Haiku.update(query, haiku)
         .then(() => {
-          req.flash('success', 'Haiku updated!')
+          req.flash('success', 'Haiku updated!');
           res.redirect('/haikus/'+req.params.id);
         })
         .catch(err => console.log(err));
