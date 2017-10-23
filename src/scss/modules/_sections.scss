@@ -763,6 +763,19 @@
   li.list-group-item:hover {
     border-color: $green-light;
   }
+
+  a.see-all {
+    display: block;
+    font-family: $font-title;
+    font-size: 2.25em; // 36 ÷ 16
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    color: $earth-dark;
+  }
+  a.see-all:hover {
+    color: $earth-light!important;
+  }
 }
 
 /* Edit Profile Section */

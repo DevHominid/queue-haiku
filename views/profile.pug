@@ -22,8 +22,11 @@ block content
     .container
       .row
         .col-sm-6
-          h2.heading-a2-top Activity
+          h2.heading-a2-top Stats
           .box
+            p Poet Status:
+            p Poet Since:
+            p Total Haikus:
         .col-sm-6
           h2.heading-a2-top Most Praised
           .box
@@ -33,7 +36,7 @@ block content
           each haiku, i in haikus
             li.list-group-item
               a(href='/haikus/'+haiku._id)= haiku.title
-        a(href='/users/'+poet._id+'/haikus') See All
+        a.see-all(href='/users/'+poet._id+'/haikus') See All
       else
         p.text-center Not one haiku has been found!
       hr
