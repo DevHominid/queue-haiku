@@ -22,10 +22,10 @@ block content
     .container
       .row
         .col-sm-6
-          h2.heading-a2-top Most Praised
+          h2.heading-a2-top Activity
           .box
         .col-sm-6
-          h2.heading-a2-top Activity
+          h2.heading-a2-top Most Praised
           .box
       h2.heading-a2.text-center Recent Haikus
       if haikus.length > 0
@@ -33,6 +33,7 @@ block content
           each haiku, i in haikus
             li.list-group-item
               a(href='/haikus/'+haiku._id)= haiku.title
+        a(href='/users/'+poet._id+'/haikus') See All
       else
         p.text-center Not one haiku has been found!
       hr

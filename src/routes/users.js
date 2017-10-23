@@ -191,8 +191,9 @@ router.get('/:id/haikus', (req, res) => {
     })
     .then(results => {
       res.render('my_haikus', {
-        user: results[0],
-        haikus: results[1]
+        poet: results[0],
+        haikus: results[1],
+        user: req.user
       });
     })
     .catch(err => console.log(err));

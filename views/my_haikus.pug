@@ -2,7 +2,13 @@ extends default
 
 block content
   section.section-profile-heading
-    h1 My Haikus
+    if user
+      if user.id === poet.id
+        h1 My Haikus
+      else
+        h1 #{poet.username}'s Haikus
+    else
+      h1 #{poet.username}'s Haikus
   section.section-my-haikus-a
     .container
       h2.heading-a2-top Showing (#{haikus.length}) haikus.
