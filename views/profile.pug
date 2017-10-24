@@ -24,9 +24,15 @@ block content
         .col-sm-6
           h2.heading-a2-top Stats
           .box
-            p Poet Level: Novice
-            p Poet Since: #{poet.createdOn}
-            p Total Haikus: #{allHaikus.length}
+            .stats-item
+              span.stats-label Poet Level: 
+              span.stats-val Novice
+            .stats-item
+              span.stats-label Poet Since: 
+              span.stats-val #{poet.createdOn}
+            .stats-item
+              span.stats-label Total Haikus: 
+              span.stats-val #{allHaikus.length}
         .col-sm-6
           h2.heading-a2-top Most Praised
           .box

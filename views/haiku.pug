@@ -17,7 +17,7 @@ block content
           p Written on #{haiku.createdOn}
           if haiku.updatedOn
             p Updated on #{haiku.updatedOn}
-          p 124 Praise
+          p #{haiku.praise} Praise
       hr
       .haiku-wrapper
         p.line1= haiku.line1
@@ -35,5 +35,6 @@ block content
         else
           div
         .praise-box
-          img(src='/images/praise-icon.png', alt='give praise')
+          a.give-praise-btn(href='#', data-id=haiku._id)
+            img(src='/images/praise-icon.png', data-id=haiku._id, alt='give praise')
           span Give Praise!

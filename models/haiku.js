@@ -5,36 +5,43 @@ const mongoose = require('mongoose');
 
 // Init haiku schema
 const haikuSchema = mongoose.Schema({
-  title:{
+  title: {
     type: String,
     required: true
   },
-  author:{
+  author: {
     type: String,
     required: true
   },
-  imageURL:{
+  imageURL: {
     type: String,
     required: false
   },
-  line1:{
+  line1: {
     type: String,
     required: true
   },
-  line2:{
+  line2: {
     type: String,
     required: true
   },
-  line3:{
+  line3: {
     type: String,
     required: true
   },
-  createdOn:{
+  createdOn: {
     type: Date,
     default: Date.now
   },
-  updatedOn:{
+  updatedOn: {
     type: Date
+  }
+});
+
+haikuSchema.add({
+  praise: {
+    type: Number,
+    default: 0
   }
 });
 

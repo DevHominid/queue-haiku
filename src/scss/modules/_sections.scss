@@ -727,6 +727,21 @@
   .box {
     border: 1px solid black;
     padding: 0.625em 1.250em; // 10 ÷ 16, 20 ÷ 16
+    border-radius: 7px;
+  }
+
+  .stats-item {
+    margin: 0.625rem 0;
+    font-style: $font-base;
+    font-size: 1.25em; // 20 ÷ 16
+  }
+
+  .stats-label {
+    font-weight: 600; // Seim-bold
+  }
+
+  .stats-val {
+    font-weight: 300; // Light
   }
 
   hr {

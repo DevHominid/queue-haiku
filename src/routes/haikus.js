@@ -211,6 +211,19 @@ router.delete('/:id', (req, res) => {
    .catch(err => console.log(err));
 });
 
+// Haiku give praise POST route
+router.post('/:id/give-praise', (req, res) => {
+  Haiku.findById(req.params.id)
+    .then(haiku => {
+      haiku.praise += 1;
+
+      haiku.save()
+        .then(() => res.send('Success'))
+        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+});
+
 // Access control
 function controlAccess(req, res, next) {
   if (req.isAuthenticated()) {
