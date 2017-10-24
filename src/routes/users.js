@@ -111,15 +111,19 @@ router.get('/logout', (req, res) => {
 router.get('/profile/:id', (req, res) => {
   User.findById(req.params.id)
     .then(user => {
-      return Promise.all([user, Haiku.find({ author: user.id }).
-        limit(3).
-        sort('-createdOn')
+      return Promise.all([
+        user,
+        Haiku.find({ author: user.id }),
+        Haiku.find({ author: user.id }).
+          limit(3).
+          sort('-createdOn')
       ]);
     })
     .then(results => {
       res.render('profile', {
         poet: results[0],
-        haikus: results[1],
+        allHaikus: results[1],
+        recentHaikus: results[2],
         user: req.user
       });
     })
