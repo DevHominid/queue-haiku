@@ -16,6 +16,7 @@ router.get('/register', (req, res) => {
 
 // Register form POST route
 router.post('/register', [
+  // Validate and sanitize data
   check('first')
     .not().isEmpty().withMessage('First name is required')
     .escape()
@@ -30,6 +31,7 @@ router.post('/register', [
     .escape()
     .trim()
     .custom(value => {
+      // Check for duplicate emails
       return User.findOne({ email: value }).then(user => {
         if (user) {
           throw new Error('You already have an account!');
@@ -44,6 +46,7 @@ router.post('/register', [
     .escape()
     .trim()
     .custom(value => {
+      // Check for duplicate usernames
       return User.findOne({ username: value }).then(user => {
         if (user) {
           throw new Error('Username already taken :(');
@@ -128,18 +131,6 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 
-// // Profile GET route
-// router.get('/profile/:id', (req, res) => {
-//   User.findById(req.params.id)
-//   .then(user => {
-//     res.render('profile', {
-//       poet: user,
-//       user: req.user
-//     });
-//   })
-//   .catch(err => console.log(err));
-// });
-
 // Profile GET route
 router.get('/profile/:id', (req, res) => {
   User.findById(req.params.id)
@@ -156,7 +147,6 @@ router.get('/profile/:id', (req, res) => {
       ]);
     })
     .then(results => {
-      console.log(results[3]);
       res.render('profile', {
         poet: results[0],
         allHaikus: results[1],
