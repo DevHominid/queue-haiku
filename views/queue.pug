@@ -11,6 +11,12 @@ block content
           select(name='filterOptionValue')
             option(value= 'most recent') most recent
             option(value= 'oldest' selected) oldest
+            option(value= 'most praised') most praised
+        else if filterSelected === 'most praised'
+          select(name='filterOptionValue')
+            option(value= 'most recent') most recent
+            option(value= 'oldest') oldest
+            option(value= 'most praised' selected) most praised
         else 
           select(name='filterOptionValue')
             each filterOption in filterOptions

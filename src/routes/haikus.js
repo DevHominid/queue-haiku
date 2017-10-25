@@ -8,8 +8,9 @@ import User from '../../models/user';
 // Queue GET route
 router.get('/queue', (req, res) => {
   Haiku.find({})
+    .sort('-createdOn')
     .then(haikus => {
-      const filterOptions = ['most recent', 'oldest']
+      const filterOptions = ['most recent', 'oldest', 'most praised'];
 
       res.render('queue', {
         title: 'Haiku Queue',
@@ -22,12 +23,12 @@ router.get('/queue', (req, res) => {
 
 // Queue POST route
 router.post('/queue', (req, res) => {
+  const filterOptions = ['most recent', 'oldest', 'most praised'];
+
   if (req.body.filterOptionValue === 'most recent') {
     Haiku.find({})
       .sort('-createdOn')
       .then(haikus => {
-        const filterOptions = ['most recent', 'oldest']
-
         res.render('queue', {
           title: 'Haiku Queue',
           haikus: haikus,
@@ -40,8 +41,18 @@ router.post('/queue', (req, res) => {
     Haiku.find({})
       .sort('createdOn')
       .then(haikus => {
-        const filterOptions = ['most recent', 'oldest']
-
+        res.render('queue', {
+          title: 'Haiku Queue',
+          haikus: haikus,
+          filterOptions: filterOptions,
+          filterSelected: req.body.filterOptionValue
+        });
+      })
+      .catch(err => console.log(err));
+  } else if (req.body.filterOptionValue === 'most praised') {
+    Haiku.find({})
+      .sort('-praise')
+      .then(haikus => {
         res.render('queue', {
           title: 'Haiku Queue',
           haikus: haikus,
