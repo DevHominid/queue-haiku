@@ -35,11 +35,14 @@ block content
               span.stats-val #{allHaikus.length}
         .col-sm-6
           h2.heading-a2-top Most Praised
-          .box
+          .box.box-praise
             img(src=mostPraised[0].imageURL)
-            span 
-              a(href='/haikus/'+mostPraised[0]._id) #{mostPraised[0].title}
-            span #{mostPraised[0].praise}
+            div
+              .stats-item 
+                a(href='/haikus/'+mostPraised[0]._id) #{mostPraised[0].title}
+              .stats-item 
+                span.stats-label #{mostPraised[0].praise}
+                span.stats-val Praise
       h2.heading-a2.text-center Recent Haikus
       if recentHaikus.length > 0
         ul.list-group
