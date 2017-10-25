@@ -1,6 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import passport from 'passport';
+import { check } from 'express-validator/check';
 
 const router = express.Router();
 
@@ -14,31 +15,54 @@ router.get('/register', (req, res) => {
 });
 
 // Register form POST route
-router.post('/register', (req, res) => {
+router.post('/register', [
+  check('first')
+    .not().isEmpty().withMessage('First name is required')
+    .escape()
+    .trim(),
+  check('last')
+    .not().isEmpty().withMessage('Last name is required')
+    .escape()
+    .trim(),
+  check('email')
+    .not().isEmpty().withMessage('Email is required')
+    .isEmail().withMessage('Email is not valid')
+    .escape()
+    .trim()
+    .custom(value => {
+      return User.findOne({ email: value }).then(user => {
+        if (user) {
+          throw new Error('You already have an account!');
+        } else {
+          return true;
+        }
+      })
+      .catch(err => console.log(err));
+    }).withMessage('You already have an account!'),
+  check('username')
+    .not().isEmpty().withMessage('Username is required')
+    .escape()
+    .trim()
+    .custom(value => {
+      return User.findOne({ username: value }).then(user => {
+        if (user) {
+          throw new Error('Username already taken :(');
+        } else {
+          return true;
+        }
+      })
+      .catch(err => console.log(err));
+    }).withMessage('Username already taken :('),
+  check('password')
+    .not().isEmpty().withMessage('Password is required')
+    .escape()
+    .trim(),
+  check('password2')
+    .escape()
+    .trim()
+    .custom((value, { req }) => value === req.body.password).withMessage('Passwords do not match')
 
-  const first = req.sanitize('first').escape().trim();
-  const last = req.sanitize('last').escape().trim();
-  const email = req.sanitize('email').escape().trim();
-  const username = req.sanitize('username').escape().trim();
-  const password = req.sanitize('password').escape().trim();
-  const password2 = req.sanitize('password2').escape().trim();
-
-  let existingUsername;
-  let query = {username:username};
-  User.findOne(query)
-    .then(user => {
-      user ? existingUsername = user.username : existingUser = '';
-    })
-    .catch(err => console.log(err));
-
-  req.assert('first', 'First name is required').notEmpty();
-  req.assert('last', 'Last name is required').notEmpty();
-  req.assert('email', 'Email is required').notEmpty();
-  req.assert('email', 'Email is not valid').isEmail();
-  req.assert('username', 'Username is required').notEmpty();
-  req.assert('username', 'Username already taken :(').not().equals(existingUsername);
-  req.assert('password', 'Password is required').notEmpty();
-  req.assert('password2', 'Passwords do not match').equals(req.body.password);
+], (req, res, next) => {
 
   req.getValidationResult().then((result) => {
 
@@ -47,15 +71,15 @@ router.post('/register', (req, res) => {
 
     if (!result.isEmpty()) {
       res.render('register', {
-        errors:errors
+        errors: errors
       });
     } else {
       let newUser = new User({
-        first:first,
-        last:last,
-        email:email,
-        username:username,
-        password:password
+        first: req.body.first,
+        last: req.body.last,
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password
       });
 
       bcrypt.genSalt(10, (err, salt) => {
