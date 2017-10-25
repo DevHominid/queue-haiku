@@ -211,14 +211,34 @@ router.delete('/:id', (req, res) => {
    .catch(err => console.log(err));
 });
 
+// // Haiku give praise POST route
+// router.post('/:id/give-praise', (req, res) => {
+//   Haiku.findById(req.params.id)
+//     .then(haiku => {
+//       haiku.praise += 1;
+//
+//       haiku.save()
+//         .then(() => res.send('Success'))
+//         .catch(err => console.log(err));
+//     })
+//     .catch(err => console.log(err));
+// });
+
 // Haiku give praise POST route
 router.post('/:id/give-praise', (req, res) => {
   Haiku.findById(req.params.id)
     .then(haiku => {
-      haiku.praise += 1;
-
-      haiku.save()
-        .then(() => res.send('Success'))
+      return Promise.all([haiku, User.findById(req.user.id)]);
+    })
+    .then(results => {
+      let message;
+      results[0].praise += 1;
+      results[0].save()
+        .then(() => message = 'Success')
+        .catch(err => console.log(err));
+      results[1].praised.push(results[0].id);
+      results[1].save()
+        .then(() => res.send(message))
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
@@ -228,10 +248,19 @@ router.post('/:id/give-praise', (req, res) => {
 router.post('/:id/undo-praise', (req, res) => {
   Haiku.findById(req.params.id)
     .then(haiku => {
-      haiku.praise -= 1;
-
-      haiku.save()
-        .then(() => res.send('Success'))
+      return Promise.all([haiku, User.findById(req.user.id)]);
+    })
+    .then(results => {
+      let message;
+      results[0].praise -= 1;
+      results[0].save()
+        .then(() => message = 'Success')
+        .catch(err => console.log(err));
+      results[1].praised = results[1].praised.filter((id) => {
+        return id != results[0].id;
+      });
+      results[1].save()
+        .then(() => res.send(message))
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));

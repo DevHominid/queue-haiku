@@ -50,6 +50,13 @@ const userSchema = mongoose.Schema({
   }
 });
 
+userSchema.add({
+  praised: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Haiku'
+  }]
+});
+
 // On every update, change updatedOn value to current date
 userSchema.pre('update', function(next) {
   this.update({}, { $set: { updatedOn: new Date() } });
