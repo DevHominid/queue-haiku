@@ -23,11 +23,20 @@ router.post('/register', (req, res) => {
   const password = req.sanitize('password').escape().trim();
   const password2 = req.sanitize('password2').escape().trim();
 
+  let existingUsername;
+  let query = {username:username};
+  User.findOne(query)
+    .then(user => {
+      user ? existingUsername = user.username : existingUser = '';
+    })
+    .catch(err => console.log(err));
+
   req.assert('first', 'First name is required').notEmpty();
   req.assert('last', 'Last name is required').notEmpty();
   req.assert('email', 'Email is required').notEmpty();
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('username', 'Username is required').notEmpty();
+  req.assert('username', 'Username already taken :(').not().equals(existingUsername);
   req.assert('password', 'Password is required').notEmpty();
   req.assert('password2', 'Passwords do not match').equals(req.body.password);
 
