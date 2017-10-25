@@ -11,6 +11,8 @@ import User from '../models/user';
 // Index GET route
 router.get('/', (req, res) => {
   Haiku.find({})
+    .sort({createdOn: -1, praise: -1})
+    .limit(3)
     .then(haikus => {
       res.render('index', {
         title: 'Haikus',
