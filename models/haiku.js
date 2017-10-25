@@ -16,7 +16,7 @@ const haikuSchema = mongoose.Schema({
   imageURL: {
     type: String,
     required: false,
-    default: '/images/haiku-default.png'
+    default: /images/haiku-default.png
   },
   line1: {
     type: String,
