@@ -36,6 +36,10 @@ block content
         .col-sm-6
           h2.heading-a2-top Most Praised
           .box
+            img(src=mostPraised[0].imageURL)
+            span 
+              a(href='/haikus/'+mostPraised[0]._id) #{mostPraised[0].title}
+            span #{mostPraised[0].praise}
       h2.heading-a2.text-center Recent Haikus
       if recentHaikus.length > 0
         ul.list-group

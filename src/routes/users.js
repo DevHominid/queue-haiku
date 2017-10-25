@@ -114,16 +114,21 @@ router.get('/profile/:id', (req, res) => {
       return Promise.all([
         user,
         Haiku.find({ author: user.id }),
-        Haiku.find({ author: user.id }).
-          limit(3).
-          sort('-createdOn')
+        Haiku.find({ author: user.id })
+          .limit(3)
+          .sort('-createdOn'),
+        Haiku.find({ author: user.id })
+          .limit(1)
+          .sort('-praise')
       ]);
     })
     .then(results => {
+      console.log(results[3]);
       res.render('profile', {
         poet: results[0],
         allHaikus: results[1],
         recentHaikus: results[2],
+        mostPraised: results[3],
         user: req.user
       });
     })
