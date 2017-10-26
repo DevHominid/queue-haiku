@@ -1,5 +1,7 @@
 import express from 'express';
 const router = express.Router();
+import { check } from 'express-validator/check';
+import { sanitize } from 'express-validator/filter';
 
 // Init models
 import Haiku from '../../models/haiku';
@@ -73,19 +75,25 @@ router.get('/add', controlAccess, (req, res) => {
 });
 
 // Add haiku POST route
-router.post('/add', (req, res) => {
-
-  // Validation
-  req.assert('title', 'Title is required').notEmpty();
-  req.assert('line1', 'Line 1 is required').notEmpty();
-  req.assert('line2', 'Line 2 is required').notEmpty();
-  req.assert('line3', 'Line 3 is required').notEmpty();
-
-  // Sanitization
-  const title = req.sanitize('title').escape().trim();
-  const line1 = req.sanitize('line1').escape().trim();
-  const line2 = req.sanitize('line2').escape().trim();
-  const line3 = req.sanitize('line3').escape().trim();
+router.post('/add', [
+  // Validate and sanitize data
+  check('title')
+    .not().isEmpty().withMessage('Title is required')
+      .escape()
+      .trim(),
+  check('line1')
+    .not().isEmpty().withMessage('Line 1 is required')
+      .escape()
+      .trim(),
+  check('line2')
+    .not().isEmpty().withMessage('Line 2 is required')
+      .escape()
+      .trim(),
+  check('line3')
+    .not().isEmpty().withMessage('Line 3 is required')
+      .escape()
+      .trim()
+], (req, res) => {
 
   req.getValidationResult().then((result) => {
 
@@ -151,22 +159,27 @@ router.get('/edit/:id', controlAccess, (req, res) => {
 });
 
 // Edit haiku POST route
-router.post('/edit/:id', (req, res) => {
-
-  // Validation
-  req.assert('title', 'Title is required').notEmpty();
-  req.assert('line1', 'Line 1 is required').notEmpty();
-  req.assert('line2', 'Line 2 is required').notEmpty();
-  req.assert('line3', 'Line 3 is required').notEmpty();
-
-  // Sanitization
-  const title = req.sanitize('title').escape().trim();
-  const line1 = req.sanitize('line1').escape().trim();
-  const line2 = req.sanitize('line2').escape().trim();
-  const line3 = req.sanitize('line3').escape().trim();
+router.post('/edit/:id', [
+  // Validate and sanitize data
+  check('title')
+    .not().isEmpty().withMessage('Title is required')
+      .escape()
+      .trim(),
+  check('line1')
+    .not().isEmpty().withMessage('Line 1 is required')
+      .escape()
+      .trim(),
+  check('line2')
+    .not().isEmpty().withMessage('Line 2 is required')
+      .escape()
+      .trim(),
+  check('line3')
+    .not().isEmpty().withMessage('Line 3 is required')
+      .escape()
+      .trim()
+], (req, res) => {
 
   req.getValidationResult().then((result) => {
-
     // Get errors
     let errors = result.array();
 
@@ -221,19 +234,6 @@ router.delete('/:id', (req, res) => {
    })
    .catch(err => console.log(err));
 });
-
-// // Haiku give praise POST route
-// router.post('/:id/give-praise', (req, res) => {
-//   Haiku.findById(req.params.id)
-//     .then(haiku => {
-//       haiku.praise += 1;
-//
-//       haiku.save()
-//         .then(() => res.send('Success'))
-//         .catch(err => console.log(err));
-//     })
-//     .catch(err => console.log(err));
-// });
 
 // Haiku give praise POST route
 router.post('/:id/give-praise', (req, res) => {

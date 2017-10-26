@@ -115,8 +115,8 @@ router.get('/login', (req, res) => {
 // Login form POST route
 router.post('/login', [
   // Sanitize data
-  sanitizeBody('username').escape().trim(),
-  sanitizeBody('password').escape().trim(),
+  sanitize('username').escape().trim(),
+  sanitize('password').escape().trim(),
 ], (req, res, next) => {
   passport.authenticate('local', {
     successRedirect:'/',
@@ -178,11 +178,11 @@ router.post('/profile/edit/:id', [
     .escape()
     .trim(),
   check('last')
-    .not().isEmpty().withMessage('Last name is required');
+    .not().isEmpty().withMessage('Last name is required')
     .escape()
     .trim(),
-  sanitizeBody('bio').escape().trim(),
-  sanitizeBody('location').escape().trim(),
+  sanitize('bio').escape().trim(),
+  sanitize('location').escape().trim(),
 ], (req, res) => {
   req.getValidationResult().then((result) => {
 
