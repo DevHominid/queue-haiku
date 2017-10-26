@@ -7,10 +7,7 @@ block content
     .container
       .row
         .col-sm-4
-          if haiku.imageURL
-            img.haiku-img(src=haiku.imageURL alt='haiku')
-          else
-            img.haiku-img(src='/images/haiku-default.png' alt='haiku')
+          img.haiku-img(src=haiku.imageURL, alt='haiku')
         .col-sm-8
           h2 By #{fullname} 
           a(href='/users/profile/'+author._id) ( #{author.username} )

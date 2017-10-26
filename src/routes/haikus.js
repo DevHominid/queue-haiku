@@ -108,7 +108,6 @@ router.post('/add', [
     } else {
       let haiku = new Haiku();
       haiku.title = req.body.title;
-      haiku.imageURL = req.body.imageURL;
       haiku.author = req.user._id;
       haiku.line1 = req.body.line1;
       haiku.line2 = req.body.line2;
