@@ -346,7 +346,7 @@
 
 /* Queue section */
 .section-queue-heading {
-  @include section-heading(rgba(184, 216, 187, 0.3), rgba(184, 216, 187, 0.3), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147420/queue-cover_eqmrnm.jpg');
+  @include section-heading(rgba(68, 55, 48, 0.5), rgba(68, 55, 48, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147420/queue-cover_eqmrnm.jpg');
 
   h1 {
     @include section-heading-h1();
@@ -354,7 +354,7 @@
 }
 
 .section-queue-a {
-  @include section-a($earth-dark);
+  @include section-a(#fff);
 
   .container {
     @include container-a();
