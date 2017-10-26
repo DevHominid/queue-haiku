@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import { check } from 'express-validator/check';
+import { sanitize } from 'express-validator/filter';
 
 const router = express.Router();
 
@@ -112,11 +113,11 @@ router.get('/login', (req, res) => {
 });
 
 // Login form POST route
-router.post('/login', (req, res, next) => {
-
-  const username = req.sanitize('username').escape().trim();
-  const password = req.sanitize('password').escape().trim();
-
+router.post('/login', [
+  // Sanitize data
+  sanitizeBody('username').escape().trim(),
+  sanitizeBody('password').escape().trim(),
+], (req, res, next) => {
   passport.authenticate('local', {
     successRedirect:'/',
     failureRedirect:'/users/login',
@@ -170,18 +171,19 @@ router.get('/profile/edit/:id', (req, res) => {
 });
 
 // Edit profile POST route
-router.post('/profile/edit/:id', (req, res) => {
-
-  // Validation
-  req.assert('first', 'First name is required').notEmpty();
-  req.assert('last', 'Last name is required').notEmpty();
-
-  // Sanitization
-  const first = req.sanitize('first').escape().trim();
-  const last = req.sanitize('last').escape().trim();
-  const bio = req.sanitize('bio').escape().trim();
-  const location = req.sanitize('location').escape().trim();
-
+router.post('/profile/edit/:id', [
+  // Validate and sanitize data
+  check('first')
+    .not().isEmpty().withMessage('First name is required')
+    .escape()
+    .trim(),
+  check('last')
+    .not().isEmpty().withMessage('Last name is required');
+    .escape()
+    .trim(),
+  sanitizeBody('bio').escape().trim(),
+  sanitizeBody('location').escape().trim(),
+], (req, res) => {
   req.getValidationResult().then((result) => {
 
     // Get errors
