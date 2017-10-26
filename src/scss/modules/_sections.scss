@@ -7,7 +7,7 @@
   justify-content: center;
   min-height: 100vh;
   padding: 0;
-  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("https://res.cloudinary.com/dud5wowp2/image/upload/v1505338106/zen-cover-2_hruf66.jpg");
+  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("https://res.cloudinary.com/dud5wowp2/image/upload/v1509001730/index-cover_ux613g.jpg");
   background-size: cover;
 
   .heading-block {
@@ -228,7 +228,7 @@
 
 /* About section */
 .section-about-heading {
-  @include section-heading(rgba(175, 109, 96, 0.5), rgba(175, 109, 96, 0.5), "https://res.cloudinary.com/dud5wowp2/image/upload/v1508272079/about-cover_vta0zj.jpg")
+  @include section-heading(rgba(175, 109, 96, 0.5), rgba(175, 109, 96, 0.5), "https://res.cloudinary.com/dud5wowp2/image/upload/v1509002040/about-cover2_jxeqis.jpg")
 
   h1 {
     @include section-heading-h1();
@@ -346,7 +346,7 @@
 
 /* Queue section */
 .section-queue-heading {
-  @include section-heading(rgba(68, 55, 48, 0.5), rgba(68, 55, 48, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147420/queue-cover_eqmrnm.jpg');
+  @include section-heading(rgba(68, 55, 48, 0.5), rgba(68, 55, 48, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1509002359/queue-cover2_ree6dl.jpg');
 
   h1 {
     @include section-heading-h1();
@@ -533,7 +533,7 @@
   .haiku-img {
     width: 200px;
     margin-bottom: 2.50em; // 40 ÷ 16
-    border-radius: 7px;
+    border-radius: 50%;
 
     @media screen and (min-width: 48em) {
       // 768 ÷ 16
@@ -653,7 +653,7 @@
   img.avatar {
     width: 100px;
     height: 100%;
-    border-radius: 7px;
+    border-radius: 50%;
     // margin-bottom: 2.50em; // 40 ÷ 16
 
     @media screen and (min-width: 29.06em) and (max-width: 47.99em){
