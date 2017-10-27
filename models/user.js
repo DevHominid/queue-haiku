@@ -46,7 +46,7 @@ const userSchema = mongoose.Schema({
   },
   imgUrl:{
     type: String,
-    default: 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507145742/avatar-default_hdc4lg.png'
+    default: '/images/avatar-default.png'
   }
 });
 

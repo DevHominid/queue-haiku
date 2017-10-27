@@ -13,6 +13,7 @@ import User from '../models/user';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
+import aws from 'aws-sdk';
 
 // Dotenv config
 dotenv.config();
@@ -30,6 +31,10 @@ let db = mongoose.connection;
 // Init app
 const app = express();
 const port = process.env.PORT || 3000;
+
+// AWS config
+aws.config.region = 'us-west-1';
+export const S3_BUCKET = process.env.S3_BUCKET;
 
 // Set secure HTTP headers with helmet middleware
 app.use(helmet());

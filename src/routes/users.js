@@ -204,6 +204,7 @@ router.post('/profile/edit/:id', [
       user.last = req.body.last;
       user.bio = req.body.bio;
       user.location = req.body.location;
+      user.imgUrl = req.body.avatarUrl;
 
       let query = {_id:req.params.id}
 
