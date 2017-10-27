@@ -5,13 +5,16 @@
     if (file == null) {
       return alert('No file selected');
     }
-    getSignedRequest(file);
+    getSignedRequest(file, 'avatars');
   };
 })();
 
-function getSignedRequest(file) {
+function getSignedRequest(file, folderName) {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', '/sign-s3?file-name=' + encodeURIComponent(file.name) + '&file-type=' + encodeURIComponent(file.type));
+  xhr.open('GET', '/sign-s3?folder-name='
+    + folderName
+    + '&file-name=' + encodeURIComponent(file.name)
+    + '&file-type=' + encodeURIComponent(file.type));
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
