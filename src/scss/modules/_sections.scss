@@ -7,7 +7,8 @@
   justify-content: center;
   min-height: 100vh;
   padding: 0;
-  background: linear-gradient(rgba(112, 68, 58, 0.3), rgba(112, 68, 58, 0.3)), url("https://res.cloudinary.com/dud5wowp2/image/upload/v1509001730/index-cover_ux613g.jpg");
+  // background: linear-gradient(rgba(112, 68, 58, 0.5), rgba(112, 68, 58, 0.5)), url("https://res.cloudinary.com/dud5wowp2/image/upload/v1509001730/index-cover_ux613g.jpg");
+  background: url("https://res.cloudinary.com/dud5wowp2/image/upload/v1509001730/index-cover_ux613g.jpg");
   background-size: cover;
 
   .heading-block {
@@ -146,6 +147,18 @@
   }
 }
 
+.section-index::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(175, 109, 96, 0.5);
+  mix-blend-mode: luminosity;
+}
+
 .section-index-b {
   display: flex;
   align-items: center;
@@ -228,15 +241,27 @@
 
 /* About section */
 .section-about-heading {
-  @include section-heading(rgba(175, 109, 96, 0.5), rgba(175, 109, 96, 0.5), "https://res.cloudinary.com/dud5wowp2/image/upload/v1509002040/about-cover2_jxeqis.jpg")
+  @include section-heading(rgba(175, 109, 96, 0.0), rgba(175, 109, 96, 0.0), "https://res.cloudinary.com/dud5wowp2/image/upload/v1509002040/about-cover2_jxeqis.jpg");
 
   h1 {
     @include section-heading-h1();
   }
 }
 
+.section-about-heading::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(175, 109, 96, 0.5);
+  mix-blend-mode: luminosity;
+}
+
 .section-about-a {
-  @include section-a($earth-lightest);
+  @include section-a($earth-light);
 
   .container {
     @include container-a();
@@ -346,15 +371,27 @@
 
 /* Queue section */
 .section-queue-heading {
-  @include section-heading(rgba(68, 55, 48, 0.5), rgba(68, 55, 48, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1509002359/queue-cover2_ree6dl.jpg');
+  @include section-heading(rgba(68, 55, 48, 0.0), rgba(68, 55, 48, 0.0), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1509002359/queue-cover2_ree6dl.jpg');
 
   h1 {
     @include section-heading-h1();
   }
 }
 
+.section-queue-heading::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(175, 109, 96, 0.5);
+  mix-blend-mode: luminosity;
+}
+
 .section-queue-a {
-  @include section-a(#fff);
+  @include section-a($earth-light);
 
   .container {
     @include container-a();
@@ -440,12 +477,23 @@
 
 /* Add haiku section */
 .section-add-haiku-heading {
-  @include section-heading(rgba(68, 55, 48, 0.5), rgba(68, 55, 48, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507327798/buson_gbdfos.jpg');
+  @include section-heading(rgba(68, 55, 48, 0.0), rgba(68, 55, 48, 0.0), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507327798/buson_gbdfos.jpg');
   background-position: center;
 
   h1 {
     @include section-heading-h1();
   }
+}
+
+.section-add-haiku-heading::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(68, 55, 48, 0.5);
 }
 
 .section-add-haiku-a {
@@ -474,12 +522,23 @@
 
 /* Edit haiku section */
 .section-edit-haiku-heading {
-  @include section-heading(rgba(68, 55, 48, 0.5), rgba(68, 55, 48, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507327798/buson_gbdfos.jpg');
+  @include section-heading(rgba(68, 55, 48, 0.0), rgba(68, 55, 48, 0.0), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507327798/buson_gbdfos.jpg');
   background-position: center;
 
   h1 {
     @include section-heading-h1();
   }
+}
+
+.section-edit-haiku-heading::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(68, 55, 48, 0.5);
 }
 
 .section-edit-haiku-a {
@@ -508,7 +567,7 @@
 
 /* Haiku section */
 .section-haiku-heading {
-  @include section-heading(rgba(232, 204, 165, 0.5), rgba(232, 204, 165, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1505509282/zen-cover-3_ze7ygv.jpg');
+  @include section-heading(rgba(232, 204, 165, 0.0), rgba(232, 204, 165, 0.0), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1505509282/zen-cover-3_ze7ygv.jpg');
   background-position: center;
 
   h1 {
@@ -516,8 +575,20 @@
   }
 }
 
+.section-haiku-heading::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(175, 109, 96, 0.6);
+  mix-blend-mode: luminosity;
+}
+
 .section-haiku-a {
-  @include section-a(#fff);
+  @include section-a($earth-light);
 
   @media screen and (min-height: 75em) {
     // 1200 ÷ 16
@@ -615,15 +686,27 @@
 
 /* Profile section */
 .section-profile-heading {
-  @include section-heading(rgba(232, 204, 165, 0.5), rgba(232, 204, 165, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147910/profile-cover_fikv50.jpg');
+  @include section-heading(rgba(232, 204, 165, 0.0), rgba(232, 204, 165, 0.0), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147910/profile-cover_fikv50.jpg');
 
   h1 {
     @include section-heading-h1();
   }
 }
 
+.section-profile-heading::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(175, 109, 96, 0.6);
+  mix-blend-mode: luminosity;
+}
+
 .section-profile-a {
-  @include section-a(#fff);
+  @include section-a($earth-light);
 
   .container {
     @include container-a();
@@ -718,7 +801,7 @@
 }
 
 .section-profile-b {
-  @include section-b(#fff);
+  @include section-b($earth-light);
 
   .container {
     @include container-a();
@@ -807,15 +890,27 @@
 
 /* Edit Profile Section */
 .section-edit-profile-heading {
-  @include section-heading(rgba(232, 204, 165, 0.5), rgba(232, 204, 165, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147910/profile-cover_fikv50.jpg');
+  @include section-heading(rgba(232, 204, 165, 0.0), rgba(232, 204, 165, 0.0), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147910/profile-cover_fikv50.jpg');
 
   h1 {
     @include section-heading-h1();
   }
 }
 
+.section-edit-profile-heading::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(175, 109, 96, 0.6);
+  mix-blend-mode: luminosity;
+}
+
 .section-edit-profile-a {
-  @include section-a(#fff);
+  @include section-a($earth-light);
 
   .container {
     @include container-a();
@@ -846,6 +941,7 @@
     width: 100px;
     height: 100%;
     margin-bottom: 1.25em; // 40 ÷ 16
+    border-radius: 50%;
 
     @media screen and (min-width: 29.06em) and (max-width: 47.99em){
       // 465 ÷ 16
@@ -861,15 +957,27 @@
 
 /* My Haikus Section */
 .section-my-haikus-heading {
-  @include section-heading(rgba(232, 204, 165, 0.5), rgba(232, 204, 165, 0.5), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147910/profile-cover_fikv50.jpg');
+  @include section-heading(rgba(232, 204, 165, 0.0), rgba(232, 204, 165, 0.0), 'https://res.cloudinary.com/dud5wowp2/image/upload/v1507147910/profile-cover_fikv50.jpg');
 
   h1 {
     @include section-heading-h1();
   }
 }
 
+.section-my-haikus-heading::before {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(175, 109, 96, 0.5);
+  mix-blend-mode: luminosity;
+}
+
 .section-my-haikus-a {
-  @include section-a(#fff);
+  @include section-a($earth-light);
   min-height: calc(100vh - 250px);
 
   .container {

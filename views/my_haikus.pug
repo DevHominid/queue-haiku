@@ -1,13 +1,16 @@
 extends default
 
 block content
-  section.section-profile-heading
+  section.section-my-haikus-heading
     if user
       if user.id === poet.id
+        .block-angled
         h1 My Haikus
       else
+        .block-angled
         h1 #{poet.username}'s Haikus
     else
+      .block-angled
       h1 #{poet.username}'s Haikus
   section.section-my-haikus-a
     .container

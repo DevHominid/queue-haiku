@@ -9,6 +9,7 @@
 /* * Section Headings * */
 @mixin section-heading($color1, $color2, $url) {
   overflow: hidden;
+  position: relative;
   background: linear-gradient($color1, $color2), url($url);
   background-size: cover;
   background-position: center;
@@ -17,12 +18,14 @@
 
 /* * Section Headings - h1 * */
 @mixin section-heading-h1() {
+  position: relative;
+  z-index: 2;
   margin-top: 7.50rem; // 120 ÷ 16
   margin-bottom: 2.50rem; // 40 ÷ 16
   font-family: $font-title;
   font-weight: 700; // Bold
   font-size: 4.5em; // 74 ÷ 16
-  background: rgba(255, 255, 255, 0.8);
+  color: $earth-light;
   text-align: center;
   text-transform: uppercase;
 }
