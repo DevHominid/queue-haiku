@@ -8,18 +8,17 @@ block content
     .container
       .row
         .col-sm-4
-          form(method='POST', action='')
-            .avatar-wrapper
-              img.avatar(src=user.imgUrl, alt='avatar')
-              .avatar-aside
-                .form-group
-                  label(for='avatar') Change image
-                  input#avatar.form-control-file(type='file', name='avatar', accept='.jpg, .jpeg, .png')
-                .preview
-                  p No files selected
-                input.btn.btn-custom(type='submit', value='Confirm')
+          .avatar-wrapper
+            img#preview.avatar(src=user.imgUrl, alt='avatar')
+            .avatar-aside
+              .form-group
+                label(for='avatar-input') Change avatar
+                input#avatar-input.form-control-file(type='file', name='avatar', accept='.jpg, .jpeg, .png')
+              .preview
+                p#status Please select a file
         .col-sm-8
           form#profile(method='POST', action='/users/profile/edit/'+user._id)
+            input#avatar-url(type='hidden', name='avatar-url', value='user.imgUrl')
             .form-group
               label(for='first') First
               input#first.form-control(type='text', name='first', value=user.first)
