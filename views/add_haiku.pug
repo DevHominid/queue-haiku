@@ -7,11 +7,11 @@ block content
   section.section-add-haiku-a
     .container
       form(method='POST', action='/haikus/add')
-        input#haiku-img-url(type='hidden', name='haikuUrl', value='/images/haiku-default.png')
+        input#haiku-img-url(type='hidden', name='imgUrl', value='/images/haiku-default.png')
         .form-group
           label Title:
           input.form-control(name='title', type='text')
-        img#preview(src='/images/haiku-default.png', alt='avatar')
+        img#preview(src='/images/haiku-default.png', alt='haiku')
         .form-group
           label(for='haiku-img-input') Change image
           input#haiku-img-input.form-control-file(type='file', name='haikuImgInput', accept='.jpg, .jpeg, .png')

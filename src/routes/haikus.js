@@ -108,7 +108,7 @@ router.post('/add', [
     } else {
       let haiku = new Haiku();
       haiku.title = req.body.title;
-      haiku.imgUrl = req.body.haikuUrl;
+      haiku.imgUrl = req.body.imgUrl;
       haiku.author = req.user._id;
       haiku.line1 = req.body.line1;
       haiku.line2 = req.body.line2;
@@ -196,7 +196,7 @@ router.post('/edit/:id', [
     } else {
       let haiku = {};
       haiku.title = req.body.title;
-      haiku.imageURL = req.body.imageURL;
+      haiku.imgUrl = req.body.imgUrl;
       haiku.author = req.user._id;
       haiku.line1 = req.body.line1;
       haiku.line2 = req.body.line2;

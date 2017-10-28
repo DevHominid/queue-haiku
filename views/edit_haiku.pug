@@ -7,12 +7,16 @@ block content
   section.section-edit-haiku-a
     .container
       form(method='POST', action='/haikus/edit/'+haiku._id)
+        input#haiku-img-url(type='hidden', name='imgUrl', value='/images/haiku-default.png')
         .form-group
           label Title:
           input.form-control(name='title', type='text' value=haiku.title)
+        img#preview(src='/images/haiku-default.png', alt='haiku')
         .form-group
-          label Image URL:
-          input.form-control(name='imageURL', type='text' value=haiku.imageURL)
+          label(for='haiku-img-input') Change image
+          input#haiku-img-input.form-control-file(type='file', name='haikuImgInput', accept='.jpg, .jpeg, .png')
+        .preview
+          p#status Please select a file
         hr
         .form-group
           label Line 1:
