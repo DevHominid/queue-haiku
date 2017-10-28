@@ -106,14 +106,14 @@ app.use(router);
 // TODO: cleanup code
 // Check for admin
 const checkAdmin = () => new Promise((resolve, reject) => {
-  User.find({ username: 'DevHominid' })
+  User.find({ username: process.env.ADMIN_USERNAME })
     .then((admin) => {
 
       if (!admin.length) {
         const newAdmin = User({
-          first: 'Dylan',
-          last: 'Ludwick',
-          username: 'DevHominid',
+          first: process.env.ADMIN_FIRST,
+          last: process.env.ADMIN_LAST,
+          username: process.env.ADMIN_USERNAME,
           email: process.env.ADMIN_EMAIL,
           password: process.env.ADMIN_PASS,
           isAdmin: true
