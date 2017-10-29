@@ -1,4 +1,5 @@
 import express from 'express';
+import 'babel-polyfill';
 import path from 'path';
 import bodyParser from 'body-parser';
 import router from './router';
@@ -22,7 +23,9 @@ dotenv.config();
 mongoose.Promise = global.Promise;
 
 // Connect to MongoDB
-mongoose.connect(config.database).then(
+mongoose.connect(config.database, {
+  useMongoClient: true
+}).then(
   () => {console.log('Connected to MongoDB');},
   err => {console.log(err);}
 );

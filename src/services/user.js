@@ -8,44 +8,49 @@ import { hashPassword } from './auth';
  * @return {Promise<Object>}
  */
  const findUser = (filter = {}) => {
-   return User.find(filter).exec();
+   return User.find(filter).exec(); // Promise
  };
 
  /**
-  * Create user and save to the database
+  * Create user and save to db
   *
-  * @param  {String} first
-  * @param  {String} last
-  * @param  {String} email
-  * @param  {String} username
-  * @param  {String} password
-  * @param  {Boolean} isAdmin
+  * @param  {Object} user
   * @return {Promise<Object>}
   */
-  const createUser = (first, last, email, username, password, isAdmin) => new Promise((resolve, reject) => {
+  export const createUser = (user) => new Promise((resolve, reject) => {
     const newUser = User({
-      first: first,
-      last: last,
-      email: email,
-      username: username,
-      password: password,
-      isAdmin: isAdmin
+      first: user.first,
+      last: user.last,
+      email: user.email,
+      username: user.username,
+      password: user.password,
+      isAdmin: user.isAdmin
     });
     // Hash password
-    newUser.password = hashPassword(newUser.password)
-      .then((newUser) => {
+    hashPassword(newUser.password)
+      .then((password) => {
+        newUser.password = password;
         newUser.save((err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(newUser);
-          }
+          err ? reject(err) : resolve(newUser)
         });
       })
       .catch((err) => {
         console.log(err);
+        reject(err);
       });
   });
+
+  /**
+   * Delete user from db
+   *
+   * @param  {Object} user
+   * @return {Promise<Object>}
+   */
+   export const deleteUser = (user) => new Promise((resolve, reject) => {
+     User.find(user).remove((err) => {
+       err ? reject(err) : resolve('user deleted')
+     });
+   });
 
  /**
   * Check if admin exists in database
@@ -56,13 +61,15 @@ import { hashPassword } from './auth';
   const checkAdmin = (adminUsername) => new Promise((resolve, reject) => {
     findUser({ username: adminUsername }).then((admin) => {
       if (!admin.length) {
-        const first = process.env.ADMIN_FIRST;
-        const last = process.env.ADMIN_LAST;
-        const email = process.env.ADMIN_EMAIL;
-        const username = process.env.ADMIN_USERNAME;
-        const password = process.env.ADMIN_PASS;
-        const isAdmin = true;
-        createUser(first, last, email, username, password, isAdmin).then((newAdmin) => {
+        const newAdmin = {
+          first: process.env.ADMIN_FIRST,
+          last: process.env.ADMIN_LAST,
+          email: process.env.ADMIN_EMAIL,
+          username: process.env.ADMIN_USERNAME,
+          password: process.env.ADMIN_PASS,
+          isAdmin: true
+        }
+        createUser(newAdmin).then((newAdmin) => {
           let message = `New admin ${newAdmin.first} ${newAdmin.last} created!`
           resolve(message);
         })
@@ -75,5 +82,5 @@ import { hashPassword } from './auth';
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
   });
