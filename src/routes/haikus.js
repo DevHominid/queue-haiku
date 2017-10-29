@@ -20,7 +20,10 @@ router.get('/queue', (req, res) => {
         filterOptions: filterOptions
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      res.status(500).send(err.message);
+      next(err); // Log error
+    });
 });
 
 // Queue POST route
@@ -38,7 +41,10 @@ router.post('/queue', (req, res) => {
           filterSelected: req.body.filterOptionValue
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        res.status(500).send(err.message);
+        next(err); // Log error
+      });
   } else if (req.body.filterOptionValue === 'oldest') {
     Haiku.find({})
       .sort('createdOn')
@@ -50,7 +56,10 @@ router.post('/queue', (req, res) => {
           filterSelected: req.body.filterOptionValue
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        res.status(500).send(err.message);
+        next(err); // Log error
+      });
   } else if (req.body.filterOptionValue === 'most praised') {
     Haiku.find({})
       .sort('-praise')
@@ -62,7 +71,10 @@ router.post('/queue', (req, res) => {
           filterSelected: req.body.filterOptionValue
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        res.status(500).send(err.message);
+        next(err); // Log error
+      });
   }
 });
 
@@ -119,7 +131,10 @@ router.post('/add', [
           req.flash('success', 'Haiku added!');
           res.redirect('/');
         })
-        .catch(err => console.log(err));
+        .catch((err) => {
+          res.status(500).send(err.message);
+          next(err); // Log error
+        });
     }
   });
 });
@@ -139,7 +154,10 @@ router.get('/:id', (req, res) => {
         user: req.user
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      res.status(500).send(err.message);
+      next(err); // Log error
+    });
 });
 
 // Edit haiku GET route
@@ -155,7 +173,10 @@ router.get('/edit/:id', controlAccess, (req, res) => {
         haiku:haiku
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      res.status(500).send(err.message);
+      next(err); // Log error
+    });
 });
 
 // Edit haiku POST route
@@ -192,7 +213,10 @@ router.post('/edit/:id', [
           errors: errors
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        res.status(500).send(err.message);
+        next(err); // Log error
+      });
     } else {
       let haiku = {};
       haiku.title = req.body.title;
@@ -209,7 +233,10 @@ router.post('/edit/:id', [
           req.flash('success', 'Haiku updated!');
           res.redirect('/haikus/'+req.params.id);
         })
-        .catch(err => console.log(err));
+        .catch((err) => {
+          res.status(500).send(err.message);
+          next(err); // Log error
+        });
     }
   });
 });
@@ -227,54 +254,74 @@ router.delete('/:id', (req, res) => {
      if (haiku.author != req.user._id) {
        res.status(500).send();
      } else {
-       Haiku.remove(query)
-         .then(() => res.send('Success'))
-         .catch(err => console.log(err));
+       return Haiku.remove(query);
      }
    })
-   .catch(err => console.log(err));
+   .then(() => {
+     res.send('Success');
+   })
+   .catch((err) => {
+     res.status(500).send(err.message);
+     next(err); // Log error
+   });
 });
 
 // Haiku give praise POST route
 router.post('/:id/give-praise', (req, res) => {
+  let message;
   Haiku.findById(req.params.id)
     .then(haiku => {
       return Promise.all([haiku, User.findById(req.user.id)]);
     })
-    .then(results => {
-      let message;
-      results[0].praise += 1;
-      results[0].save()
-        .then(() => message = 'Success')
-        .catch(err => console.log(err));
-      results[1].praised.push(results[0].id);
-      results[1].save()
-        .then(() => res.send(message))
-        .catch(err => console.log(err));
+    .then((results) => {
+      const haiku = results[0];
+      const user = results[1];
+
+      haiku.praise += 1;
+      return Promise.all([haiku, user, haiku.save()])
     })
-    .catch(err => console.log(err));
+    .then((results) => {
+      const haiku = results[0];
+      const user = results[1];
+      message = 'Success';
+
+      user.praised.push(haiku.id);
+      return user.save();
+    })
+    .then(() => {
+      res.send(message);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+      next(err); // Log error
+    });
 });
 
 // Haiku undo praise POST route
 router.post('/:id/undo-praise', (req, res) => {
+  let message;
   Haiku.findById(req.params.id)
     .then(haiku => {
       return Promise.all([haiku, User.findById(req.user.id)]);
     })
-    .then(results => {
-      let message;
-      results[0].praise -= 1;
-      results[0].save()
-        .then(() => message = 'Success')
-        .catch(err => console.log(err));
-      results[1].praised = results[1].praised.filter((id) => {
-        return id != results[0].id;
+    .then((results) => {
+      const haiku = results[0];
+      const user = results[1];
+
+      haiku.praise -= 1;
+      user.praised = user.praised.filter((id) => {
+        return id != haiku.id;
       });
-      results[1].save()
-        .then(() => res.send(message))
-        .catch(err => console.log(err));
+      return Promise.all([haiku.save(), user.save()])
     })
-    .catch(err => console.log(err));
+    .then((results) => {
+      message = 'Success';
+      res.send(message);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+      next(err); // Log error
+    });
 });
 
 // Access control

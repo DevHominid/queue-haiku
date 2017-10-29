@@ -22,20 +22,13 @@ import { hashPassword } from './auth';
   };
 
  /**
-  * Create user and save to db
+  * Create new user and save to db
   *
   * @param  {Object} user
   * @return {Promise<Object>}
   */
   export const createUser = (user) => new Promise((resolve, reject) => {
-    const newUser = new User({
-      first: user.first,
-      last: user.last,
-      email: user.email,
-      username: user.username,
-      password: user.password,
-      isAdmin: user.isAdmin
-    });
+    const newUser = new User(user);
     // Hash password
     hashPassword(newUser.password)
       .then((password) => {
@@ -98,6 +91,6 @@ import { hashPassword } from './auth';
       })
       .catch((err) => {
         reject(err);
-        console.log(err);
+        next(err);
       });
   });

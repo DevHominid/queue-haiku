@@ -13,7 +13,7 @@ import User from '../models/user';
 // Index GET route
 router.get('/', (req, res) => {
   Haiku.find({})
-    .sort({createdOn: -1, praise: -1})
+    .sort({praise: -1, createdOn: -1})
     .limit(3)
     .then(haikus => {
       res.render('index', {
@@ -22,7 +22,10 @@ router.get('/', (req, res) => {
         user: req.user
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      res.status(500).send(err.message);
+      next(err); // log error
+    });
 });
 
 // About GET route
@@ -49,8 +52,8 @@ router.get('/sign-s3', (req, res) => {
 
   s3.getSignedUrl('putObject', s3Params, (err, data) => {
     if (err) {
-      console.log(err);
       return res.end();
+      next(err); // log error
     }
     const returnData = {
       signedRequest: data,

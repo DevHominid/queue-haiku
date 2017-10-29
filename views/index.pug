@@ -15,10 +15,13 @@ block content
           a(href='/users/login') Login
   section.section-index-b
     .haiku-box
-      h2 Featured Haikus 
-      ul.list-group
-        each haiku, i in haikus
-          li.list-group-item
-            a(href='/haikus/'+haiku._id)= haiku.title
+      h2 Featured Haikus
+      if haikus.length > 0 
+        ul.list-group
+          each haiku, i in haikus
+            li.list-group-item
+              a(href='/haikus/'+haiku._id)= haiku.title
+      else
+        p Not one haiku found!
       a(href='/haikus/queue') See All
     

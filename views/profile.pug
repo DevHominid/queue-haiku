@@ -38,7 +38,7 @@ block content
           h2.heading-a2-top Most Praised
           .box.box-praise
             if mostPraised.length > 0
-              img(src=mostPraised[0].imageURL)
+              img(src=mostPraised[0].imgUrl)
               div
                 .stats-item 
                   a(href='/haikus/'+mostPraised[0]._id) #{mostPraised[0].title}

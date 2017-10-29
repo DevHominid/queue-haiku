@@ -108,6 +108,22 @@ app.use(express.static(`${__dirname}/../dist`));
 // Load router module
 app.use(router);
 
+// Error logging middleware
+app.use((err, req, res, next) => {
+  console.log(`Error: \nMessage: ${err.message}`);
+});
+
+
+// Define admin credentials
+const adminCred = {
+  first: process.env.ADMIN_FIRST,
+  last: process.env.ADMIN_LAST,
+  email: process.env.ADMIN_EMAIL,
+  username: process.env.ADMIN_USERNAME,
+  password: process.env.ADMIN_PASS,
+  isAdmin: true
+}
+
 // Start server
-checkAdmin({ username: process.env.ADMIN_USERNAME }, config.admin)
+checkAdmin({ username: process.env.ADMIN_USERNAME }, adminCred)
   .then(() => app.listen(port, () => console.log(`Server started on port: ${port}`)));

@@ -25,10 +25,13 @@ block content
         input.btn.btn-custom(type='submit',value='Go')
   .section-queue-b
     .container
-      ul.list-group
-        each haiku, i in haikus
-          li.list-group-item
-            a(href='/haikus/'+haiku._id)= haiku.title
+      if haikus.length > 0
+        ul.list-group
+          each haiku, i in haikus
+            li.list-group-item
+              a(href='/haikus/'+haiku._id)= haiku.title
+      else
+        p Not one haiku found!
     
     
     

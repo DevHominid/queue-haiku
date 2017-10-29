@@ -40,7 +40,9 @@ router.post('/register', [
           return true;
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        next(err); // Log error
+      });
     }).withMessage('You already have an account!'),
   check('username')
     .not().isEmpty().withMessage('Username is required')
@@ -55,7 +57,9 @@ router.post('/register', [
           return true;
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        next(err); // Log error
+      });
     }).withMessage('Username already taken :('),
   check('password')
     .not().isEmpty().withMessage('Password is required')
@@ -89,12 +93,12 @@ router.post('/register', [
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) {
-            console.log(err);
+            next(err);
           }
           newUser.password = hash;
           newUser.save((err) => {
             if (err) {
-              console.log(err);
+              next(err);
               return;
             } else {
               req.flash('success', 'Register success!');
@@ -156,18 +160,28 @@ router.get('/profile/:id', (req, res) => {
         user: req.user
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      res.status(500).send(err.message);
+      next(err); // Log error
+    });
 });
 
 // Edit profile GET route
-router.get('/profile/edit/:id', (req, res) => {
+router.get('/profile/edit/:id', controlAccess, (req, res) => {
   User.findById(req.params.id)
   .then(user => {
+    if (user.id != req.user._id) {
+      req.flash('danger', 'Access denied!');
+      res.redirect('/');
+    }
     res.render('edit_profile', {
       user: user
     });
   })
-  .catch(err => console.log(err));
+  .catch((err) => {
+    res.status(500).send(err.message);
+    next(err); // Log error
+  });
 });
 
 // Edit profile POST route
@@ -197,7 +211,7 @@ router.post('/profile/edit/:id', [
           errors: errors
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => next(err));
     } else {
       let user = {};
       user.first = req.body.first;
@@ -213,7 +227,7 @@ router.post('/profile/edit/:id', [
           req.flash('success', 'Profile updated!')
           res.redirect('/users/profile/'+req.params.id);
         })
-        .catch(err => console.log(err));
+        .catch(err => next(err));
     }
   });
 });
@@ -231,7 +245,20 @@ router.get('/:id/haikus', (req, res) => {
         user: req.user
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      res.status(500).send(err.message);
+      next(err); // Log error
+    });
 });
+
+// Access control
+function controlAccess(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    req.flash('danger', 'Please login');
+    res.redirect('/users/login');
+  }
+}
 
 export default router;
