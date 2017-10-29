@@ -2,14 +2,24 @@ import User from '../../models/user';
 import { hashPassword } from './auth';
 
 /**
- * Fetch a user from the database
+ * Fetch a user from the db
  *
- * @param  {Object} filter
+ * @param  {Object} query
  * @return {Promise<Object>}
  */
- const findUser = (filter = {}) => {
-   return User.find(filter).exec(); // Promise
+ export const findUser = (query) => {
+   return User.findOne(query).exec(); // Promise
  };
+
+ /**
+  * Fetch multiple users from the db
+  *
+  * @param  {Object} filter
+  * @return {Promise<Object>}
+  */
+  export const findUsers = (filter = {}) => {
+    return User.find(filter).exec(); // Promise
+  };
 
  /**
   * Create user and save to db
@@ -18,7 +28,7 @@ import { hashPassword } from './auth';
   * @return {Promise<Object>}
   */
   export const createUser = (user) => new Promise((resolve, reject) => {
-    const newUser = User({
+    const newUser = new User({
       first: user.first,
       last: user.last,
       email: user.email,
@@ -43,12 +53,20 @@ import { hashPassword } from './auth';
   /**
    * Delete user from db
    *
-   * @param  {Object} user
+   * @param  {Object} query
    * @return {Promise<Object>}
    */
-   export const deleteUser = (user) => new Promise((resolve, reject) => {
-     User.find(user).remove((err) => {
-       err ? reject(err) : resolve('user deleted')
+   export const deleteUser = (query) => new Promise((resolve, reject) => {
+     findUser(query).then(user => {
+       const idQuery = { _id: user._id }
+       User.remove(idQuery)
+         .then(() => {
+           resolve('user deleted');
+         }).catch((err) => {
+           reject(err);
+         });
+     }).catch((err) => {
+       reject(err);
      });
    });
 

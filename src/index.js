@@ -19,17 +19,20 @@ import aws from 'aws-sdk';
 // Dotenv config
 dotenv.config();
 
-// use native promises
+// Set mongoose promise library
 mongoose.Promise = global.Promise;
 
-// Connect to MongoDB
+// Set up mongoose connection
 mongoose.connect(config.database, {
   useMongoClient: true
 }).then(
   () => {console.log('Connected to MongoDB');},
   err => {console.log(err);}
 );
+// Get the connection
 let db = mongoose.connection;
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Init app
 const app = express();

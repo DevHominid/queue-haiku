@@ -36,8 +36,10 @@ before(function(done) {
 
 describe('hashPassword service', function() {
    it('returns a hashed password', async function() {
-     let password = testUser.password;
-     return expect(hashPassword(password)).to.eventually.be.fulfilled;
+     const password = testUser.password;
+     const hashPass = await hashPassword(password);
+     expect(hashPass).to.be.a('string');
+     expect(hashPass).to.not.equal(password);
    });
    it('rejects on err', async function() {
      let password;
@@ -45,8 +47,8 @@ describe('hashPassword service', function() {
    });
 });
 
-describe('createUser method', function() {
-   it('saves testUser to db', async function() {
+describe('createUser service', function() {
+   it('saves user to db', async function() {
      return expect(createUser(testUser)).to.eventually.be.fulfilled;
    });
    it('rejects on err', async function() {
@@ -59,6 +61,24 @@ describe('createUser method', function() {
        done();
      });
    });
+});
+
+describe('deleteUser service', function() {
+  before((done) => {
+    createUser(testUser).then(() => {
+      console.log('Added testUser');
+      done();
+    });
+  });
+  it('removes user from db', async function() {
+    const result = await deleteUser({ username: testUser.username });
+    expect(result).to.deep.equal('user deleted');
+    // return expect(deleteUser({ username: testUser.username })).to.eventually.be.fulfilled;
+  });
+  it('rejects on err', async function() {
+    const nonUser = { username: 'nonExistent' };
+    return expect(deleteUser(nonUser)).to.eventually.be.rejected;
+  });
 });
 
 describe('User model', function() {
