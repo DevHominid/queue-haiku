@@ -81,7 +81,8 @@ import { hashPassword } from './auth';
     findUser(query).then((admin) => {
       if (!admin) {
         createUser(newAdmin).then((newAdmin) => {
-          let message = `New admin ${newAdmin.first} ${newAdmin.last} created!`
+          let message = `New admin ${newAdmin.first} ${newAdmin.last} created!`;
+          console.log(message);
           resolve(message);
         })
         .catch((err) => {
@@ -89,8 +90,9 @@ import { hashPassword } from './auth';
           console.log(err);
         })
       } else {
-        console.log('Admin already exists');
-        reject();
+        let message = 'Admin exists';
+        console.log(message);
+        resolve(message);
       }
     })
     .catch((err) => {

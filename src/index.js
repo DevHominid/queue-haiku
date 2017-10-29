@@ -15,6 +15,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import aws from 'aws-sdk';
+import { checkAdmin } from './services/user';
 
 // Dotenv config
 dotenv.config();
@@ -107,47 +108,6 @@ app.use(express.static(`${__dirname}/../dist`));
 // Load router module
 app.use(router);
 
-// TODO: move into config/database
-// TODO: move /config into /src
-// TODO: cleanup code
-// Check for admin
-const checkAdmin = () => new Promise((resolve, reject) => {
-  User.find({ username: process.env.ADMIN_USERNAME })
-    .then((admin) => {
-
-      if (!admin.length) {
-        const newAdmin = User({
-          first: process.env.ADMIN_FIRST,
-          last: process.env.ADMIN_LAST,
-          username: process.env.ADMIN_USERNAME,
-          email: process.env.ADMIN_EMAIL,
-          password: process.env.ADMIN_PASS,
-          isAdmin: true
-        });
-
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newAdmin.password, salt, (err, hash) => {
-            if (err) {
-              reject(err);
-            }
-            newAdmin.password = hash;
-            newAdmin.save((err) => {
-              if (err) {
-                reject(err)
-              } else {
-                console.log(`New admin ${newAdmin.first} ${newAdmin.last} created!`);
-                resolve(`New admin ${newAdmin.first} ${newAdmin.last} created!`);
-              }
-            })
-          });
-        });
-      } else {
-        resolve('admin exists');
-      }
-    })
-    .catch(err => console.log(err));
-});
-
 // Start server
-checkAdmin()
+checkAdmin({ username: process.env.ADMIN_USERNAME }, config.admin)
   .then(() => app.listen(port, () => console.log(`Server started on port: ${port}`)));

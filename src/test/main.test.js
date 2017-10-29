@@ -152,9 +152,10 @@ describe('checkAdmin service', () => {
     const result = await checkAdmin(query, testAdmin);
     expect(result).to.deep.equal('New admin first last created!');
   });
-  it('rejects if admin already exists', async () => {
+  it('skips if admin already exists', async () => {
     const query = { username: testAdmin.username };
-    return expect(checkAdmin(query, testAdmin)).to.eventually.be.rejected;
+    const result = await checkAdmin(query, testAdmin);
+    expect(result).to.deep.equal('Admin exists');
   });
   after((done) => {
     deleteUser({ username: testAdmin.username }).then(() => {
