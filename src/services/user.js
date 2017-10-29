@@ -14,11 +14,11 @@ import { hashPassword } from './auth';
  /**
   * Fetch multiple users from the db
   *
-  * @param  {Object} filter
+  * @param  {Object} query
   * @return {Promise<Object>}
   */
-  export const findUsers = (filter = {}) => {
-    return User.find(filter).exec(); // Promise
+  export const findUsers = (query = {}) => {
+    return User.find(query).exec(); // Promise
   };
 
  /**
@@ -73,32 +73,28 @@ import { hashPassword } from './auth';
  /**
   * Check if admin exists in database
   *
-  * @param  {Object} filter
+  * @param  {Object} query
+  * @param  {Object} admin
   * @return {Promise<Object>}
   */
-  const checkAdmin = (adminUsername) => new Promise((resolve, reject) => {
-    findUser({ username: adminUsername }).then((admin) => {
-      if (!admin.length) {
-        const newAdmin = {
-          first: process.env.ADMIN_FIRST,
-          last: process.env.ADMIN_LAST,
-          email: process.env.ADMIN_EMAIL,
-          username: process.env.ADMIN_USERNAME,
-          password: process.env.ADMIN_PASS,
-          isAdmin: true
-        }
+  export const checkAdmin = (query, newAdmin) => new Promise((resolve, reject) => {
+    findUser(query).then((admin) => {
+      if (!admin) {
         createUser(newAdmin).then((newAdmin) => {
           let message = `New admin ${newAdmin.first} ${newAdmin.last} created!`
           resolve(message);
         })
         .catch((err) => {
+          reject(err);
           console.log(err);
         })
       } else {
-        reject('Admin already exists');
+        console.log('Admin already exists');
+        reject();
       }
     })
     .catch((err) => {
+      reject(err);
       console.log(err);
     });
   });
