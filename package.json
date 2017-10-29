@@ -7,20 +7,23 @@
     "build": "NODE_ENV=development npm run clean && mkdirp dist && gulp css && babel src -d dist --source-maps inline",
     "clean": "rimraf dist",
     "start": "npm run build && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register src/test/*test.js --reporter spec"
   },
   "author": "Dylan Ross Ludwick",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^7.1.6",
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
     "css-mqpacker": "^6.0.1",
     "cssnano": "^3.10.0",
     "gulp": "^3.9.1",
     "gulp-postcss": "^7.0.0",
     "gulp-sass": "^3.1.0",
     "mkdirp": "^0.5.1",
+    "mocha": "^4.0.1",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
