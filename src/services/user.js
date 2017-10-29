@@ -57,17 +57,17 @@ import { hashPassword } from './auth';
    * @return {Promise<Object>}
    */
    export const deleteUser = (query) => new Promise((resolve, reject) => {
-     findUser(query).then(user => {
-       const idQuery = { _id: user._id }
-       User.remove(idQuery)
-         .then(() => {
-           resolve('user deleted');
-         }).catch((err) => {
-           reject(err);
-         });
-     }).catch((err) => {
-       reject(err);
-     });
+     findUser(query)
+       .then(user => {
+         const idQuery = { _id: user._id }
+         return User.remove(idQuery);
+       })
+       .then(() => {
+         resolve('user deleted');
+       })
+       .catch((err) => {
+         reject(err);
+       });
    });
 
  /**
@@ -78,25 +78,26 @@ import { hashPassword } from './auth';
   * @return {Promise<Object>}
   */
   export const checkAdmin = (query, newAdmin) => new Promise((resolve, reject) => {
-    findUser(query).then((admin) => {
-      if (!admin) {
-        createUser(newAdmin).then((newAdmin) => {
+    findUser(query)
+      .then((admin) => {
+        if (!admin) {
+          return Promise.all([admin, createUser(newAdmin)]);
+        } else {
+          let message = 'Admin exists';
+          console.log(message);
+          resolve(message);
+        }
+      })
+      .then((result) => {
+        if (result) {
+          const newAdmin = result[1];
           let message = `New admin ${newAdmin.first} ${newAdmin.last} created!`;
           console.log(message);
           resolve(message);
-        })
-        .catch((err) => {
-          reject(err);
-          console.log(err);
-        })
-      } else {
-        let message = 'Admin exists';
-        console.log(message);
-        resolve(message);
-      }
-    })
-    .catch((err) => {
-      reject(err);
-      console.log(err);
-    });
+        }
+      })
+      .catch((err) => {
+        reject(err);
+        console.log(err);
+      });
   });
