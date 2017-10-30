@@ -11,7 +11,7 @@ header {
   background: none;
   background-size: cover;
   background-position: 50% 38%;
-  z-index: 2;
+  z-index: 100;
 }
 
 .navbar.navbar-inverse {
@@ -43,37 +43,30 @@ header {
 .navbar-collapse.in {
   position: relative;
   z-index: 2;
-  background: #70443A;
+  background: $earth-mid;
 }
 
 .navbar-collapse.collapsing {
   position: relative;
   z-index: 2;
-  background: #70443A;
+  background: $earth-mid;
 }
 
 .navbar-toggle {
+  position: relative;
+  z-index: 5001;
   height: 40px;
   background: none;
   border: none;
+
+  span.icon-bar {
+    background-color: $earth-lightest!important;
+  }
 }
 
 .navbar-toggle:focus, .navbar-toggle:hover  {
   background: none!important;
   border: none;
-}
-
-.navbar-toggle {
-  position: relative;
-  z-index: 5;
-
-  span.icon-bar {
-    background-color: #70443A!important;
-  }
-}
-
-.navbar-brand {
-
 }
 
 .logo {
@@ -90,10 +83,10 @@ a.nav-link {
   @include link-underline-el();
 }
 a.nav-link:after {
-  @include link-underline-pseudo(2px, solid, #e8cca5, 0.4s);
+  @include link-underline-pseudo(2px, solid, #E8D3B7, 0.4s);
 }
 a.nav-link:hover {
-  color: #e8cca5!important;
+  color: #E8D3B7!important;
 }
 a.nav-link:hover:after {
   @include link-underline-pseudo-hov();
@@ -129,7 +122,7 @@ ul.navbar-right {
   top: calc(0.625em + 60px);
   right: 0;
   z-index: 2;
-  width: 15%;
+  width: 20%;
   background: #222;
   border-radius: 7px;
   padding-left: 0.625em; // 10 ÷ 16
@@ -138,7 +131,7 @@ ul.navbar-right {
   h3 {
     font-family: $font-title;
     font-weight: 700; // Bold
-    color: #fff;
+    color: $earth-lightest;
     text-align: center;
   }
 
@@ -149,7 +142,7 @@ ul.navbar-right {
     font-weight: 300; // Light
     font-size: 1.00em; // 16 ÷ 16
     text-align: center;
-    color: #fff;
+    color: $earth-lightest;
   }
 
   ul{
@@ -168,19 +161,24 @@ ul.navbar-right {
   a:hover {
     color: $earth-light!important;
   }
+
+  hr {
+    color: $earth-lightest;
+  }
 }
 
 #navbar-mobile {
   position: absolute;
-  width: 100%;
+  width: 0%;
   top: 0;
   left: 0;
   right: 0;
   min-height: 100vh;
-  background: $earth-dark;
-  z-index: 4;
+  background: $earth-mid;
+  z-index: 5000;
   padding-top: 1.25em; // 20 ÷ 16
   padding-bottom: 1.25em; // 20 ÷ 16
+  transition: width 0.5s;
 
   .navbar-mobile-wrapper {
     width: 80%;
@@ -196,6 +194,7 @@ ul.navbar-right {
   img {
     width: 50px;
     height: 100%;
+    border-radius: 50%;
 
     @media screen and (min-width: 34.375em) {
       // 550 ÷ 16
@@ -210,7 +209,7 @@ ul.navbar-right {
       font-family: $font-base;
       font-size: 1em; // 16 ÷ 16
       font-weight: 700; // Bold
-      color: #fff;
+      color: $earth-lightest;
       margin-top: 0;
       margin-bottom: 0.625rem; // 10 ÷ 16
 
@@ -223,7 +222,7 @@ ul.navbar-right {
     span {
       font-family: $font-base;
       font-size: 0.75em; // 12 ÷ 16
-      color: #fff;
+      color: $earth-lightest;
       font-weight: 300; // Light
 
       @media screen and (min-width: 34.375em) {
@@ -235,6 +234,7 @@ ul.navbar-right {
 
   ul {
     padding: 0;
+    list-style: none;
   }
 
   li {
@@ -255,4 +255,9 @@ ul.navbar-right {
       @include link-underline-pseudo-hov();
     }
   }
+}
+
+#navbar-mobile.in {
+  width: 100%;
+  transition: width 0.5s;
 }

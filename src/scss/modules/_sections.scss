@@ -201,6 +201,7 @@
       margin: 0.625em 0; // 10 ÷ 16
 
       a {
+        display: block;
         @include link-underline-el();
         padding: 0.625em 0.938em;
         font-family: $font-base;
@@ -225,16 +226,16 @@
     }
 
     a {
-      display: block;
+      display: inline-block;
       font-family: $font-title;
       font-size: 2.25em; // 36 ÷ 16
       text-transform: uppercase;
       text-align: center;
       text-decoration: none;
-      color: #fff;
+      color: $earth-lightest;
     }
     a:hover {
-      color: $earth-light!important;
+      color: $green-light;
     }
   }
 }
