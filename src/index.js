@@ -23,12 +23,22 @@ dotenv.config();
 // Set mongoose promise library
 mongoose.Promise = global.Promise;
 
+// Determine URI
+let mongoDB;
+const NODE_ENV = process.env.NODE_ENV;
+const mongoUser = encodeURIComponent(process.env.MONGO_USER);
+const mongoPass = encodeURIComponent(process.env.MONGO_PASS);
+const mongoURIProd = process.env.MONGO_URI_PROD;
+const prodDB = `mongodb://${mongoUser}:${mongoPass}${mongoURIProd}`;
+const localDB = process.env.MONGO_URI_LOCAL;
+NODE_ENV === 'production' ? mongoDB = prodDB : mongoDB = localDB;
+console.log(prodDB);
 // Set up mongoose connection
-mongoose.connect(config.database, {
+mongoose.connect(mongoDB, {
   useMongoClient: true
 }).then(
-  () => {console.log('Connected to MongoDB');},
-  err => {console.log(err);}
+  () => {console.log(`Connected to MongoDB -- running in ${NODE_ENV} mode`);},
+  err => {next(err);}
 );
 // Get the connection
 let db = mongoose.connection;
