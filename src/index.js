@@ -32,7 +32,7 @@ const mongoURIProd = process.env.MONGO_URI_PROD;
 const prodDB = `mongodb://${mongoUser}:${mongoPass}${mongoURIProd}`;
 const localDB = process.env.MONGO_URI_LOCAL;
 NODE_ENV === 'production' ? mongoDB = prodDB : mongoDB = localDB;
-console.log(prodDB);
+
 // Set up mongoose connection
 mongoose.connect(mongoDB, {
   useMongoClient: true

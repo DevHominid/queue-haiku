@@ -110,3 +110,22 @@ body {
 .margin-right-x {
   margin-right: $space-x;
 }
+
+.margin-top-x-mobile {
+  @media screen and (max-width: 47.938em) {
+    margin-top: $space-x!important;
+  }
+}
+
+.margin-top-2x-mobile {
+  @media screen and (max-width: 47.938em) {
+    margin-top: $space-2x!important;
+  }
+}
+
+.margin-top-0 {
+  margin-top: 0!important;
+}
+.margin-bottom-0 {
+  margin-bottom: 0!important;
+}

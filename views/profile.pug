@@ -17,7 +17,7 @@ block content
               i.fa.fa-globe.fa-lg(aria-hidden='true')
               span= poet.location
         .col-sm-8
-          h2 Bio
+          h2.margin-top-x-mobile Bio
           p= poet.bio
   section.section-profile-b
     .container
@@ -25,17 +25,17 @@ block content
         .col-sm-6
           h2.heading-a2-top Stats
           .box
-            .stats-item
+            .stats-item.margin-top-0
               span.stats-label Poet Level: 
               span.stats-val Novice
             .stats-item
               span.stats-label Poet Since: 
               span.stats-val #{poet.createdOn}
-            .stats-item
+            .stats-item.margin-bottom-0
               span.stats-label Total Haikus: 
               span.stats-val #{allHaikus.length}
         .col-sm-6
-          h2.heading-a2-top Most Praised
+          h2.heading-a2-top.margin-top-2x-mobile Most Praised
           .box.box-praise
             if mostPraised.length > 0
               img(src=mostPraised[0].imgUrl)
