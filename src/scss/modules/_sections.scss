@@ -1042,6 +1042,7 @@
   li.list-group-item {
     padding: 0;
     margin: 0.625em 0; // 10 ÷ 16
+    border-color: $earth-mid;
 
     a {
       @include link-underline-el();
@@ -1053,6 +1054,7 @@
       text-transform: none;
       text-align: left;
       color: $earth-dark;
+      background: $earth-mid;
     }
     a:after {
       @include link-underline-pseudo(2px, solid, $earth-light, 0.4s);
