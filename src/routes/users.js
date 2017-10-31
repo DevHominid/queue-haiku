@@ -19,13 +19,13 @@ router.get('/register', (req, res) => {
 router.post('/register', [
   // Validate and sanitize data
   check('first')
-    .not().isEmpty().withMessage('First name is required')
-    .escape()
-    .trim(),
+    .not().isEmpty().withMessage('First name is required'),
+  sanitize('first').escape().trim(),
+
   check('last')
-    .not().isEmpty().withMessage('Last name is required')
-    .escape()
-    .trim(),
+    .not().isEmpty().withMessage('Last name is required'),
+  sanitize('last').escape().trim(),
+
   check('email')
     .not().isEmpty().withMessage('Email is required')
     .isEmail().withMessage('Email is not valid')
@@ -44,6 +44,8 @@ router.post('/register', [
         next(err); // Log error
       });
     }).withMessage('You already have an account!'),
+  sanitize('email').escape().trim(),
+
   check('username')
     .not().isEmpty().withMessage('Username is required')
     .escape()
@@ -61,14 +63,22 @@ router.post('/register', [
         next(err); // Log error
       });
     }).withMessage('Username already taken :('),
+  sanitize('username').escape().trim(),
+
   check('password')
-    .not().isEmpty().withMessage('Password is required')
-    .escape()
-    .trim(),
+    .not().isEmpty().withMessage('Password is required'),
+    sanitize('password').escape().trim(),
+
   check('password2')
     .escape()
     .trim()
-    .custom((value, { req }) => value === req.body.password).withMessage('Passwords do not match')
+    .custom((value, { req }) => {
+      if (value === req.body.password) {
+        return true;
+      } else {
+        return false;
+      }
+    }).withMessage('Passwords do not match')
 
 ], (req, res, next) => {
 
