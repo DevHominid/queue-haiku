@@ -39,8 +39,8 @@ mongoose.connect(mongoDB, {
 }).then(() => {
   console.log(`Connected to MongoDB -- running in ${NODE_ENV} mode`);
 })
-.catch({
-  err => {console.log(err);}
+.catch((err) => {
+  console.log(err);
 });
 // Get the connection
 let db = mongoose.connection;
