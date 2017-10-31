@@ -90,21 +90,20 @@ router.get('/add', controlAccess, (req, res) => {
 router.post('/add', [
   // Validate and sanitize data
   check('title')
-    .not().isEmpty().withMessage('Title is required')
-      .escape()
-      .trim(),
+    .not().isEmpty().withMessage('Title is required'),
+  sanitize('title').escape().trim(),
+
   check('line1')
-    .not().isEmpty().withMessage('Line 1 is required')
-      .escape()
-      .trim(),
+    .not().isEmpty().withMessage('Line 1 is required'),
+  sanitize('line1').escape().trim(),
+
   check('line2')
-    .not().isEmpty().withMessage('Line 2 is required')
-      .escape()
-      .trim(),
+    .not().isEmpty().withMessage('Line 2 is required'),
+  sanitize('line2').escape().trim(),
+
   check('line3')
-    .not().isEmpty().withMessage('Line 3 is required')
-      .escape()
-      .trim()
+    .not().isEmpty().withMessage('Line 3 is required'),
+  sanitize('username').escape().trim(),
 ], (req, res) => {
 
   req.getValidationResult().then((result) => {
@@ -183,21 +182,20 @@ router.get('/edit/:id', controlAccess, (req, res) => {
 router.post('/edit/:id', [
   // Validate and sanitize data
   check('title')
-    .not().isEmpty().withMessage('Title is required')
-      .escape()
-      .trim(),
+    .not().isEmpty().withMessage('Title is required'),
+  sanitize('title').escape().trim(),
+
   check('line1')
-    .not().isEmpty().withMessage('Line 1 is required')
-      .escape()
-      .trim(),
+    .not().isEmpty().withMessage('Line 1 is required'),
+  sanitize('line1').escape().trim(),
+
   check('line2')
-    .not().isEmpty().withMessage('Line 2 is required')
-      .escape()
-      .trim(),
+    .not().isEmpty().withMessage('Line 2 is required'),
+  sanitize('line2').escape().trim(),
+
   check('line3')
-    .not().isEmpty().withMessage('Line 3 is required')
-      .escape()
-      .trim()
+    .not().isEmpty().withMessage('Line 3 is required'),
+  sanitize('line3').escape().trim(),
 ], (req, res) => {
 
   req.getValidationResult().then((result) => {
