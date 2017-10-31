@@ -20,6 +20,8 @@ import { checkAdmin } from './services/user';
 // Dotenv config
 dotenv.config();
 
+const MongoStore = require('connect-mongo')(session);
+
 // Set mongoose promise library
 mongoose.Promise = global.Promise;
 
@@ -71,6 +73,7 @@ app.use(bodyParser.json());
 // Express session middleware
 app.use(session({
   secret: 'keyboard cat',
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
   resave: true,
   saveUninitialized: true,
   //cookie: { secure: true }
