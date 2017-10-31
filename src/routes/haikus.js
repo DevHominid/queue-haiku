@@ -8,7 +8,7 @@ import Haiku from '../../models/haiku';
 import User from '../../models/user';
 
 // Queue GET route
-router.get('/queue', (req, res) => {
+router.get('/queue', (req, res, next) => {
   Haiku.find({})
     .sort('-createdOn')
     .then(haikus => {
@@ -27,7 +27,7 @@ router.get('/queue', (req, res) => {
 });
 
 // Queue POST route
-router.post('/queue', (req, res) => {
+router.post('/queue', (req, res, next) => {
   const filterOptions = ['most recent', 'oldest', 'most praised'];
 
   if (req.body.filterOptionValue === 'most recent') {
@@ -104,7 +104,7 @@ router.post('/add', [
   check('line3')
     .not().isEmpty().withMessage('Line 3 is required'),
   sanitize('username').escape().trim(),
-], (req, res) => {
+], (req, res, next) => {
 
   req.getValidationResult().then((result) => {
 
@@ -139,7 +139,7 @@ router.post('/add', [
 });
 
 // Haiku GET route
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   Haiku.findById(req.params.id)
     .then(haiku => {
       return Promise.all([haiku, User.findById(haiku.author)]);
@@ -160,7 +160,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Edit haiku GET route
-router.get('/edit/:id', controlAccess, (req, res) => {
+router.get('/edit/:id', controlAccess, (req, res, next) => {
   Haiku.findById(req.params.id)
     .then(haiku => {
       if (haiku.author != req.user._id) {
@@ -196,7 +196,7 @@ router.post('/edit/:id', [
   check('line3')
     .not().isEmpty().withMessage('Line 3 is required'),
   sanitize('line3').escape().trim(),
-], (req, res) => {
+], (req, res, next) => {
 
   req.getValidationResult().then((result) => {
     // Get errors
@@ -240,7 +240,7 @@ router.post('/edit/:id', [
 });
 
 // haiku DELETE route
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res, next) => {
   if (!req.user._id) {
     res.status(500).send();
   }
@@ -265,7 +265,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // Haiku give praise POST route
-router.post('/:id/give-praise', (req, res) => {
+router.post('/:id/give-praise', (req, res, next) => {
   let message;
   Haiku.findById(req.params.id)
     .then(haiku => {
@@ -296,7 +296,7 @@ router.post('/:id/give-praise', (req, res) => {
 });
 
 // Haiku undo praise POST route
-router.post('/:id/undo-praise', (req, res) => {
+router.post('/:id/undo-praise', (req, res, next) => {
   let message;
   Haiku.findById(req.params.id)
     .then(haiku => {

@@ -11,7 +11,7 @@ import Haiku from '../models/haiku';
 import User from '../models/user';
 
 // Index GET route
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Haiku.find({})
     .sort({praise: -1, createdOn: -1})
     .limit(3)
@@ -36,7 +36,7 @@ router.get('/about', (req, res) => {
 });
 
 // Create S3 signed url, PUT route to S3
-router.get('/sign-s3', (req, res) => {
+router.get('/sign-s3', (req, res, next) => {
   const s3 = new aws.S3();
   const id = req.user._id;
   const folderName = req.query['folder-name'];

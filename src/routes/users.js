@@ -11,7 +11,7 @@ import User from '../../models/user';
 import Haiku from '../../models/haiku';
 
 // Register form GET route
-router.get('/register', (req, res) => {
+router.get('/register', (req, res, next) => {
   res.render('register');
 });
 
@@ -147,7 +147,7 @@ router.get('/logout', (req, res) => {
 });
 
 // Profile GET route
-router.get('/profile/:id', (req, res) => {
+router.get('/profile/:id', (req, res, next) => {
   User.findById(req.params.id)
     .then(user => {
       return Promise.all([
@@ -177,7 +177,7 @@ router.get('/profile/:id', (req, res) => {
 });
 
 // Edit profile GET route
-router.get('/profile/edit/:id', controlAccess, (req, res) => {
+router.get('/profile/edit/:id', controlAccess, (req, res, next) => {
   User.findById(req.params.id)
   .then(user => {
     if (user.id != req.user._id) {
