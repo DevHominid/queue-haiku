@@ -874,6 +874,11 @@
     .stats-label {
       margin-right: 0.313em; // 5 ÷ 16
     }
+
+    p {
+      color: $earth-lightest;
+      font-family: $font-base;
+    }
   }
 
   .stats-item {
