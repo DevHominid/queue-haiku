@@ -36,9 +36,10 @@ NODE_ENV === 'production' ? mongoDB = prodDB : mongoDB = localDB;
 // Set up mongoose connection
 mongoose.connect(mongoDB, {
   useMongoClient: true
-}).then({
-  () => {console.log(`Connected to MongoDB -- running in ${NODE_ENV} mode`);},
-}).catch({
+}).then(() => {
+  console.log(`Connected to MongoDB -- running in ${NODE_ENV} mode`);
+})
+.catch({
   err => {console.log(err);}
 });
 // Get the connection
