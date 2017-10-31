@@ -20,7 +20,12 @@ footer {
     display: flex;
     flex-direction: column;
     font-family: $font-title;
-    font-size: 1.75em; // 28 ÷ 16
+    font-size: 1.25em; // 20 ÷ 16
+
+    @media screen and (min-width: 23.438em) {
+      // 375 ÷ 16
+      font-size: 1.75em; // 28 ÷ 16
+    }
   }
 
   p {
