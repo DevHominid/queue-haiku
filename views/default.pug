@@ -101,9 +101,19 @@ html
     block content
     footer
       .container
-        p Copyright &copy; 2017
-        a(href='http://devhominid.com', target='_blank')
-          img.signature(src='/images/signature.png')
+        .footer-wrapper
+          .footer-box
+            a.link-a(href='#') Contact Us
+            a.link-a(href='#') Privacy Policy
+            p.copy &copy; 2017
+          .footer-box
+            .icon-wrapper
+              a.link-b(href='https://twitter.com/DevHominid', target='_blank')
+                i.icon.fa.fa-twitter.fa-2x(aria-hidden='true')
+              a.link-b(href='https://github.com/DevHominid/queue-haiku', target='_blank')
+                i.icon.fa.fa-github.fa-2x(aria-hidden='true')
+            a(href='http://devhominid.com', target='_blank')
+              img.signature(src='/images/signature.png')
     script(src='/js/jquery-3.1.1.js')
     script(src='/js/bootstrap.min.js')
     script(src='/js/praise.js')

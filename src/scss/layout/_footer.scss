@@ -1,26 +1,45 @@
 /* * * Footer Styles * * */
 
 footer {
-  height: 10vh;
+  height: 200px;
   background: #443730;
-}
-
-footer {
 
   .container {
+    height: 100%;
+  }
+
+  .footer-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
+  }
 
-    p {
-      margin-right: 30px;
-      margin-bottom: 0;
-      color: #fff;
-    }
+  .footer-box {
+    display: flex;
+    flex-direction: column;
+    font-family: $font-title;
+    font-size: 1.75em; // 28 ÷ 16
+  }
+
+  p {
+    margin-bottom: 0;
+    color: $earth-red;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .icon {
+    width: 50px;
   }
 }
 
 .signature {
   width: 175px;
+  margin-top: $space-x;
 }

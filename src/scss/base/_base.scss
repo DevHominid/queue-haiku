@@ -129,3 +129,27 @@ body {
 .margin-bottom-0 {
   margin-bottom: 0!important;
 }
+
+a.link-a {
+  color: #fff;
+}
+a.link-a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+a.link-a:hover {
+  color: $green-light;
+  text-decoration: none;
+}
+
+a.link-b {
+  color: #fff;
+}
+a.link-b:visited {
+  color: #fff;
+  text-decoration: none;
+}
+a.link-b:hover {
+  color: $earth-red;
+  text-decoration: none;
+}
