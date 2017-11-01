@@ -25,21 +25,31 @@ const MongoStore = require('connect-mongo')(session);
 // Set mongoose promise library
 mongoose.Promise = global.Promise;
 
-// Determine URI
+// Init dbb config vars
 let mongoDB;
+let dbInstance;
 const NODE_ENV = process.env.NODE_ENV;
-const mongoUser = encodeURIComponent(process.env.MONGO_USER);
-const mongoPass = encodeURIComponent(process.env.MONGO_PASS);
-const mongoURIProd = process.env.MONGO_URI_PROD;
-const prodDB = `mongodb://${mongoUser}:${mongoPass}${mongoURIProd}`;
+const MONGO_LOCAL = process.env.MONGO_LOCAL
+const MONGO_USER = encodeURIComponent(process.env.MONGO_USER);
+const MONGO_PASS = encodeURIComponent(process.env.MONGO_PASS);
+const MONGO_URI_PROD = process.env.MONGO_URI_PROD;
+const prodDB = `mongodb://${MONGO_USER}:${MONGO_PASS}${MONGO_URI_PROD}`;
 const localDB = process.env.MONGO_URI_LOCAL;
-NODE_ENV === 'production' ? mongoDB = prodDB : mongoDB = localDB;
+// Determine URI
+MONGO_LOCAL === 'true' ? (
+  mongoDB = localDB,
+  dbInstance = 'local'
+) : (
+  mongoDB = prodDB,
+  dbInstance = 'mLab'
+);
 
 // Set up mongoose connection
 mongoose.connect(mongoDB, {
   useMongoClient: true
 }).then(() => {
-  console.log(`Connected to MongoDB -- running in ${NODE_ENV} mode`);
+  console.log(`Connected to MongoDB -- ${dbInstance}`);
+  console.log(`running in ${NODE_ENV} mode`);
 })
 .catch((err) => {
   console.log(err);
@@ -73,7 +83,7 @@ app.use(bodyParser.json());
 // Express session middleware
 app.use(session({
   secret: 'keyboard cat',
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  store: new MongoStore({ mongooseConnection: db }),
   resave: true,
   saveUninitialized: true,
   //cookie: { secure: true }
